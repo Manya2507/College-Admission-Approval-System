@@ -152,40 +152,13 @@ Random Forest Classifier
 # ==========================================================
 # CSS WITH VISIBLE BACKGROUND SLIDESHOW
 # ==========================================================
-
-css = """
-
-html, body {
-
-    margin:0;
-    padding:0;
-
-    background:transparent !important;
-
-}
-
-
-
-.gradio-container {
-
-    width:100% !important;
-
-    min-height:100vh !important;
-
-    background:transparent !important;
-
-}
-
-
-
-/* ===============================
-   BACKGROUND SLIDESHOW
-================================*/
-
+/* ================================
+   FULL SCREEN BACKGROUND SLIDESHOW
+================================ */
 
 #background {
 
-    position:fixed;
+    position: fixed !important;
 
     top:0;
     left:0;
@@ -193,13 +166,14 @@ html, body {
     width:100vw;
     height:100vh;
 
-    z-index:-3;
+    z-index:0 !important;
 
     overflow:hidden;
 
 }
 
 
+/* Images */
 
 #background img {
 
@@ -212,81 +186,59 @@ html, body {
 
     opacity:0;
 
-    animation:changeImage 20s infinite;
+    animation: slideshow 20s infinite;
 
 }
 
 
+/* Timing */
 
 #background img:nth-child(1){
-
     animation-delay:0s;
-
 }
-
 
 #background img:nth-child(2){
-
     animation-delay:5s;
-
 }
-
 
 #background img:nth-child(3){
-
     animation-delay:10s;
-
 }
-
 
 #background img:nth-child(4){
-
     animation-delay:15s;
-
 }
 
 
 
-@keyframes changeImage{
+@keyframes slideshow {
 
 
-0%{
-
-opacity:0;
-
-transform:scale(1);
-
-}
+    0%{
+        opacity:0;
+        transform:scale(1);
+    }
 
 
-5%{
-
-opacity:1;
-
-}
+    5%{
+        opacity:1;
+    }
 
 
-20%{
-
-opacity:1;
-
-transform:scale(1.08);
-
-}
+    20%{
+        opacity:1;
+        transform:scale(1.08);
+    }
 
 
-25%{
-
-opacity:0;
-
-}
+    25%{
+        opacity:0;
+    }
 
 
-100%{
-
-opacity:0;
-
-}
+    100%{
+        opacity:0;
+    }
 
 }
 
@@ -294,91 +246,74 @@ opacity:0;
 
 /* Dark transparent layer */
 
+#overlay {
 
-#overlay{
+    position:fixed;
 
-position:fixed;
+    top:0;
+    left:0;
 
-inset:0;
-
-background:rgba(0,0,0,0.20);
-
-z-index:-2;
-
-}
+    width:100%;
+    height:100%;
 
 
-
-/* Main glass container */
-
-
-#main-container{
+    background:rgba(0,0,0,0.25);
 
 
-position:relative;
-
-z-index:2;
-
-
-width:min(1200px,90%);
-
-
-margin:30px auto;
-
-
-padding:30px;
-
-
-border-radius:25px;
-
-
-background:rgba(255,255,255,0.35);
-
-
-backdrop-filter:blur(12px);
-
-
--webkit-backdrop-filter:blur(12px);
-
-
-box-shadow:
-
-0 10px 40px rgba(0,0,0,0.4);
-
+    z-index:1 !important;
 
 }
 
 
 
-#main-container *{
+/* Keep Gradio transparent */
 
-color:black !important;
+.gradio-container {
+
+    background:transparent !important;
 
 }
 
 
-"""
+
+/* Content above background */
+
+#main-container {
+
+
+    position:relative !important;
+
+    z-index:2 !important;
+
+
+    background:
+
+    rgba(255,255,255,0.45) !important;
+
+
+    backdrop-filter:blur(10px);
+
+
+}
 # ==========================================================
 # BACKGROUND HTML
 # ==========================================================
 
 background_html = """
-
 <div id="background">
 
-    <img src="/gradio_api/file=images/college-img-1.jpg">
+<img src="/gradio_api/file=images/college-img-1.jpg">
 
-    <img src="/gradio_api/file=images/images (2).jpg">
+<img src="/gradio_api/file=images/images (2).jpg">
 
-    <img src="/gradio_api/file=images/images (3).jpg">
+<img src="/gradio_api/file=images/images (3).jpg">
 
-    <img src="/gradio_api/file=images/images (4).jpg">
+<img src="/gradio_api/file=images/images (4).jpg">
 
 </div>
 
 
 <div id="overlay"></div>
-
 """
 
 
