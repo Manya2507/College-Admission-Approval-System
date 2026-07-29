@@ -477,7 +477,7 @@ rgba(0,0,0,0.35)
 
 url(
 
-"data:image/jpg;base64,{BACKGROUND_IMAGES[3]}"
+"data:image/jpg;base64,{BACKGROUND_IMAGES[2]}"
 
 );
 
@@ -499,7 +499,7 @@ rgba(0,0,0,0.35)
 
 url(
 
-"data:image/jpg;base64,{BACKGROUND_IMAGES[4]}"
+"data:image/jpg;base64,{BACKGROUND_IMAGES[3]}"
 
 );
 
@@ -521,28 +521,7 @@ rgba(0,0,0,0.35)
 
 url(
 
-"data:image/jpg;base64,{BACKGROUND_IMAGES[5]}"
-
-);
-
-}}
-
-
-125% {{
-
-background-image:
-
-linear-gradient(
-
-rgba(0,0,0,0.35),
-
-rgba(0,0,0,0.35)
-
-),
-
-url(
-
-"data:image/jpg;base64,{BACKGROUND_IMAGES[2]}"
+"data:image/jpg;base64,{BACKGROUND_IMAGES[4]}"
 
 );
 
