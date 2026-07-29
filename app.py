@@ -567,58 +567,50 @@ css = """
 """
 
 
-/* =====================================
-   HEADER STYLE
-===================================== */
+# =====================================================
+# HEADER STYLE
+# =====================================================
 
+css = """
 
-#header-box {{
+#header-box {
 
+    text-align: center;
 
-    text-align:center;
-
-
-    padding:25px;
-
+    padding: 30px;
 
 
     background:
 
     rgba(
-
-    255,
-
-    255,
-
-    255,
-
-    0.45
-
+        255,
+        255,
+        255,
+        0.45
     );
 
 
-
-    border-radius:25px;
-
-
-}}
+    border-radius: 25px;
 
 
+    border-left:
 
+    8px solid #087f5b;
 
-
-#header-box h1 {{
-
-
-    font-size:42px;
-
-
-    font-weight:900;
+}
 
 
 
-    color:#064e3b !important;
+#header-box h1 {
 
+
+    font-size: 42px;
+
+
+    font-weight: 900;
+
+
+    color: #064e3b !important;
 
 
     animation:
@@ -626,58 +618,72 @@ css = """
     titleAnimation 3s infinite alternate;
 
 
-}}
+}
+
+
+
+
+#header-box h2 {
+
+
+    color: #047857 !important;
+
+
+    font-size: 25px;
+
+
+}
+
+
+
+
+#header-box h3 {
+
+
+    color: #065f46 !important;
+
+
+}
+
+
+
+
+#header-box p {
+
+
+    color: black !important;
+
+
+    font-size: 17px;
+
+
+}
 
 
 
 
 
-@keyframes titleAnimation {{
+@keyframes titleAnimation {
 
 
-from {{
+    from {
 
-transform:scale(1);
+        transform: scale(1);
 
-}}
-
-
-to {{
-
-transform:scale(1.05);
-
-}}
+    }
 
 
-}}
+    to {
+
+        transform: scale(1.05);
+
+    }
 
 
+}
 
 
-
-#header-box h2 {{
-
-
-color:#047857 !important;
-
-
-}}
-
-
-
-
-
-#header-box p {{
-
-
-font-size:17px;
-
-
-color:#111 !important;
-
-
-}}
-
+"""
 
 
 
