@@ -777,7 +777,7 @@ with gr.Blocks(
 
             class="background-image image1"
 
-            src="/gradio_api/file=images/piet_aerial.jpg"
+            src="/gradio_api/file=data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAGwAqAMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAAABAEDBQIGB//EAD8QAAEDAwEFAgkKBQUAAAAAAAIAAQMEERIhBRMiMTJBUgYUQlFhYnKhsSNDcYGCkZKiwdEVJDM0UyWDo/Dy/8QAGAEBAQEBAQAAAAAAAAAAAAAAAQACAwT/xAAiEQEAAgICAgIDAQAAAAAAAAAAARECEgMhE0ExYTJRcSL/2gAMAwEAAhEDEQA/APsSFDLzEldtbxwqQ6ynp55OOCGSN3cwd7M7OzW05vZ3s2r2ZdZmnjyyr1MvT3RdYEB7Uq9lwSHXQ0k5Z/KY8Js7XF2Z25W1ft+LDU+2SmIT2xTj/T6bZC93Z7M7as7Mztftd+xkbN49xbfdQsAYdqeLTie2oPGZBEQISGwFmTk7M7c7OAtz6ey6thp9qZ/LbTg4pBx3ZNrwuzszW01a7Nq/PXkzVnVtIWI8VaACJ7YjHhyEikG5vYWe+nJnZ/xW0sp3O0jOD/U4BxEAnxJiyJnbJrWbV7O17tztbtTstW0hcPNFxFvY8RvlxNpyvfzc2+9kbyPPHejl3cmv931t96bFO1ClQpBCEKNBCEKVBCEKVIQpUKQQhCU6ZeMmi2/SVMo08VaXXuiHCRmyd34XfUW5aehezRdcOXi8ldzFfpzz49vdMCj2TJUbNGPaoVMkhHK5DvBd3EmtYnfR9NNPMu38G9nnDuDiqyi4X3ZTNa46MV73vy1vfTsW5dC3jhERTpj/AJiIhit4PUI8ONWQl5O8G3U5N2X5u/32dTSbBpKSYZ6eOrjkHH54dbE72f3XtzZmbz32EJo2xw2FSBRx0wDV4xk5CRSA5DchN7dlrg2npfzqJfB+iqAxlgqSHEQH5QdBF3dmaz82d9HfXRtVtIVStjDsKkDoGrHl85H2GxtzZ+RMz6/Q920V1Bsimoji3ME47m+63kgk0V2dntrfW+vby8y00JqDaEIQkUEIQpBCEKQUKVCgEIQpBCEKSUIQhBCEKQQhCkEIQohCEKQQhF1IIUIUkoUISAhCFEIUIUqCEIUqGSGdZr13qqHr/VWtJY2hp5IyWc1cJ+quvGvWVrI2P5IySe/R4wStZOxy6Mkl4wSkZSNWsrY5kjJJnJh1qYpc1amzeSMkp4wJnirBbPoRRu1+SMlVj6w/iUuOHWSOjUrLoupaKPq3vCu2hHqyy5IuGtZV3QXAr53EIcvo+KrLGUOrFFnVXkoclTKeHlCuHcv/ADqt0wZuhLmRBiKFULIvRT/4vgoegn7v5m/dLHIXjJcRY6jlk/E33LmSUT4Ql4u7q/1LpcsVBiWkniDIx4e8OvwVTGILmSqIOHIvxP8AdZXQ1MZwkUpR73XHh6vN2KuVrDtqkT8n8yjxjDul7SqGqiPhlKOP2Y/2UZ0n+XL7LshuMLXPVF3RUlVF7IrPebuCmB3QBlUEXsjzH3JlmIkxLUlKHH0rmOfDykrUFHh8kRY69SWcuNULKT4ycaZjqcMvW9Z0lGWfkj1dXaOnYpomGXIZSxHq9P0aomWsYNPUkfXKRLkp8z6lXns8Ovxn8q4kqKQP6UE32pG/RkWJ6+VryqQqpA6CSpyjL/SyH2i/Vcl0dShZw6qQ+slDTkfFxJXiUM5KFmmkVsE/Hjvd2s55FDSK7MdNJ5PluOX2SQs2Q80INumlJdvNIHX+YVfJS7o8jlgg9YiZviqq6KpD5SUsuLq5++yJtzjGcfhnVtRIc3sp2GYTASOAenuqgiH50scix4tE2NOPDhEJf7n/AG6Nonp2w4+Wto9qT4z4OH2RZc2L/KScNsA/ti4fK09+qYYKaKHeS8ReTHHZ3+t+TK2+z4OWWYIEfDlIX2l3PQSRf3AlHl3iTgS9yCMS9bLh+u7Ik2rs/Pjig4ekiK/vVcjwz7tnDD0iGRKwo/Jx/D+7K59vUhgXDBw+rr9ST/jUGGWJCXdxT2vFK4AwXTYguIPCCkDHOL/jZ/irn8JtlnjhRycUjeS3Fbmzaom14vtXIMZhj0qmURDiyS1RtiQ5pSCKmGLXEcXdxZ+V3bRL09UW0ALhx3f5rqqYE4THZktoYeSK0oyjMBLHq9ZZEtJmA8XEV8hx6fNqr6d90AiAlwozqY6lymaabPB3VLlB3UjvCRvSXLUeSDjnB3S9y5eUe6X2rJXekjekmjvCwi9UUKvfeqha2kb/AGu8LCwCmLESxIuoWJuTdjrWr5aYKYSqxKQcm6Ss97PqsPwvMmpYHZ/nH+Cd26Tts8Xbmxs/uXXL4dZmYui1XNScPikUmOXEJWf61fIEEoUfEQiNPxZU+TFZm5XbRn53WK05g4sNuYv969BFTQ1ZU++jb5KB3Gzu2rNouMX8vfx5XxYqNn0YynicsEkUcLHOO7sxa8tLNp5/oV+4ENlDJSZRyxi47nxjJ+b27bdvmVmz9nAA05jPUNamaVw3nCTlq7O3a3oWXPIH8Fp5gp6aM93O/BCLdLvZLM/kmenqQMiqCKMsflIchkHl3mZl5OninM8YhyLHp3jD73XpooQlEagmtI46uOjPp5l5MH3IjKLcRc76st8fy7c0R48f4ZeOfhzxHIvKkf3sz6N6V28IhTFmUe93mIkJXazWva+vajZrDJtGGOYBkjISdxdrcm87a+9expqOheNxKihdr31cnv7/AEMtzlU08+HFtFvMU1DvaOsIMZMcN2W7YctdbN2Judqk6mjkp6GQYob5CQjctfPrZl6LZ0UM9ccRQgIMLnw3bk7t5+S2mgiESPBnfRtXfloicxlwzD5w+zamrml/kSj5EJSSPYPTfk/6J7ZezqmnCXejiXV5+V7r3eANyjDlbl6bJCs2hLSjaOOJ/aZ/3WJz2GnVSx9o7IKnpiI5ZJ+JgERFmc3ez/qrtkbGjPiMpMS6h7eXK9ll1vhbtICsA07Ytdnwd/i6zZPCfa5PZqrBvUAR99kUzHFHt7t9l0QUYznAQ8ORDk7vyvbTtWbUUcUtB4zTxbvmW7LQrX0uzvo7tqvEybY2hNHnLWTn6HlK3b6fQkSnkPqLz/r+ydF4oe2igEwy34j3hya4+hcMAn0SrG8GP5qrCmn442MHs/pey9ht6kh2fTSlTBjjERsz8rszp1i6cZwx/TJeAu8hedfaNZKWJVB2dxfSzc0LfjxZ8eL/2Q=="
 
             >
 
@@ -786,7 +786,7 @@ with gr.Blocks(
 
             class="background-image image2"
 
-            src="/gradio_api/file=images/piet_building.jpg"
+            src="/gradio_api/file=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBakU-4HlNRGo4x4JYlhjKxkEwMhfDtLSv88xE8N2efQ&s=10"
 
             >
 
@@ -795,7 +795,7 @@ with gr.Blocks(
 
             class="background-image image3"
 
-            src="/gradio_api/file=images/iit_delhi.jpg"
+            src="/gradio_api/file=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9qvww5W9uAk6iORTQn2HNIl7Uf04jrvv5xcmeDDh7_g&s=10"
 
             >
 
@@ -804,7 +804,7 @@ with gr.Blocks(
 
             class="background-image image4"
 
-            src="/gradio_api/file=images/chitkara.jpg"
+            src="/gradio_api/file=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuDmesQ7DOPxCzvhjGLZwh0fWC3qOcikTOOCbRwdSpcw&s=10"
 
             >
 
