@@ -305,305 +305,222 @@ Random Forest Classifier
 
 css = """
 
-/* ======================================================
-   REMOVE DEFAULT BACKGROUND
-====================================================== */
+/* =====================================================
+   REMOVE GRADIO DEFAULT BACKGROUND
+===================================================== */
 
-html {
-
-    background:
-    transparent !important;
-
-}
-
-
+html,
 body {
 
-    background:
-    transparent !important;
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    background: transparent !important;
 
 }
 
 
-/* ======================================================
-   FULL SCREEN SLIDESHOW
-====================================================== */
+/* Gradio outer layers */
+
+.gradio-container {
+
+    position: relative !important;
+
+    min-height: 100vh !important;
+
+    max-width: none !important;
+
+    background: transparent !important;
+
+}
+
+
+/* =====================================================
+   BACKGROUND SLIDESHOW
+===================================================== */
 
 #background-slideshow {
 
-    position:
-    fixed !important;
+    position: fixed !important;
 
-    top:
-    0 !important;
+    top: 0 !important;
 
-    left:
-    0 !important;
+    left: 0 !important;
 
-    width:
-    100vw !important;
+    width: 100vw !important;
 
-    height:
-    100vh !important;
+    height: 100vh !important;
 
-    z-index:
-    0 !important;
+    z-index: 0 !important;
 
-    overflow:
-    hidden !important;
-
-    pointer-events:
-    none !important;
+    overflow: hidden !important;
 
 }
 
 
-/* ======================================================
-   BACKGROUND IMAGE
-====================================================== */
+/* All images */
 
 .background-image {
 
-    position:
-    absolute !important;
+    position: absolute !important;
 
-    top:
-    0 !important;
+    top: 0 !important;
 
-    left:
-    0 !important;
+    left: 0 !important;
 
-    width:
-    100% !important;
+    width: 100% !important;
 
-    height:
-    100% !important;
+    height: 100% !important;
 
-    object-fit:
-    cover !important;
+    object-fit: cover !important;
 
-    object-position:
-    center !important;
+    object-position: center !important;
 
-    opacity:
-    0 !important;
+    opacity: 0 !important;
 
-    animation:
-    backgroundAnimation
-    20s
-    infinite !important;
+    animation-name: slideshow !important;
+
+    animation-duration: 20s !important;
+
+    animation-iteration-count: infinite !important;
+
+    animation-timing-function: linear !important;
 
 }
 
 
-/* ======================================================
-   IMAGE TIMING
-====================================================== */
+/* Image timing */
 
 .image1 {
 
-    animation-delay:
-    0s !important;
+    animation-delay: 0s !important;
 
 }
 
 
 .image2 {
 
-    animation-delay:
-    5s !important;
+    animation-delay: 5s !important;
 
 }
 
 
 .image3 {
 
-    animation-delay:
-    10s !important;
+    animation-delay: 10s !important;
 
 }
 
 
 .image4 {
 
-    animation-delay:
-    15s !important;
+    animation-delay: 15s !important;
 
 }
 
 
-/* ======================================================
-   ANIMATION
-====================================================== */
+/* =====================================================
+   SLIDESHOW ANIMATION
+===================================================== */
 
-@keyframes backgroundAnimation {
+@keyframes slideshow {
 
     0% {
 
-        opacity:
-        0;
+        opacity: 1;
 
-        transform:
-        scale(1);
+        transform: scale(1);
 
     }
 
 
-    5% {
+    20% {
 
-        opacity:
-        1;
+        opacity: 1;
 
-    }
-
-
-    22% {
-
-        opacity:
-        1;
-
-        transform:
-        scale(1.05);
+        transform: scale(1.05);
 
     }
 
 
-    27% {
+    25% {
 
-        opacity:
-        0;
+        opacity: 0;
+
+    }
+
+
+    95% {
+
+        opacity: 0;
 
     }
 
 
     100% {
 
-        opacity:
-        0;
+        opacity: 1;
 
     }
 
 }
 
 
-/* ======================================================
+/* =====================================================
    DARK OVERLAY
-====================================================== */
+===================================================== */
 
 #overlay {
 
-    position:
-    fixed !important;
+    position: fixed !important;
 
-    top:
-    0 !important;
+    top: 0 !important;
 
-    left:
-    0 !important;
+    left: 0 !important;
 
-    width:
-    100vw !important;
+    width: 100vw !important;
 
-    height:
-    100vh !important;
+    height: 100vh !important;
 
-    background:
-    rgba(
-        0,
-        0,
-        0,
-        0.20
-    ) !important;
+    background: rgba(0, 0, 0, 0.25) !important;
 
-    z-index:
-    1 !important;
+    z-index: 1 !important;
 
-    pointer-events:
-    none !important;
+    pointer-events: none !important;
 
 }
 
 
-/* ======================================================
-   MAIN APP
-====================================================== */
+/* =====================================================
+   CONTENT ABOVE BACKGROUND
+===================================================== */
 
-.gradio-container {
+.gradio-container > * {
 
-    position:
-    relative !important;
+    position: relative !important;
 
-    z-index:
-    10 !important;
-
-    max-width:
-    1250px !important;
-
-    margin:
-    30px auto !important;
-
-    padding:
-    30px !important;
-
-    background:
-    rgba(
-        255,
-        255,
-        255,
-        0.35
-    ) !important;
-
-    backdrop-filter:
-    blur(5px) !important;
-
-    border-radius:
-    25px !important;
-
-    border:
-    2px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.65
-    ) !important;
+    z-index: 2 !important;
 
 }
 
 
-/* ======================================================
-   ALL TEXT BLACK
-====================================================== */
-
-.gradio-container,
-
-.gradio-container * {
-
-    color:
-    black !important;
-
-}
-
-
-/* ======================================================
-   HEADER
-====================================================== */
+/* =====================================================
+   MAIN CONTENT CARD
+===================================================== */
 
 #developer {
 
-    background:
-    rgba(
+    background: rgba(
         255,
         255,
         255,
-        0.55
+        0.72
     ) !important;
 
-    padding:
-    25px !important;
+    border-radius: 20px !important;
 
-    border-radius:
-    18px !important;
+    padding: 30px !important;
 
     border-left:
     8px solid
@@ -612,14 +529,29 @@ body {
 }
 
 
-/* ======================================================
-   INPUTS
-====================================================== */
+/* =====================================================
+   BLACK TEXT
+===================================================== */
+
+.gradio-container,
+.gradio-container h1,
+.gradio-container h2,
+.gradio-container h3,
+.gradio-container p,
+.gradio-container label,
+.gradio-container span {
+
+    color: black !important;
+
+}
+
+
+/* =====================================================
+   INPUT BOXES
+===================================================== */
 
 input,
-
 textarea,
-
 select {
 
     background:
@@ -627,7 +559,7 @@ select {
         255,
         255,
         255,
-        0.88
+        0.90
     ) !important;
 
     color:
@@ -636,31 +568,21 @@ select {
 }
 
 
-/* ======================================================
+/* =====================================================
    BUTTON
-====================================================== */
+===================================================== */
 
 button {
 
     background:
     linear-gradient(
-
         135deg,
-
         #087f5b,
-
         #18a875
-
     ) !important;
 
     color:
     white !important;
-
-    font-size:
-    20px !important;
-
-    font-weight:
-    bold !important;
 
 }
 
@@ -673,19 +595,17 @@ button * {
 }
 
 
-/* ======================================================
-   FOOTER
-====================================================== */
+/* =====================================================
+   HIDE FOOTER
+===================================================== */
 
 footer {
 
-    display:
-    none !important;
+    display: none !important;
 
 }
 
 """
-
 
 # ==========================================================
 # HEADER
@@ -772,58 +692,35 @@ with gr.Blocks(
     # BACKGROUND
     # ======================================================
 
-    gr.HTML(
+   gr.HTML(
+    f"""
+    <div id="background-slideshow">
 
-        f"""
+        <img
+        class="background-image image1"
+        src="{IMAGE_1}"
+        >
 
-<div id="background-slideshow">
+        <img
+        class="background-image image2"
+        src="{IMAGE_2}"
+        >
 
-<img
+        <img
+        class="background-image image3"
+        src="{IMAGE_3}"
+        >
 
-class="background-image image1"
+        <img
+        class="background-image image4"
+        src="{IMAGE_4}"
+        >
 
-src="{IMAGE_1}"
+    </div>
 
->
-
-
-<img
-
-class="background-image image2"
-
-src="{IMAGE_2}"
-
->
-
-
-<img
-
-class="background-image image3"
-
-src="{IMAGE_3}"
-
->
-
-
-<img
-
-class="background-image image4"
-
-src="{IMAGE_4}"
-
->
-
-</div>
-
-
-<div id="overlay">
-
-</div>
-
-"""
-
-    )
-
+    <div id="overlay"></div>
+    """
+)
 
     # ======================================================
     # HEADER
