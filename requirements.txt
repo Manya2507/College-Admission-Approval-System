@@ -1,6 +1,6 @@
-gradio==5.38.0
+gradio
 pandas
+numpy
 scikit-learn
 joblib
 requests
-numpy
