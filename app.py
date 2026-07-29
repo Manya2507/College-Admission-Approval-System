@@ -527,98 +527,44 @@ url(
 
 
 
-/* =====================================
-   MAIN GLASS CONTAINER
-===================================== */
+# =====================================================
+# MAIN GLASS CONTAINER
+# =====================================================
+
+css = """
+
+#main-container {
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: 35px auto;
+
+    padding: 35px;
 
 
-#main-container {{
+    background: rgba(255, 255, 255, 0.65);
 
 
-    width:90%;
+    backdrop-filter: blur(15px);
+
+    -webkit-backdrop-filter: blur(15px);
 
 
-    max-width:1250px;
+    border-radius: 30px;
 
 
-    margin:35px auto;
-
-
-    padding:35px;
-
-
-
-    background:
-
-    rgba(
-
-        255,
-
-        255,
-
-        255,
-
-        0.65
-
-    );
-
-
-
-    backdrop-filter:
-
-    blur(15px);
-
-
-
-    -webkit-backdrop-filter:blur(15px);
-
-
-
-    border-radius:30px;
-
-
-
-    border:
-
-    2px solid
-
-    rgba(
-
-    255,
-
-    255,
-
-    255,
-
-    0.7
-
-    );
-
+    border: 2px solid rgba(255,255,255,0.7);
 
 
     box-shadow:
 
-    0 15px 50px
+    0 15px 50px rgba(0,0,0,0.5);
 
-    rgba(
-
-    0,
-
-    0,
-
-    0,
-
-    0.5
-
-    );
-
-
-
-}}
+}
 
 """
-
-
 
 
 /* =====================================
