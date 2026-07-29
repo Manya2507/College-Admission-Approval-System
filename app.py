@@ -500,247 +500,159 @@ Random Forest Classifier
         )
 # ==========================================================
 # PART 2/5
-# CSS DESIGN + FULL SCREEN BACKGROUND SLIDESHOW
-# NO WHITE/GREY CONTAINER
+# CSS + BACKGROUND SLIDESHOW
+# NO WHITE BOX
+# NO F-STRING ERROR
 # ==========================================================
 
 
-css = f"""
+
+img1 = BACKGROUND_IMAGES[0]
+img2 = BACKGROUND_IMAGES[1]
+img3 = BACKGROUND_IMAGES[2]
+img4 = BACKGROUND_IMAGES[3]
+img5 = BACKGROUND_IMAGES[4]
 
 
 
-/* ======================================================
-   FULL SCREEN BACKGROUND
-====================================================== */
+css = """
+
 
 
 html,
 body,
-.gradio-container {{
-
+.gradio-container {
 
     min-height:100vh !important;
-
 
     width:100% !important;
 
 
     background-image:
 
-
     linear-gradient(
-
         rgba(0,0,0,0.45),
-
         rgba(0,0,0,0.45)
-
     ),
 
-
-    url(
-
-    "data:image/jpg;base64,{BACKGROUND_IMAGES[0]}"
-
-    );
+    url("IMAGE1");
 
 
     background-size:cover !important;
 
-
     background-position:center !important;
 
+    background-attachment:fixed !important;
 
     background-repeat:no-repeat !important;
 
 
-    background-attachment:fixed !important;
-
-
     animation:
-
     backgroundSlide
-
     120s
-
     infinite
-
     ease-in-out;
 
-
 }
 
 
 
 
+/* ===============================
+   BACKGROUND SLIDESHOW
+================================ */
 
 
-/* ======================================================
-   SLOW BACKGROUND SLIDESHOW
-====================================================== */
+@keyframes backgroundSlide {
 
 
-@keyframes backgroundSlide {{
-
-
-
-0% {{
+0% {
 
 background-image:
 
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
 
+url("IMAGE1");
 
-url(
-
-"data:image/jpg;base64,{BACKGROUND_IMAGES[0]}"
-
-);
-
-
-}}
+}
 
 
 
-
-20% {{
-
+20% {
 
 background-image:
 
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
 
+url("IMAGE2");
 
-url(
-
-"data:image/jpg;base64,{BACKGROUND_IMAGES[1]}"
-
-);
-
-
-}}
+}
 
 
 
-
-40% {{
-
+40% {
 
 background-image:
 
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
 
+url("IMAGE3");
 
-url(
-
-"data:image/jpg;base64,{BACKGROUND_IMAGES[2]}"
-
-);
-
-
-}}
+}
 
 
 
-
-60% {{
-
+60% {
 
 background-image:
 
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
 
+url("IMAGE4");
 
-url(
-
-"data:image/jpg;base64,{BACKGROUND_IMAGES[3]}"
-
-);
-
-
-}}
+}
 
 
 
-
-80% {{
-
+80% {
 
 background-image:
 
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
 
+url("IMAGE5");
 
-url(
-
-"data:image/jpg;base64,{BACKGROUND_IMAGES[4]}"
-
-);
-
-
-}}
+}
 
 
 
-
-100% {{
-
+100% {
 
 background-image:
 
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
 
+url("IMAGE1");
 
-url(
-
-"data:image/jpg;base64,{BACKGROUND_IMAGES[0]}"
-
-);
-
-
-}}
-
+}
 
 
 }
@@ -748,52 +660,39 @@ url(
 
 
 
+/* ===============================
+   REMOVE DEFAULT BACKGROUND
+================================ */
 
 
-/* ======================================================
-   REMOVE ALL DEFAULT WHITE BACKGROUNDS
-====================================================== */
-
-
-.gradio-container {{
-
+.gradio-container {
 
     background:transparent !important;
 
-
 }
 
 
 
 
 
-
-/* ======================================================
-   MAIN INTERFACE
-   NO BOX BEHIND CONTENT
-====================================================== */
+/* ===============================
+   NO MAIN BOX
+================================ */
 
 
-#main-container {{
+#main-container {
 
 
     width:95% !important;
 
-
     margin:auto !important;
-
 
     padding:25px !important;
 
 
     background:transparent !important;
 
-
-    backdrop-filter:none !important;
-
-
     border:none !important;
-
 
     box-shadow:none !important;
 
@@ -805,50 +704,40 @@ url(
 
 
 
-/* ======================================================
-   HEADER DIRECTLY ON IMAGE
-====================================================== */
+
+/* ===============================
+   HEADER ON IMAGE
+================================ */
 
 
-#header-box {{
-
-
-    text-align:center !important;
-
-
-    padding:20px !important;
+#header-box {
 
 
     background:transparent !important;
+
+    text-align:center !important;
+
+    padding:20px !important;
 
 
     border:none !important;
 
 
-    color:white !important;
-
-
 }
 
 
 
+#header-box h1 {
 
 
-
-#header-box h1 {{
-
+    color:white !important;
 
     font-size:45px !important;
-
 
     font-weight:900 !important;
 
 
-    color:white !important;
-
-
     text-shadow:
-
     3px 3px 8px black;
 
 
@@ -856,18 +745,12 @@ url(
 
 
 
-
-#header-box h2 {{
-
-
-    font-size:28px !important;
+#header-box h2 {
 
 
     color:#d1fae5 !important;
 
-
     text-shadow:
-
     3px 3px 8px black;
 
 
@@ -875,35 +758,15 @@ url(
 
 
 
-
-#header-box h3 {{
-
-
-    color:white !important;
-
-
-    text-shadow:
-
-    2px 2px 6px black;
-
-
-}
-
-
-
-
-
-#header-box p {{
+#header-box p {
 
 
     color:white !important;
-
 
     font-size:18px !important;
 
 
     text-shadow:
-
     2px 2px 6px black;
 
 
@@ -913,10 +776,9 @@ url(
 
 
 
-
-/* ======================================================
+/* ===============================
    ALL TEXT VISIBILITY
-====================================================== */
+================================ */
 
 
 h1,
@@ -924,12 +786,14 @@ h2,
 h3,
 p,
 label,
-span {{
+span {
+
+
+    color:white !important;
 
 
     text-shadow:
-
-    2px 2px 5px black !important;
+    2px 2px 5px black;
 
 
 }
@@ -940,25 +804,20 @@ span {{
 
 
 
-/* ======================================================
+/* ===============================
    BUTTON DESIGN
-====================================================== */
+================================ */
 
 
-button {{
+button {
 
 
     background:
 
-
     linear-gradient(
-
         135deg,
-
         #059669,
-
         #10b981
-
     ) !important;
 
 
@@ -966,33 +825,24 @@ button {{
     color:white !important;
 
 
-    font-size:17px !important;
-
-
-    font-weight:bold !important;
+    border:none !important;
 
 
     border-radius:15px !important;
 
 
-    border:none !important;
-
-
     padding:12px !important;
 
 
-
-    box-shadow:
-
-    0px 5px 15px rgba(0,0,0,0.4);
-
+    font-weight:bold !important;
 
 
 }
 
 
 
-button:hover {{
+
+button:hover {
 
 
     transform:scale(1.05);
@@ -1009,30 +859,19 @@ button:hover {{
 
 
 
-/* ======================================================
+/* ===============================
    INPUT BOXES
-====================================================== */
+================================ */
 
 
 input,
 textarea,
-select {{
+select {
 
 
     background:
-
-    rgba(
-
-    255,
-
-    255,
-
-    255,
-
-    0.80
-
-    ) !important;
-
+    rgba(255,255,255,0.85)
+    !important;
 
 
     color:black !important;
@@ -1042,11 +881,9 @@ select {{
 
 
     border:
-
     2px solid #10b981 !important;
 
 
-
 }
 
 
@@ -1054,33 +891,12 @@ select {{
 
 
 
-/* ======================================================
-   OUTPUT BOX
-====================================================== */
-
-
-textarea {{
-
-
-    font-size:18px !important;
-
-
-    font-weight:bold !important;
-
-
-}
-
-
-
-
-
-
-/* ======================================================
+/* ===============================
    HIDE FOOTER
-====================================================== */
+================================ */
 
 
-footer {{
+footer {
 
 
     display:none !important;
@@ -1090,7 +906,39 @@ footer {{
 
 
 """
-# ==========================================================
+
+
+
+# Replace image placeholders
+
+css = css.replace(
+    "IMAGE1",
+    "data:image/jpg;base64," + img1
+)
+
+
+css = css.replace(
+    "IMAGE2",
+    "data:image/jpg;base64," + img2
+)
+
+
+css = css.replace(
+    "IMAGE3",
+    "data:image/jpg;base64," + img3
+)
+
+
+css = css.replace(
+    "IMAGE4",
+    "data:image/jpg;base64," + img4
+)
+
+
+css = css.replace(
+    "IMAGE5",
+    "data:image/jpg;base64," + img5
+)# ==========================================================
 # PART 3/5
 # DASHBOARD + FEATURE BUTTONS
 # ==========================================================
