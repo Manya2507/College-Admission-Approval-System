@@ -418,7 +418,7 @@ else:
     img1 = img2 = img3 = img4 = img5 = ""
 
 
-css = """
+css = f"""
 
 /* ======================================
    FULL SCREEN BACKGROUND SLIDESHOW
@@ -455,7 +455,7 @@ css = """
 
 
 /* ======================================
-   SLOW BACKGROUND IMAGE ANIMATION
+  BACKGROUND SLIDESHOW
 ====================================== */
 
 
@@ -467,11 +467,11 @@ css = """
 background-image:
 
 linear-gradient(
-rgba(0,0,0,0.45),
-rgba(0,0,0,0.45)
+rgba(0,0,0,0.25),
+rgba(0,0,0,0.25)
 ),
 
-url("data:image/jpg;base64,IMAGE0");
+url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
 }
 
@@ -482,12 +482,12 @@ url("data:image/jpg;base64,IMAGE0");
 background-image:
 
 linear-gradient(
-rgba(0,0,0,0.45),
-rgba(0,0,0,0.45)
+rgba(0,0,0,0.25),
+rgba(0,0,0,0.25)
 ),
 
-url("data:image/jpg;base64,IMAGE1");
-
+url("data:image/jpg;base64,{BACKGROUND_IMAGES[1]}");
+    
 }
 
 
@@ -497,11 +497,11 @@ url("data:image/jpg;base64,IMAGE1");
 background-image:
 
 linear-gradient(
-rgba(0,0,0,0.45),
-rgba(0,0,0,0.45)
+rgba(0,0,0,0.25),
+rgba(0,0,0,0.25)
 ),
 
-url("data:image/jpg;base64,IMAGE2");
+url("data:image/jpg;base64,{BACKGROUND_IMAGES[2]}");;
 
 }
 
@@ -512,11 +512,11 @@ url("data:image/jpg;base64,IMAGE2");
 background-image:
 
 linear-gradient(
-rgba(0,0,0,0.45),
-rgba(0,0,0,0.45)
+rgba(0,0,0,0.25),
+rgba(0,0,0,0.25)
 ),
 
-url("data:image/jpg;base64,IMAGE3");
+url("data:image/jpg;base64,{BACKGROUND_IMAGES[3]}");
 
 }
 
@@ -527,12 +527,11 @@ url("data:image/jpg;base64,IMAGE3");
 background-image:
 
 linear-gradient(
-rgba(0,0,0,0.45),
-rgba(0,0,0,0.45)
+rgba(0,0,0,0.25),
+rgba(0,0,0,0.25)
 ),
 
-url("data:image/jpg;base64,IMAGE4");
-
+url("data:image/jpg;base64,{BACKGROUND_IMAGES[4]}");
 }
 
 
@@ -542,16 +541,32 @@ url("data:image/jpg;base64,IMAGE4");
 background-image:
 
 linear-gradient(
-rgba(0,0,0,0.45),
-rgba(0,0,0,0.45)
+rgba(0,0,0,0.25),
+rgba(0,0,0,0.25)
 ),
 
-url("data:image/jpg;base64,IMAGE0");
+url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
 }
 
+/* Transparent main interface */
+
+
+#main-container {
+
+
+    background:
+
+    rgba(0,0,0,0.25) !important;
+
+
+    backdrop-filter:blur(6px);
+
+
+    border-radius:25px;
 
 }
+
 
 
 
