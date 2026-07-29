@@ -726,9 +726,9 @@ with gr.Blocks(
     # HEADER
     # ======================================================
 
-    gr.HTML(
+gr.HTML(
         header
-    )
+)
 
 
     gr.Markdown(
