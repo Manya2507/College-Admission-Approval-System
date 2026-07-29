@@ -46,34 +46,46 @@ except Exception as e:
 
 def load_background_images():
 
-
     image_names = [
-
         "1.jpg",
         "2.jpg",
         "3.jpg",
         "4.jpg",
         "5.jpg"
-
     ]
 
-
-    images = []
-
+    images=[]
 
     BASE_DIR = os.path.dirname(
         os.path.abspath(__file__)
     )
-
 
     image_folder = os.path.join(
         BASE_DIR,
         "images"
     )
 
+    print("Image Folder Location:")
+    print(image_folder)
+
+
+    if not os.path.exists(image_folder):
+
+        raise Exception(
+            "Images folder not found"
+        )
+
+
+    print(
+        "Files inside images folder:"
+    )
+
+    print(
+        os.listdir(image_folder)
+    )
+
 
     for img in image_names:
-
 
         path = os.path.join(
             image_folder,
@@ -81,43 +93,30 @@ def load_background_images():
         )
 
 
-        print("Checking:", path)
-
-
         if os.path.exists(path):
 
+            with open(path,"rb") as f:
 
-            with open(
-                path,
-                "rb"
-            ) as file:
-
-
-                encoded = base64.b64encode(
-                    file.read()
-                ).decode()
-
-
-                images.append(encoded)
-
-
-                print(
-                    "✅ Loaded:",
-                    img
+                images.append(
+                    base64.b64encode(
+                        f.read()
+                    ).decode()
                 )
 
+            print(
+                "Loaded:",
+                img
+            )
 
         else:
 
             print(
-                "⚠️ Missing:",
+                "Missing:",
                 img
             )
 
 
-
     return images
-
 
 
 
