@@ -431,6 +431,8 @@ css = f"""
 
 .gradio-container {{
 
+    animation:backgroundSlide 120s infinite ease-in-out;
+
 
     min-height:100vh !important;
 
@@ -445,13 +447,6 @@ css = f"""
 
 
     background-attachment:fixed !important;
-
-
-    .gradio-container {
-
-    animation:backgroundSlide 120s infinite ease-in-out;
-
-}
 
 
     background-image:
