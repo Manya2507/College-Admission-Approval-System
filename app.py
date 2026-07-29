@@ -731,9 +731,9 @@ gr.HTML(
 )
 
 
-    gr.Markdown(
+gr.Markdown(
 
-        """
+ """
 
 # 📝 Enter Student Details
 
