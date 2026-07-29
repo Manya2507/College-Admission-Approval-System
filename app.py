@@ -422,289 +422,81 @@ else:
 
 css = f"""
 
-
-
-/* =====================================================
-   FULL PAGE BACKGROUND
-===================================================== */
-
+/* =====================================
+   FULL SCREEN BACKGROUND
+===================================== */
 
 .gradio-container {{
 
-    animation:backgroundSlide 120s infinite ease-in-out;
-
-
     min-height:100vh !important;
-
 
     width:100% !important;
 
-
     background-size:cover !important;
-
 
     background-position:center !important;
 
+    background-repeat:no-repeat !important;
 
     background-attachment:fixed !important;
+
+
+    animation: backgroundSlide 60s infinite ease-in-out;
 
 
     background-image:
 
     linear-gradient(
-
-        rgba(0,0,0,0.35),
-
-        rgba(0,0,0,0.35)
-
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
     ),
 
     url(
-
-    "data:image/jpg;base64,{img1}"
-
+    "data:image/jpg;base64,{BACKGROUND_IMAGES[0]}"
     );
 
-
-
 }}
 
 
 
-
-
-
-/* =====================================================
-   BACKGROUND SLIDESHOW
-===================================================== */
-
-
-@keyframes backgroundChange {{
-
-
-
-0% {{
-
-
-background-image:
-
-linear-gradient(
-
-rgba(0,0,0,0.35),
-
-rgba(0,0,0,0.35)
-
-),
-
-url(
-
-"data:image/jpg;base64,{img1}"
-
-);
-
-
-}}
-
-
-
-20% {{
-
-
-background-image:
-
-linear-gradient(
-
-rgba(0,0,0,0.35),
-
-rgba(0,0,0,0.35)
-
-),
-
-url(
-
-"data:image/jpg;base64,{img2}"
-
-);
-
-
-}}
-
-
-
-40% {{
-
-
-background-image:
-
-linear-gradient(
-
-rgba(0,0,0,0.35),
-
-rgba(0,0,0,0.35)
-
-),
-
-url(
-
-"data:image/jpg;base64,{img3}"
-
-);
-
-
-}}
-
-
-
-60% {{
-
-
-background-image:
-
-linear-gradient(
-
-rgba(0,0,0,0.35),
-
-rgba(0,0,0,0.35)
-
-),
-
-url(
-
-"data:image/jpg;base64,{img4}"
-
-);
-
-
-}}
-
-
-
-80% {{
-
-
-background-image:
-
-linear-gradient(
-
-rgba(0,0,0,0.35),
-
-rgba(0,0,0,0.35)
-
-),
-
-url(
-
-"data:image/jpg;base64,{img5}"
-
-);
-
-
-}}
-
-
-
-100% {{
-
-
-background-image:
-
-linear-gradient(
-
-rgba(0,0,0,0.35),
-
-rgba(0,0,0,0.35)
-
-),
-
-url(
-
-"data:image/jpg;base64,{img1}"
-
-);
-
-
-}}
-
-
-}}
-
-
-
-
-
-
-
-/* =====================================================
-   MAIN GLASS CONTAINER
-===================================================== */
+/* =====================================
+   REMOVE WHITE MAIN CONTAINER
+===================================== */
 
 
 #main-container {{
 
+    width:95% !important;
 
-    width:90% !important;
+    max-width:1400px !important;
 
+    margin:auto !important;
 
-    max-width:1200px !important;
-
-
-    margin:40px auto !important;
-
-
-    padding:35px !important;
+    padding:25px !important;
 
 
-    background:
-
-    rgba(
-
-    255,
-
-    255,
-
-    255,
-
-    0.85
-
-    ) !important;
+    background:transparent !important;
 
 
+    box-shadow:none !important;
 
-    border-radius:30px !important;
+    border:none !important;
 
-
-    backdrop-filter:blur(15px) !important;
-
-
-    -webkit-backdrop-filter:blur(15px) !important;
-
-
-    box-shadow:
-
-    0px 15px 40px
-
-    rgba(0,0,0,0.4);
-
-
+    backdrop-filter:none !important;
 
 }}
 
 
 
 
-
-
-
-/* =====================================================
-   HEADER BOX
-===================================================== */
+/* =====================================
+   HEADER TRANSPARENT GLASS
+===================================== */
 
 
 #header-box {{
 
-
     text-align:center;
-
 
     padding:25px;
 
@@ -712,56 +504,56 @@ url(
     background:
 
     rgba(
-
-    255,
-
-    255,
-
-    255,
-
-    0.90
-
+    0,
+    0,
+    0,
+    0.35
     );
+
+
+    backdrop-filter:blur(8px);
 
 
     border-radius:25px;
 
 
-    border-left:
+    border:
 
-    8px solid
+    2px solid
 
-    #059669;
-
+    rgba(
+    255,
+    255,
+    255,
+    0.3
+    );
 
 
 }}
+
 
 
 
 #header-box h1 {{
 
-
-    color:#064e3b !important;
-
-
-    font-size:40px !important;
-
+    font-size:45px;
 
     font-weight:900;
 
+    color:white !important;
 
+    text-shadow:
+    0px 0px 15px #10b981;
 
 }}
 
 
 
-
 #header-box h2 {{
 
+    color:#a7f3d0 !important;
 
-    color:#047857 !important;
-
+    font-size:26px;
 
 }}
 
@@ -769,24 +561,17 @@ url(
 
 #header-box h3 {{
 
-
-    color:#065f46 !important;
-
+    color:#6ee7b7 !important;
 
 }}
-
 
 
 
 #header-box p {{
 
+    color:white !important;
 
-    color:#111827 !important;
-
-
-    font-size:17px;
-
-
+    font-size:18px;
 
 }}
 
@@ -794,78 +579,87 @@ url(
 
 
 
-
-/* =====================================================
-   MARKDOWN TEXT
-===================================================== */
-
-
-.markdown-text {{
+/* =====================================
+   SECTION HEADINGS
+===================================== */
 
 
-    color:#064e3b !important;
+h2,
+h3 {{
 
+    color:white !important;
 
-    font-weight:bold;
-
-
+    text-shadow:
+    0px 0px 10px black;
 
 }}
 
 
 
 
-
-
-
-/* =====================================================
-   INPUT BOXES
-===================================================== */
+/* =====================================
+   INPUT BOX DESIGN
+===================================== */
 
 
 input,
-
 textarea,
-
 select {{
-
 
     background:
 
-    black !important;
+    rgba(
+    255,
+    255,
+    255,
+    0.20
+    ) !important;
 
 
-    color:black !important;
+    color:white !important;
 
 
     border:
 
     2px solid
 
-    #10b981 !important;
+    rgba(
+    255,
+    255,
+    255,
+    0.6
+    ) !important;
 
 
-    border-radius:12px !important;
+    border-radius:15px !important;
 
 
+    backdrop-filter:blur(10px);
 
 }}
 
 
 
+
+input::placeholder {{
+
+    color:white !important;
+
+}}
 
 
 
 
 label {{
 
+    color:white !important;
 
-    color:#064e3b !important;
-
+    font-size:16px !important;
 
     font-weight:bold !important;
 
-
+    text-shadow:
+    0px 0px 8px black;
 
 }}
 
@@ -874,60 +668,72 @@ label {{
 
 
 
+/* =====================================
+   DROPDOWN TEXT
+===================================== */
 
-/* =====================================================
-   BUTTON
-===================================================== */
+
+.gradio-dropdown {{
+
+    background:
+    rgba(
+    0,
+    0,
+    0,
+    0.25
+    ) !important;
+
+}}
+
+
+
+
+/* =====================================
+   BUTTON DESIGN
+===================================== */
 
 
 button {{
 
-
     background:
 
     linear-gradient(
-
     135deg,
-
-    #065f46,
-
+    #059669,
     #10b981
-
     ) !important;
-
 
 
     color:white !important;
 
 
-    font-size:20px !important;
+    font-size:22px !important;
 
 
     font-weight:bold !important;
 
 
-    border-radius:15px !important;
+    border-radius:20px !important;
 
 
-    padding:12px !important;
+    padding:15px !important;
 
 
+    box-shadow:
+
+    0px 0px 20px
+
+    #10b981;
 
 }}
-
-
 
 
 
 button:hover {{
 
-
-    transform:scale(1.05);
-
+    transform:scale(1.08);
 
     transition:0.3s;
-
-
 
 }}
 
@@ -935,14 +741,24 @@ button:hover {{
 
 
 
-
-
-/* =====================================================
+/* =====================================
    OUTPUT BOX
-===================================================== */
+===================================== */
 
 
 textarea {{
+
+    background:
+
+    rgba(
+    0,
+    0,
+    0,
+    0.40
+    ) !important;
+
+
+    color:white !important;
 
 
     font-size:18px !important;
@@ -951,23 +767,22 @@ textarea {{
     font-weight:bold !important;
 
 
+    border-radius:20px !important;
+
 }}
 
 
 
 
 
-
-/* =====================================================
+/* =====================================
    REMOVE FOOTER
-===================================================== */
+===================================== */
 
 
 footer {{
 
-
 display:none !important;
-
 
 }}
 
