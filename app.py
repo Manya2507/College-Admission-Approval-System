@@ -9,13 +9,12 @@ import gradio as gr
 # ==========================================================
 
 try:
-    model = joblib.load("admission_model.pkl")
-    print("Admission Model Loaded Successfully")
+    model = joblib.load("college_admission_approval.pkl")
+    print("✅ Admission Model Loaded Successfully")
 
 except Exception as e:
-    print("Model Loading Error:", e)
+    print("❌ Model Loading Error:", e)
     model = None
-
 
 
 # ==========================================================
@@ -53,15 +52,17 @@ def predict_admission(
 ):
 
     if model is None:
-        return "❌ Model file not found"
+        return "❌ Model file not found. Please add admission_model.pkl"
 
     try:
 
+        # Create input data
         data = pd.DataFrame([{
 
             "Age": Age,
             "Category": Category,
             "Family_Income": Family_Income,
+
             "Class10_%": Class10_Percentage,
             "Class12_%": Class12_Percentage,
             "PCM_%": PCM_Percentage,
@@ -100,10 +101,12 @@ def predict_admission(
         }])
 
 
+        # Model prediction
         result = model.predict(data)[0]
 
 
-        if str(result).lower() in ["1","yes","approved"]:
+        # Approved result
+        if str(result).lower() in ["1", "yes", "approved"]:
 
             return """
 🎉 ADMISSION APPROVED
@@ -118,10 +121,11 @@ Random Forest Classifier
 """
 
 
+        # Rejected result
         else:
 
             return """
-❌ ADMISSION REJECTED
+❌ ADMISSION NOT APPROVED
 
 The student admission probability is low.
 
@@ -135,8 +139,30 @@ Random Forest Classifier
 
     except Exception as e:
 
-        return f"Prediction Error:\n{e}"
+        return f"❌ Prediction Error:\n{e}"
 
+
+# ==========================================================
+# Background Slideshow HTML
+# ==========================================================
+
+slideshow = """
+
+<div class="background-slideshow">
+
+    <div class="slide slide1"></div>
+
+    <div class="slide slide2"></div>
+
+    <div class="slide slide3"></div>
+
+    <div class="slide slide4"></div>
+
+</div>
+
+<div class="dark-overlay"></div>
+
+"""
 
 
 # ==========================================================
@@ -145,92 +171,485 @@ Random Forest Classifier
 
 css = """
 
-body{
+/* ======================================================
+   Full Screen Background
+====================================================== */
 
-background-image:
-url("https://images.unsplash.com/photo-1562774053-701939374585");
+body {
 
-background-size:cover;
+    margin: 0;
 
-background-attachment:fixed;
-
-}
-
-
-/* Main container */
-
-.gradio-container{
-
-background:rgba(255,255,255,0.92);
-
-border-radius:20px;
-
-padding:25px;
-
-color:black !important;
+    background: #071a13;
 
 }
 
 
-/* All text black */
+/* ======================================================
+   Background Slideshow
+====================================================== */
 
-*{
+.background-slideshow {
 
-color:black !important;
+    position: fixed;
 
-}
+    top: 0;
 
+    left: 0;
 
-input, textarea, select{
+    width: 100%;
 
-color:black !important;
+    height: 100%;
 
-background:white !important;
+    z-index: -3;
 
-}
-
-
-/* Developer Information Box */
-
-#developer{
-
-background:white;
-
-border-radius:15px;
-
-padding:20px;
-
-height:220px;
-
-overflow-y:auto;
-
-font-size:16px;
+    overflow: hidden;
 
 }
 
 
+.slide {
 
-/* Horizontal Input Layout */
+    position: absolute;
 
-.gr-row{
+    width: 100%;
 
-display:flex;
+    height: 100%;
 
-flex-wrap:wrap;
+    background-size: cover;
 
-gap:15px;
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    opacity: 0;
+
+    animation: slideshow 20s infinite;
 
 }
 
 
-footer{
+/* Image 1 */
 
-display:none;
+.slide1 {
+
+    background-image:
+    url("/gradio_api/file=images/piet.jpg");
+
+    animation-delay: 0s;
+
+}
+
+
+/* Image 2 */
+
+.slide2 {
+
+    background-image:
+    url("/gradio_api/file=images/piet_building.jpg");
+
+    animation-delay: 5s;
+
+}
+
+
+/* Image 3 */
+
+.slide3 {
+
+    background-image:
+    url("/gradio_api/file=images/iit_delhi.jpg");
+
+    animation-delay: 10s;
+
+}
+
+
+/* Image 4 */
+
+.slide4 {
+
+    background-image:
+    url("/gradio_api/file=images/chitkara.jpg");
+
+    animation-delay: 15s;
+
+}
+
+
+/* Smooth fade animation */
+
+@keyframes slideshow {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(1);
+
+    }
+
+
+    5% {
+
+        opacity: 1;
+
+    }
+
+
+    25% {
+
+        opacity: 1;
+
+        transform: scale(1.06);
+
+    }
+
+
+    30% {
+
+        opacity: 0;
+
+    }
+
+
+    100% {
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* ======================================================
+   Dark Overlay
+====================================================== */
+
+.dark-overlay {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(0, 25, 20, 0.72),
+
+        rgba(0, 0, 0, 0.55)
+
+    );
+
+    z-index: -2;
+
+}
+
+
+/* ======================================================
+   Main Gradio Container
+====================================================== */
+
+.gradio-container {
+
+    max-width: 1250px !important;
+
+    margin: 25px auto !important;
+
+    padding: 30px !important;
+
+    border-radius: 25px !important;
+
+    background:
+
+    rgba(255, 255, 255, 0.88) !important;
+
+    backdrop-filter:
+
+    blur(12px) !important;
+
+    -webkit-backdrop-filter:
+
+    blur(12px) !important;
+
+    border:
+
+    2px solid rgba(255, 255, 255, 0.5);
+
+    box-shadow:
+
+    0 15px 50px
+
+    rgba(0, 0, 0, 0.45);
+
+}
+
+
+/* ======================================================
+   Developer Information
+====================================================== */
+
+#developer {
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(230, 255, 246, 0.96),
+
+        rgba(255, 255, 255, 0.96)
+
+    );
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    border-left:
+
+    8px solid #087f5b;
+
+    box-shadow:
+
+    0 8px 25px
+
+    rgba(0, 0, 0, 0.15);
+
+}
+
+
+#developer h1 {
+
+    color: #075a42 !important;
+
+    text-align: center;
+
+    font-size: 34px;
+
+}
+
+
+#developer h2 {
+
+    color: #087f5b !important;
+
+}
+
+
+#developer h3 {
+
+    color: #075a42 !important;
+
+}
+
+
+/* ======================================================
+   Input Boxes
+====================================================== */
+
+input,
+
+textarea,
+
+select {
+
+    background:
+
+    rgba(255, 255, 255, 0.97) !important;
+
+    color:
+
+    black !important;
+
+    border:
+
+    1.5px solid #63b99f !important;
+
+    border-radius:
+
+    10px !important;
+
+}
+
+
+/* Input focus */
+
+input:focus,
+
+textarea:focus,
+
+select:focus {
+
+    border:
+
+    2px solid #087f5b !important;
+
+    box-shadow:
+
+    0 0 10px
+
+    rgba(8, 127, 91, 0.4);
+
+}
+
+
+/* ======================================================
+   Labels
+====================================================== */
+
+label {
+
+    color:
+
+    #063d2e !important;
+
+    font-weight:
+
+    bold !important;
+
+}
+
+
+/* ======================================================
+   Prediction Button
+====================================================== */
+
+button {
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #087f5b,
+
+        #0ca678
+
+    ) !important;
+
+    color:
+
+    white !important;
+
+    font-size:
+
+    20px !important;
+
+    font-weight:
+
+    bold !important;
+
+    border-radius:
+
+    14px !important;
+
+    padding:
+
+    14px !important;
+
+    border:
+
+    none !important;
+
+    transition:
+
+    0.3s !important;
+
+    box-shadow:
+
+    0 7px 20px
+
+    rgba(0, 100, 70, 0.35);
+
+}
+
+
+button:hover {
+
+    transform:
+
+    translateY(-3px);
+
+    box-shadow:
+
+    0 10px 25px
+
+    rgba(0, 100, 70, 0.5);
+
+}
+
+
+/* ======================================================
+   Output Box
+====================================================== */
+
+textarea {
+
+    font-size:
+
+    17px !important;
+
+    font-weight:
+
+    bold !important;
+
+}
+
+
+/* ======================================================
+   Hide Gradio Footer
+====================================================== */
+
+footer {
+
+    display: none !important;
+
+}
+
+
+/* ======================================================
+   Mobile Design
+====================================================== */
+
+@media(max-width: 700px) {
+
+    .gradio-container {
+
+        margin:
+
+        8px !important;
+
+        padding:
+
+        15px !important;
+
+    }
+
+
+    #developer h1 {
+
+        font-size:
+
+        25px;
+
+    }
 
 }
 
 """
-
 
 
 # ==========================================================
@@ -246,245 +665,381 @@ header = """
 <h2>👩‍💻 Developer Details</h2>
 
 <b>Name:</b> Manya Singla<br>
+<b>Github:</b>https://github.com/Manya2507/College-Admission-Approval-System/edit/main/app.py<br>
+<b>Linkedin:</b>https://www.linkedin.com/in/manya-singla-438502423/<br>
 
-<b>College:</b> Panipat Institute of Engineering and Technology<br>
+<b>College:</b>
+Panipat Institute of Engineering and Technology<br>
 
-<b>Project:</b> College Admission Prediction using Machine Learning<br>
-
-
-<hr>
-
-
-<h3>Technology Used</h3>
-
-Python | Pandas | Scikit-Learn | Random Forest | Joblib | Gradio
+<b>Project:</b>
+College Admission Prediction using Machine Learning
 
 
 <hr>
 
 
-<h3>About Project</h3>
+<h3>💻 Technology Used</h3>
 
-This AI based system predicts admission approval
-based on academic records, entrance scores,
-college preferences and student details.
+Python | Pandas | Scikit-Learn |
+Random Forest | Joblib | Gradio
 
+
+<hr>
+
+
+<h3>🤖 About Project</h3>
+
+This AI-based system predicts admission approval
+using academic performance, entrance examination
+scores, college preferences and student details.
 
 </div>
 
 """
 
 
-
 # ==========================================================
-# Interface
+# Gradio Interface
 # ==========================================================
 
+with gr.Blocks(
 
-with gr.Blocks(css=css, theme=gr.themes.Soft()) as demo:
+    css=css,
+
+    theme=gr.themes.Soft(),
+
+    title="AI College Admission System"
+
+) as demo:
 
 
+    # Background slideshow
+    gr.HTML(slideshow)
+
+
+    # Header
     gr.HTML(header)
 
 
     gr.Markdown(
+
         """
-        ## 📝 Enter Student Details
+
+        # 📝 Enter Student Details
+
+        Fill in all the details carefully and click
+        **Predict Admission**.
+
         """
+
     )
 
+
+    # ------------------------------------------------------
+    # Row 1
+    # ------------------------------------------------------
 
     with gr.Row():
 
         Age = gr.Number(label="Age")
 
         Category = gr.Dropdown(
-            ["General","OBC","SC","ST"],
+
+            ["General", "OBC", "SC", "ST"],
+
             label="Category"
+
         )
 
         Family_Income = gr.Number(
+
             label="Family Income (₹)"
+
         )
 
 
+    # ------------------------------------------------------
+    # Row 2
+    # ------------------------------------------------------
 
     with gr.Row():
 
         Class10 = gr.Number(
-            label="Class 10 %"
+
+            label="Class 10 Percentage"
+
         )
 
         Class12 = gr.Number(
-            label="Class 12 %"
+
+            label="Class 12 Percentage"
+
         )
 
         PCM = gr.Number(
-            label="PCM %"
+
+            label="PCM Percentage"
+
         )
 
 
+    # ------------------------------------------------------
+    # Row 3
+    # ------------------------------------------------------
 
     with gr.Row():
 
         Entrance = gr.Textbox(
+
             label="Entrance Exam"
+
         )
 
         JEE = gr.Number(
+
             label="JEE Percentile"
+
         )
 
         Rank = gr.Number(
+
             label="JEE Rank"
+
         )
 
 
+    # ------------------------------------------------------
+    # Row 4
+    # ------------------------------------------------------
 
     with gr.Row():
 
         CUET = gr.Number(
+
             label="CUET Score"
+
         )
 
         Branch = gr.Textbox(
+
             label="Preferred Branch"
+
         )
 
         College = gr.Textbox(
+
             label="Preferred College"
+
         )
 
 
+    # ------------------------------------------------------
+    # Row 5
+    # ------------------------------------------------------
 
     with gr.Row():
 
         College_Type = gr.Dropdown(
-            ["Government","Private"],
+
+            ["Government", "Private"],
+
             label="College Type"
+
         )
 
         NIRF = gr.Number(
+
             label="NIRF Rank"
+
         )
 
         Tier = gr.Number(
+
             label="College Tier"
+
         )
 
 
+    # ------------------------------------------------------
+    # Row 6
+    # ------------------------------------------------------
 
     with gr.Row():
 
         Cutoff = gr.Number(
+
             label="Branch Cutoff Rank"
+
         )
 
         Seats = gr.Number(
+
             label="Available Seats"
+
         )
 
         Quota = gr.Textbox(
+
             label="Reservation Quota"
+
         )
 
 
+    # ------------------------------------------------------
+    # Row 7
+    # ------------------------------------------------------
 
     with gr.Row():
 
         Docs = gr.Dropdown(
-            ["Yes","No"],
+
+            ["Yes", "No"],
+
             label="Documents Verified"
+
         )
 
         Interview = gr.Number(
+
             label="Interview Score"
+
         )
 
         Communication = gr.Number(
+
             label="Communication Score"
+
         )
 
 
+    # ------------------------------------------------------
+    # Row 8
+    # ------------------------------------------------------
 
     with gr.Row():
 
         Aptitude = gr.Number(
+
             label="Aptitude Score"
+
         )
 
         Scholarship = gr.Dropdown(
-            ["Yes","No"],
+
+            ["Yes", "No"],
+
             label="Scholarship Applied"
+
         )
 
         Scholarship_Eligibility = gr.Dropdown(
-            ["Yes","No"],
+
+            ["Yes", "No"],
+
             label="Scholarship Eligibility"
+
         )
 
 
+    # ------------------------------------------------------
+    # Row 9
+    # ------------------------------------------------------
 
     with gr.Row():
 
         Hostel = gr.Dropdown(
-            ["Yes","No"],
+
+            ["Yes", "No"],
+
             label="Hostel Required"
+
         )
 
         Probability = gr.Number(
+
             label="Admission Probability"
+
         )
 
         Fee = gr.Number(
+
             label="Tuition Fee (₹)"
+
         )
 
 
+    # ======================================================
+    # Prediction Button
+    # ======================================================
+
     button = gr.Button(
-        "🎯 Predict Admission"
+
+        "🎯 Predict Admission",
+
+        variant="primary"
+
     )
 
+
+    # ======================================================
+    # Output
+    # ======================================================
 
     output = gr.Textbox(
-        label="Prediction Result",
+
+        label="🎓 Admission Prediction Result",
+
         lines=8
+
     )
 
 
+    # ======================================================
+    # Connect Button to Prediction Function
+    # ======================================================
 
     button.click(
 
-        predict_admission,
+        fn=predict_admission,
 
         inputs=[
+
             Age,
             Category,
             Family_Income,
+
             Class10,
             Class12,
             PCM,
+
             Entrance,
             JEE,
             Rank,
+
             CUET,
             Branch,
             College,
+
             College_Type,
             NIRF,
             Tier,
+
             Cutoff,
             Seats,
             Quota,
+
             Docs,
             Interview,
             Communication,
+
             Aptitude,
             Scholarship,
             Scholarship_Eligibility,
+
             Hostel,
             Probability,
             Fee
+
         ],
 
         outputs=output
@@ -492,19 +1047,36 @@ with gr.Blocks(css=css, theme=gr.themes.Soft()) as demo:
     )
 
 
-
 # ==========================================================
-# Render Deployment
+# Run Application
 # ==========================================================
 
-if __name__=="__main__":
+if __name__ == "__main__":
 
     demo.launch(
 
         server_name="0.0.0.0",
 
         server_port=int(
-            os.environ.get("PORT",7860)
-        )
+
+            os.environ.get(
+
+                "PORT",
+
+                7860
+
+            )
+
+        ),
+
+        allowed_paths=[
+
+            os.path.abspath(
+
+                "images"
+
+            )
+
+        ]
 
     )
