@@ -416,16 +416,9 @@ if len(BACKGROUND_IMAGES) >= 5:
 else:
 
     img1 = img2 = img3 = img4 = img5 = ""
-
-
 css = f"""
 
-/* ======================================
-   FULL SCREEN BACKGROUND SLIDESHOW
-====================================== */
-
-
-.gradio-container {
+.gradio-container {{
 
     min-height:100vh !important;
 
@@ -439,30 +432,16 @@ css = f"""
 
     background-attachment:fixed !important;
 
-    animation: backgroundSlide 120s infinite ease-in-out !important;
+    animation:backgroundSlide 120s infinite ease-in-out !important;
 
-    background-image:
-
-    linear-gradient(
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.45)
-    ),
-
-    url("data:image/jpg;base64,IMAGE0");
-
-}
+}}
 
 
 
-/* ======================================
-  BACKGROUND SLIDESHOW
-====================================== */
+@keyframes backgroundSlide {{
 
 
-@keyframes backgroundSlide {
-
-
-0% {
+0% {{
 
 background-image:
 
@@ -473,11 +452,11 @@ rgba(0,0,0,0.25)
 
 url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
-}
+}}
 
 
 
-20% {
+20% {{
 
 background-image:
 
@@ -487,12 +466,12 @@ rgba(0,0,0,0.25)
 ),
 
 url("data:image/jpg;base64,{BACKGROUND_IMAGES[1]}");
-    
-}
+
+}}
 
 
 
-40% {
+40% {{
 
 background-image:
 
@@ -501,13 +480,13 @@ rgba(0,0,0,0.25),
 rgba(0,0,0,0.25)
 ),
 
-url("data:image/jpg;base64,{BACKGROUND_IMAGES[2]}");;
+url("data:image/jpg;base64,{BACKGROUND_IMAGES[2]}");
 
-}
+}}
 
 
 
-60% {
+60% {{
 
 background-image:
 
@@ -518,11 +497,11 @@ rgba(0,0,0,0.25)
 
 url("data:image/jpg;base64,{BACKGROUND_IMAGES[3]}");
 
-}
+}}
 
 
 
-80% {
+80% {{
 
 background-image:
 
@@ -532,11 +511,12 @@ rgba(0,0,0,0.25)
 ),
 
 url("data:image/jpg;base64,{BACKGROUND_IMAGES[4]}");
-}
+
+}}
 
 
 
-100% {
+100% {{
 
 background-image:
 
@@ -547,292 +527,100 @@ rgba(0,0,0,0.25)
 
 url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
-}
-
-/* Transparent main interface */
+}}
 
 
-#main-container {
+}}
 
 
-    background:
-
-    rgba(0,0,0,0.25) !important;
 
 
-    backdrop-filter:blur(6px);
+#main-container {{
 
+    background:rgba(0,0,0,0.20) !important;
+
+    backdrop-filter:blur(8px);
 
     border-radius:25px;
 
-}
-
-
-
-
-/* ======================================
-   MAIN CONTAINER TRANSPARENT
-====================================== */
-
-
-#main-container {
-
-
-    width:90% !important;
-
-    max-width:1400px !important;
-
-    margin:30px auto !important;
-
-
-    padding:25px !important;
-
-
-    background:
-
-    rgba(
-
-    255,
-
-    255,
-
-    255,
-
-    0.15
-
-    ) !important;
-
-
-    backdrop-filter:blur(8px) !important;
-
-
-    border-radius:25px !important;
-
-
-    border:1px solid rgba(255,255,255,0.3);
-
-
-}
-
-
-
-
-/* ======================================
-   HEADER DESIGN
-====================================== */
-
-
-#header-box {
-
-
-    text-align:center;
-
-
     padding:25px;
 
+}}
 
-    background:
 
-    rgba(
 
-    0,
+#header-box {{
 
-    0,
-
-    0,
-
-    0.25
-
-    );
-
+    background:rgba(0,0,0,0.35);
 
     border-radius:20px;
 
+    padding:25px;
 
-}
-
-
-
-
-#header-box h1 {
-
-
-    font-size:45px;
-
-
-    font-weight:900;
-
-
-    color:white !important;
-
-
-}
+}}
 
 
 
+#header-box h1,
 
-#header-box h2 {
+#header-box h2,
 
+#header-box h3,
 
-    font-size:26px;
-
-
-    color:#d1fae5 !important;
-
-
-}
-
-
-
-
-#header-box h3 {
-
-
-    color:#6ee7b7 !important;
-
-
-}
-
-
-
-
-#header-box p {
-
+#header-box p {{
 
     color:white !important;
 
-
-    font-size:18px;
-
-
-}
+}}
 
 
 
+label {{
 
-/* ======================================
-   INPUT BOXES
-====================================== */
+    color:white !important;
+
+    font-weight:bold;
+
+}}
+
 
 
 input,
 
 textarea,
 
-select {
+select {{
 
-
-    background:
-
-    rgba(255,255,255,0.90) !important;
-
+    background:white !important;
 
     color:black !important;
 
-
-    border-radius:12px !important;
-
-
-}
+}}
 
 
 
-/* LABEL COLOR */
+button {{
 
-
-label {
-
+    background:#059669 !important;
 
     color:white !important;
-
-
-    font-weight:bold !important;
-
-
-}
-
-
-
-
-/* ======================================
-   BUTTON
-====================================== */
-
-
-button {
-
-
-    background:
-
-    linear-gradient(
-
-    135deg,
-
-    #065f46,
-
-    #10b981
-
-    ) !important;
-
-
-    color:white !important;
-
-
-    font-size:20px !important;
-
-
-    font-weight:bold !important;
-
 
     border-radius:15px !important;
 
-
-}
-
+}}
 
 
 
-button:hover {
-
-
-    transform:scale(1.05);
-
-
-}
-
-
-
-/* ======================================
-   OUTPUT BOX
-====================================== */
-
-
-textarea {
-
-
-    font-size:18px !important;
-
-
-    font-weight:bold !important;
-
-
-}
-
-
-
-/* REMOVE FOOTER */
-
-
-footer {
-
+footer {{
 
     display:none !important;
 
+}}
 
-}
 
 
 """
+
 
 # =====================================================
 # PART 3 : GRADIO USER INTERFACE
