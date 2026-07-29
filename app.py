@@ -9,7 +9,7 @@ import gradio as gr
 # ==========================================================
 
 try:
-    model = joblib.load("admission_model.pkl")
+    model = joblib.load("college_admission_approval.pkl")
     print("✅ Admission Model Loaded Successfully")
 
 except Exception as e:
