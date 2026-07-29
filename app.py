@@ -162,7 +162,8 @@ DESCRIPTION = """
 <b>Name:</b> Manya Singla<br>
 <b>College:</b> Panipat Institute of Engineering and Technology<br>
 <b>Project:</b> AI Based College Admission Prediction System
-<b>Github:<b> 
+<b>Github:<b> https://github.com/Manya2507/College-Admission-Approval-System/edit/main/app.py
+<b>Linkedin:<b> https://www.linkedin.com/in/manya-singla-438502423/
 
 
 <hr>
