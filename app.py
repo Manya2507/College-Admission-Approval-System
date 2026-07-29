@@ -447,7 +447,11 @@ css = f"""
     background-attachment:fixed !important;
 
 
-    animation:backgroundChange 25s infinite;
+    .gradio-container {
+
+    animation:backgroundSlide 120s infinite ease-in-out;
+
+}
 
 
     background-image:
@@ -833,7 +837,7 @@ select {{
 
     background:
 
-    white !important;
+    black !important;
 
 
     color:black !important;
