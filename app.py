@@ -45,27 +45,28 @@ def convert_image_to_base64(image_path):
 
 
 
-def load_background_images():
+# =====================================================
+# LOAD 5 BACKGROUND IMAGES IN YOUR REQUIRED ORDER
+# =====================================================
 
+def load_background_images():
 
     image_files = [
 
-        "images(1).jpg",
+        "1.jpg",
 
-        "images (3).jpg",
+        "3.jpg",
 
-        "images (4).jpg",
+        "4.jpg",
 
-        "images (5).jpg"
-        
-        "images (2).jpg"
-        
+        "5.jpg",
+
+        "2.jpg"
 
     ]
 
 
-    encoded = []
-
+    encoded_images = []
 
 
     for image in image_files:
@@ -82,34 +83,21 @@ def load_background_images():
         )
 
 
-        try:
+        with open(image_path, "rb") as img:
 
 
-            encoded.append(
+            encoded_images.append(
 
-                convert_image_to_base64(
+                base64.b64encode(
 
-                    image_path
+                    img.read()
 
-                )
+                ).decode()
 
             )
 
 
-        except Exception as e:
-
-
-            print(
-                "Image Loading Error:",
-                image,
-                e
-            )
-
-
-
-    return encoded
-
-
+    return encoded_images
 
 
 
@@ -359,64 +347,45 @@ Random Forest Classifier
 
 css = f"""
 
-html, body {{
-
-    margin:0;
-
-    padding:0;
-
-    min-height:100%;
-
-}}
-
-
-
 .gradio-container {{
 
     min-height:100vh;
+
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
 
 
     background-image:
 
     linear-gradient(
 
-        rgba(0,0,0,0.35),
+    rgba(0,0,0,0.35),
 
-        rgba(0,0,0,0.35)
+    rgba(0,0,0,0.35)
 
     ),
 
     url(
+
     "data:image/jpg;base64,{BACKGROUND_IMAGES[0]}"
+
     );
-
-
-    background-size:cover;
-
-
-    background-position:center;
-
-
-    background-attachment:fixed;
 
 
     animation:
 
-    backgroundSlide 20s infinite;
-
+    backgroundSlide 25s infinite;
 
 }}
 
 
 
 
-/* =====================================
-   BACKGROUND IMAGE SLIDESHOW
-===================================== */
-
-
 @keyframes backgroundSlide {{
-
 
 
 0% {{
@@ -441,7 +410,7 @@ url(
 
 
 
-25% {{
+20% {{
 
 background-image:
 
@@ -463,7 +432,7 @@ url(
 
 
 
-50% {{
+40% {{
 
 background-image:
 
@@ -485,7 +454,7 @@ url(
 
 
 
-75% {{
+60% {{
 
 background-image:
 
@@ -507,7 +476,7 @@ url(
 
 
 
-100% {{
+80% {{
 
 background-image:
 
@@ -527,6 +496,32 @@ url(
 
 }}
 
+
+
+100% {{
+
+background-image:
+
+linear-gradient(
+
+rgba(0,0,0,0.35),
+
+rgba(0,0,0,0.35)
+
+),
+
+url(
+
+"data:image/jpg;base64,{BACKGROUND_IMAGES[0]}"
+
+);
+
+}}
+
+
+}}
+
+"""
 
 
 
