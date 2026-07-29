@@ -1513,3 +1513,24 @@ Fill all details and click Predict Admission.
             outputs=output
 
         )
+        # =====================================================
+# RUN APPLICATION
+# =====================================================
+
+if __name__ == "__main__":
+
+    print("🔥 Launching Gradio Server...")
+
+
+    demo.launch(
+
+        server_name="0.0.0.0",
+
+        server_port=int(
+            os.environ.get(
+                "PORT",
+                7860
+            )
+        )
+
+    )
