@@ -551,6 +551,7 @@ css = f"""
    REMOVE WHITE MAIN CONTAINER
 ===================================== */
 
+css = f"""
 
 #main-container {{
 
@@ -562,17 +563,18 @@ css = f"""
 
     padding:25px !important;
 
-
     background:transparent !important;
 
+    border:none !important;
 
     box-shadow:none !important;
-
-    border:none !important;
 
     backdrop-filter:none !important;
 
 }}
+
+
+"""
 
 
 
