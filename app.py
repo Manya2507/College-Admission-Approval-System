@@ -5,12 +5,12 @@ import gradio as gr
 
 
 # ==========================================================
-# Load Admission Model
+# Load Machine Learning Model
 # ==========================================================
 
 try:
-    model = joblib.load("college_admission_approval.pkl")
-    print("Model Loaded Successfully")
+    model = joblib.load("admission_model.pkl")
+    print("Admission Model Loaded Successfully")
 
 except Exception as e:
     print("Model Loading Error:", e)
@@ -53,12 +53,11 @@ def predict_admission(
 ):
 
     if model is None:
-        return "❌ Model not loaded. Check admission_model.pkl file"
-
+        return "❌ Model file not found"
 
     try:
 
-        input_data = pd.DataFrame([{
+        data = pd.DataFrame([{
 
             "Age": Age,
             "Category": Category,
@@ -101,138 +100,48 @@ def predict_admission(
         }])
 
 
-        prediction = model.predict(input_data)[0]
+        result = model.predict(data)[0]
 
 
-        if str(prediction).lower() in ["1","yes","approved","accept"]:
-            
+        if str(result).lower() in ["1","yes","approved"]:
+
             return """
 🎉 ADMISSION APPROVED
 
-Congratulations!
+The student has a high probability of getting admission.
 
-The Machine Learning model predicts that the student has a high chance of getting admission.
+Prediction Result:
+✅ Approved
 
-Model Used:
+Algorithm:
 Random Forest Classifier
-
-Status:
-✅ Eligible for Admission
 """
 
 
         else:
 
             return """
-❌ ADMISSION NOT APPROVED
+❌ ADMISSION REJECTED
 
-The model predicts that the admission criteria are not satisfied.
+The student admission probability is low.
 
-Suggestions:
-• Improve entrance score
-• Increase academic performance
-• Apply for suitable colleges
+Prediction Result:
+❌ Not Approved
+
+Algorithm:
+Random Forest Classifier
 """
 
 
     except Exception as e:
 
-        return f"""
-❌ Prediction Error
-
-{e}
-"""
+        return f"Prediction Error:\n{e}"
 
 
 
 # ==========================================================
-# Information Section
+# CSS Styling
 # ==========================================================
-
-
-DESCRIPTION = """
-
-<div class="info">
-
-<h1>🎓 College Admission Approval System</h1>
-
-
-<h2>👩‍💻 Developer Details</h2>
-
-<b>Name:</b> Manya Singla<br>
-<b>College:</b> Panipat Institute of Engineering and Technology<br>
-<b>Project:</b> AI Based College Admission Prediction System
-<b>Github:<b> https://github.com/Manya2507/College-Admission-Approval-System/edit/main/app.py
-<b>Linkedin:<b> https://www.linkedin.com/in/manya-singla-438502423/
-
-
-<hr>
-
-
-<h2>📌 About Project</h2>
-
-This application predicts whether a student is likely to get admission
-into a preferred college using Machine Learning.
-
-Algorithm Used:
-
-<b>Random Forest Classifier</b>
-
-
-<hr>
-
-
-<h2>🛠 Technologies Used</h2>
-
-• Python<br>
-• Pandas<br>
-• Scikit Learn<br>
-• Random Forest Algorithm<br>
-• Joblib<br>
-• Gradio
-
-
-<hr>
-
-
-<h2>📊 Prediction Factors</h2>
-
-The model considers:
-
-• Academic Performance<br>
-• Entrance Examination Scores<br>
-• College Ranking<br>
-• Branch Preference<br>
-• Reservation Category<br>
-• Interview Performance<br>
-• Scholarship Details<br>
-• Financial Information
-
-
-<hr>
-
-
-<h2>🎯 Output</h2>
-
-The system predicts:
-
-✅ Admission Approved
-
-or
-
-❌ Admission Not Approved
-
-
-</div>
-
-"""
-
-
-
-# ==========================================================
-# Custom CSS
-# ==========================================================
-
 
 css = """
 
@@ -248,41 +157,70 @@ background-attachment:fixed;
 }
 
 
+/* Main container */
 
 .gradio-container{
 
-background:rgba(255,255,255,0.90);
+background:rgba(255,255,255,0.92);
 
 border-radius:20px;
 
-padding:20px;
+padding:25px;
+
+color:black !important;
 
 }
 
 
+/* All text black */
 
-.info{
+*{
 
-height:350px;
+color:black !important;
 
-overflow-y:scroll;
+}
+
+
+input, textarea, select{
+
+color:black !important;
+
+background:white !important;
+
+}
+
+
+/* Developer Information Box */
+
+#developer{
+
+background:white;
+
+border-radius:15px;
 
 padding:20px;
+
+height:220px;
+
+overflow-y:auto;
 
 font-size:16px;
 
-color:#111;
-
 }
 
 
 
-h1,h2{
+/* Horizontal Input Layout */
 
-color:#003366;
+.gr-row{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:15px;
 
 }
-
 
 
 footer{
@@ -296,140 +234,268 @@ display:none;
 
 
 # ==========================================================
-# Gradio Interface
+# Header Information
+# ==========================================================
+
+header = """
+
+<div id="developer">
+
+<h1>🎓 AI College Admission Approval System</h1>
+
+<h2>👩‍💻 Developer Details</h2>
+
+<b>Name:</b> Manya Singla<br>
+
+<b>College:</b> Panipat Institute of Engineering and Technology<br>
+
+<b>Project:</b> College Admission Prediction using Machine Learning<br>
+
+
+<hr>
+
+
+<h3>Technology Used</h3>
+
+Python | Pandas | Scikit-Learn | Random Forest | Joblib | Gradio
+
+
+<hr>
+
+
+<h3>About Project</h3>
+
+This AI based system predicts admission approval
+based on academic records, entrance scores,
+college preferences and student details.
+
+
+</div>
+
+"""
+
+
+
+# ==========================================================
+# Interface
 # ==========================================================
 
 
-demo = gr.Interface(
-
-    fn=predict_admission,
+with gr.Blocks(css=css, theme=gr.themes.Soft()) as demo:
 
 
-    inputs=[
+    gr.HTML(header)
 
 
-        gr.Number(label="Age", value=18),
+    gr.Markdown(
+        """
+        ## 📝 Enter Student Details
+        """
+    )
 
-        gr.Dropdown(
+
+    with gr.Row():
+
+        Age = gr.Number(label="Age")
+
+        Category = gr.Dropdown(
             ["General","OBC","SC","ST"],
             label="Category"
-        ),
+        )
 
-
-        gr.Number(label="Family Income (₹)"),
-
-
-        gr.Number(label="Class 10 Percentage"),
-
-        gr.Number(label="Class 12 Percentage"),
-
-        gr.Number(label="PCM Percentage"),
-
-
-        gr.Textbox(label="Entrance Exam"),
-
-
-        gr.Number(label="JEE Percentile"),
-
-        gr.Number(label="JEE Rank"),
-
-        gr.Number(label="CUET Score"),
+        Family_Income = gr.Number(
+            label="Family Income (₹)"
+        )
 
 
 
-        gr.Textbox(label="Preferred Branch"),
+    with gr.Row():
 
-        gr.Textbox(label="Preferred College"),
+        Class10 = gr.Number(
+            label="Class 10 %"
+        )
+
+        Class12 = gr.Number(
+            label="Class 12 %"
+        )
+
+        PCM = gr.Number(
+            label="PCM %"
+        )
 
 
-        gr.Dropdown(
+
+    with gr.Row():
+
+        Entrance = gr.Textbox(
+            label="Entrance Exam"
+        )
+
+        JEE = gr.Number(
+            label="JEE Percentile"
+        )
+
+        Rank = gr.Number(
+            label="JEE Rank"
+        )
+
+
+
+    with gr.Row():
+
+        CUET = gr.Number(
+            label="CUET Score"
+        )
+
+        Branch = gr.Textbox(
+            label="Preferred Branch"
+        )
+
+        College = gr.Textbox(
+            label="Preferred College"
+        )
+
+
+
+    with gr.Row():
+
+        College_Type = gr.Dropdown(
             ["Government","Private"],
             label="College Type"
-        ),
+        )
+
+        NIRF = gr.Number(
+            label="NIRF Rank"
+        )
+
+        Tier = gr.Number(
+            label="College Tier"
+        )
 
 
-        gr.Number(label="NIRF Rank"),
+
+    with gr.Row():
+
+        Cutoff = gr.Number(
+            label="Branch Cutoff Rank"
+        )
+
+        Seats = gr.Number(
+            label="Available Seats"
+        )
+
+        Quota = gr.Textbox(
+            label="Reservation Quota"
+        )
 
 
-        gr.Number(label="College Tier"),
 
+    with gr.Row():
 
-        gr.Number(label="Branch Cutoff Rank"),
-
-
-        gr.Number(label="Available Seats"),
-
-
-        gr.Textbox(label="Reservation Quota"),
-
-
-        gr.Dropdown(
+        Docs = gr.Dropdown(
             ["Yes","No"],
             label="Documents Verified"
-        ),
+        )
+
+        Interview = gr.Number(
+            label="Interview Score"
+        )
+
+        Communication = gr.Number(
+            label="Communication Score"
+        )
 
 
-        gr.Number(label="Interview Score"),
 
+    with gr.Row():
 
-        gr.Number(label="Communication Score"),
+        Aptitude = gr.Number(
+            label="Aptitude Score"
+        )
 
-
-        gr.Number(label="Aptitude Score"),
-
-
-        gr.Dropdown(
+        Scholarship = gr.Dropdown(
             ["Yes","No"],
             label="Scholarship Applied"
-        ),
+        )
 
-
-        gr.Dropdown(
+        Scholarship_Eligibility = gr.Dropdown(
             ["Yes","No"],
             label="Scholarship Eligibility"
-        ),
+        )
 
 
-        gr.Dropdown(
+
+    with gr.Row():
+
+        Hostel = gr.Dropdown(
             ["Yes","No"],
             label="Hostel Required"
-        ),
+        )
+
+        Probability = gr.Number(
+            label="Admission Probability"
+        )
+
+        Fee = gr.Number(
+            label="Tuition Fee (₹)"
+        )
 
 
-        gr.Number(label="Admission Probability"),
+    button = gr.Button(
+        "🎯 Predict Admission"
+    )
 
 
-        gr.Number(label="Tuition Fee (₹)")
-
-
-    ],
-
-
-    outputs=gr.Textbox(
-        label="Admission Prediction",
+    output = gr.Textbox(
+        label="Prediction Result",
         lines=8
-    ),
+    )
 
 
-    title="🎓 AI College Admission Approval System",
 
+    button.click(
 
-    description=DESCRIPTION,
+        predict_admission,
 
+        inputs=[
+            Age,
+            Category,
+            Family_Income,
+            Class10,
+            Class12,
+            PCM,
+            Entrance,
+            JEE,
+            Rank,
+            CUET,
+            Branch,
+            College,
+            College_Type,
+            NIRF,
+            Tier,
+            Cutoff,
+            Seats,
+            Quota,
+            Docs,
+            Interview,
+            Communication,
+            Aptitude,
+            Scholarship,
+            Scholarship_Eligibility,
+            Hostel,
+            Probability,
+            Fee
+        ],
 
-    css=css,
+        outputs=output
 
-
-    theme=gr.themes.Soft()
-
-)
+    )
 
 
 
 # ==========================================================
-# Render Launch
+# Render Deployment
 # ==========================================================
-
 
 if __name__=="__main__":
 
