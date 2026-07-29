@@ -78,48 +78,86 @@ else:
     print("\n❌ images folder NOT FOUND!")
 
 
+# =====================================================
+# LOAD BACKGROUND IMAGES FROM IMAGES FOLDER
+# =====================================================
+
 def load_background_images():
 
-    image_order = [
-        "1.jpg",
-        "2.jpg",
-        "3.jpg",
-        "4.jpg",
-        "5.jpg"
-    ]
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    IMAGE_FOLDER = os.path.join(
+        BASE_DIR,
+        "images"
+    )
+
+    print("Checking folder:")
+    print(IMAGE_FOLDER)
+
+
+    if not os.path.exists(IMAGE_FOLDER):
+
+        print("❌ Images folder not found")
+
+        return []
+
 
     encoded_images = []
 
-    for image in image_order:
 
-        image_path = os.path.join(IMAGES_DIR, image)
+    for file in sorted(os.listdir(IMAGE_FOLDER)):
 
-        print(f"\nChecking: {image_path}")
 
-        if os.path.isfile(image_path):
+        if file.lower().endswith(
+            (".jpg", ".jpeg", ".png")
+        ):
 
-            print(f"✅ Found: {image}")
 
-            try:
+            image_path = os.path.join(
+                IMAGE_FOLDER,
+                file
+            )
 
-                with open(image_path, "rb") as f:
 
-                    encoded_images.append(
-                        base64.b64encode(f.read()).decode("utf-8")
-                    )
+            print(
+                "Loading image:",
+                image_path
+            )
 
-            except Exception as e:
 
-                print(f"❌ Error reading {image}: {e}")
+            with open(
+                image_path,
+                "rb"
+            ) as img:
 
-        else:
 
-            print(f"❌ Image NOT FOUND: {image_path}")
+                encoded_images.append(
+
+                    base64.b64encode(
+                        img.read()
+                    ).decode()
+
+                )
+
+
+    print(
+        "Total Images Loaded:",
+        len(encoded_images)
+    )
+
 
     return encoded_images
 
 
+
 BACKGROUND_IMAGES = load_background_images()
+
+
+if len(BACKGROUND_IMAGES) == 0:
+
+    print(
+        "⚠️ No images found. Running without background images."
+    )
 
 print("\n" + "=" * 60)
 print("Total Images Loaded:", len(BACKGROUND_IMAGES))
