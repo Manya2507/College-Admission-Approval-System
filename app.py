@@ -1257,27 +1257,26 @@ Click a button to enter details.
     )
     # ==========================================================
 # PART 4/5
-# ALL 27 INPUT FIELDS
+# INPUT SECTIONS
+# MUST BE INSIDE with gr.Blocks()
 # ==========================================================
 
 
-
 # ==========================================================
-# ACADEMIC DETAILS SECTION
+# ACADEMIC SECTION
 # ==========================================================
 
 
-with academic_section:
+with gr.Group(visible=False) as academic_section:
 
 
     gr.Markdown(
-"""
-## 📚 Academic Analysis Details
-"""
-)
+        "## 📚 Academic Analysis Details"
+    )
 
 
     with gr.Row():
+
 
         Age = gr.Number(
             label="Age"
@@ -1287,12 +1286,10 @@ with academic_section:
         Category = gr.Dropdown(
 
             choices=[
-
                 "General",
                 "OBC",
                 "SC",
                 "ST"
-
             ],
 
             label="Category"
@@ -1305,7 +1302,6 @@ with academic_section:
             label="Family Income (₹)"
 
         )
-
 
 
 
@@ -1337,20 +1333,16 @@ with academic_section:
 
 
 # ==========================================================
-# ENTRANCE DETAILS SECTION
+# ENTRANCE EXAM SECTION
 # ==========================================================
 
 
-with entrance_section:
-
+with gr.Group(visible=False) as entrance_section:
 
 
     gr.Markdown(
-"""
-## 🎯 Entrance Exam Details
-"""
-)
-
+        "## 🎯 Entrance Exam Details"
+    )
 
 
     with gr.Row():
@@ -1372,11 +1364,9 @@ with entrance_section:
 
         Rank = gr.Number(
 
-            label="JEE Rank"
+            label="Entrance Rank"
 
         )
-
-
 
 
 
@@ -1398,17 +1388,12 @@ with entrance_section:
 # ==========================================================
 
 
-
-with college_section:
-
+with gr.Group(visible=False) as college_section:
 
 
     gr.Markdown(
-"""
-## 🏫 College Preference Details
-"""
-)
-
+        "## 🏫 College Preference Details"
+    )
 
 
 
@@ -1429,6 +1414,7 @@ with college_section:
         )
 
 
+
         College_Type = gr.Dropdown(
 
             choices=[
@@ -1445,14 +1431,12 @@ with college_section:
 
 
 
-
-
     with gr.Row():
 
 
         NIRF = gr.Number(
 
-            label="NIRF Rank"
+            label="NIRF Ranking"
 
         )
 
@@ -1466,12 +1450,9 @@ with college_section:
 
         Cutoff = gr.Number(
 
-            label="Branch Cutoff Rank"
+            label="Cutoff Rank"
 
         )
-
-
-
 
 
 
@@ -1495,21 +1476,19 @@ with college_section:
 
 
 
-
 # ==========================================================
 # VERIFICATION SECTION
 # ==========================================================
 
 
-with verification_section:
-
+with gr.Group(visible=False) as verification_section:
 
 
     gr.Markdown(
-"""
-## ✅ Verification & Interview Details
-"""
-)
+
+        "## ✅ Verification Details"
+
+    )
 
 
 
@@ -1546,8 +1525,6 @@ with verification_section:
 
 
 
-
-
     with gr.Row():
 
 
@@ -1567,17 +1544,14 @@ with verification_section:
 # ==========================================================
 
 
-
-with scholarship_section:
-
+with gr.Group(visible=False) as scholarship_section:
 
 
     gr.Markdown(
-"""
-## 💰 Scholarship & Additional Details
-"""
-)
 
+        "## 💰 Scholarship & Other Details"
+
+    )
 
 
     with gr.Row():
@@ -1652,17 +1626,14 @@ with scholarship_section:
 
 
 
-
-
 # ==========================================================
 # PREDICTION AREA
 # ==========================================================
 
 
-
 gr.Markdown(
-"""
-# 🎓 Admission Prediction
+    """
+# 🎓 Final Admission Prediction
 """
 )
 
@@ -1680,9 +1651,9 @@ predict_button = gr.Button(
 
 output = gr.Textbox(
 
-    label="Prediction Result",
+    label="AI Prediction Result",
 
-    lines=10
+    lines=8
 
 )
 
@@ -1696,7 +1667,7 @@ probability_gauge = gr.Slider(
 
     value=0,
 
-    label="📊 Admission Probability %"
+    label="📊 Admission Probability (%)"
 
 )
 # ==========================================================
