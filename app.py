@@ -90,6 +90,8 @@ def load_background_images():
 
 
 BACKGROUND_IMAGES = load_background_images()
+print(os.listdir())
+print(os.listdir("images"))
 
 
 
