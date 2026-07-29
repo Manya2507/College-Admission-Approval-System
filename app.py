@@ -418,11 +418,14 @@ else:
     img1 = img2 = img3 = img4 = img5 = ""
 
 
+css = """
+
+/* ======================================
+   FULL SCREEN BACKGROUND SLIDESHOW
+====================================== */
 
 
-css = f"""
-
-.gradio-container {{
+.gradio-container {
 
     min-height:100vh !important;
 
@@ -436,25 +439,7 @@ css = f"""
 
     background-attachment:fixed !important;
 
-    animation: backgroundSlide 120s infinite ease-in-out;
-
-
-    background-image:
-
-    linear-gradient(
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.45)
-    ),
-
-    url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
-
-}}
-
-
-
-@keyframes backgroundSlide {{
-
-0% {{
+    animation: backgroundSlide 120s infinite ease-in-out !important;
 
     background-image:
 
@@ -463,384 +448,351 @@ css = f"""
         rgba(0,0,0,0.45)
     ),
 
-    url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
+    url("data:image/jpg;base64,IMAGE0");
 
-}}
-
-
-
-20% {{
-
-    background-image:
-
-    linear-gradient(
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.45)
-    ),
-
-    url("data:image/jpg;base64,{BACKGROUND_IMAGES[1]}");
-
-}}
+}
 
 
 
-40% {{
-
-    background-image:
-
-    linear-gradient(
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.45)
-    ),
-
-    url("data:image/jpg;base64,{BACKGROUND_IMAGES[2]}");
-
-}}
+/* ======================================
+   SLOW BACKGROUND IMAGE ANIMATION
+====================================== */
 
 
+@keyframes backgroundSlide {
 
-60% {{
 
-    background-image:
+0% {
 
-    linear-gradient(
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.45)
-    ),
+background-image:
 
-    url("data:image/jpg;base64,{BACKGROUND_IMAGES[3]}");
+linear-gradient(
+rgba(0,0,0,0.45),
+rgba(0,0,0,0.45)
+),
 
-}}
+url("data:image/jpg;base64,IMAGE0");
+
+}
 
 
 
-80% {{
+20% {
 
-    background-image:
+background-image:
 
-    linear-gradient(
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.45)
-    ),
+linear-gradient(
+rgba(0,0,0,0.45),
+rgba(0,0,0,0.45)
+),
 
-    url("data:image/jpg;base64,{BACKGROUND_IMAGES[4]}");
+url("data:image/jpg;base64,IMAGE1");
 
-}}
-
-
-
-100% {{
-
-    background-image:
-
-    linear-gradient(
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.45)
-    ),
-
-    url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
-
-}}
-
-}}
-
-"""
-
-
-/* =====================================
-   REMOVE WHITE MAIN CONTAINER
-===================================== */
-
-css = f"""
-
-#main-container {{
-
-    width:95% !important;
-
-    max-width:1400px !important;
-
-    margin:auto !important;
-
-    padding:25px !important;
-
-    background:transparent !important;
-
-    border:none !important;
-
-    box-shadow:none !important;
-
-    backdrop-filter:none !important;
-
-}}
-
-
-"""
+}
 
 
 
+40% {
 
-/* =====================================
-   HEADER TRANSPARENT GLASS
-===================================== */
+background-image:
+
+linear-gradient(
+rgba(0,0,0,0.45),
+rgba(0,0,0,0.45)
+),
+
+url("data:image/jpg;base64,IMAGE2");
+
+}
 
 
-#header-box {{
 
-css = """
+60% {
+
+background-image:
+
+linear-gradient(
+rgba(0,0,0,0.45),
+rgba(0,0,0,0.45)
+),
+
+url("data:image/jpg;base64,IMAGE3");
+
+}
+
+
+
+80% {
+
+background-image:
+
+linear-gradient(
+rgba(0,0,0,0.45),
+rgba(0,0,0,0.45)
+),
+
+url("data:image/jpg;base64,IMAGE4");
+
+}
+
+
+
+100% {
+
+background-image:
+
+linear-gradient(
+rgba(0,0,0,0.45),
+rgba(0,0,0,0.45)
+),
+
+url("data:image/jpg;base64,IMAGE0");
+
+}
+
+
+}
+
+
+
+/* ======================================
+   MAIN CONTAINER TRANSPARENT
+====================================== */
+
 
 #main-container {
 
-    width:95% !important;
+
+    width:90% !important;
 
     max-width:1400px !important;
 
-    margin:auto !important;
+    margin:30px auto !important;
+
 
     padding:25px !important;
 
-    background:transparent !important;
-
-    border:none !important;
-
-}
-
-"""
-
-
-
-
-#header-box h1 {{
-css = """
-
-#header-box h1 {
-
-    font-size:45px;
-
-    font-weight:900;
-
-    color:white;
-
-    text-shadow:
-    0px 0px 15px #10b981;
-
-}
-
-"""
-
-    
-
-
-
-#header-box h2 {{
-
-    color:#a7f3d0 !important;
-
-    font-size:26px;
-
-}}
-
-
-
-#header-box h3 {{
-
-    color:#6ee7b7 !important;
-
-}}
-
-
-
-#header-box p {{
-
-    color:white !important;
-
-    font-size:18px;
-
-}}
-
-
-
-
-
-/* =====================================
-   SECTION HEADINGS
-===================================== */
-
-
-h2,
-h3 {{
-
-    color:white !important;
-
-    text-shadow:
-    0px 0px 10px black;
-
-}}
-
-
-
-
-/* =====================================
-   INPUT BOX DESIGN
-===================================== */
-
-
-input,
-textarea,
-select {{
 
     background:
 
     rgba(
+
     255,
+
     255,
+
     255,
-    0.20
+
+    0.15
+
+    ) !important;
+
+
+    backdrop-filter:blur(8px) !important;
+
+
+    border-radius:25px !important;
+
+
+    border:1px solid rgba(255,255,255,0.3);
+
+
+}
+
+
+
+
+/* ======================================
+   HEADER DESIGN
+====================================== */
+
+
+#header-box {
+
+
+    text-align:center;
+
+
+    padding:25px;
+
+
+    background:
+
+    rgba(
+
+    0,
+
+    0,
+
+    0,
+
+    0.25
+
+    );
+
+
+    border-radius:20px;
+
+
+}
+
+
+
+
+#header-box h1 {
+
+
+    font-size:45px;
+
+
+    font-weight:900;
+
+
+    color:white !important;
+
+
+}
+
+
+
+
+#header-box h2 {
+
+
+    font-size:26px;
+
+
+    color:#d1fae5 !important;
+
+
+}
+
+
+
+
+#header-box h3 {
+
+
+    color:#6ee7b7 !important;
+
+
+}
+
+
+
+
+#header-box p {
+
+
+    color:white !important;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+
+/* ======================================
+   INPUT BOXES
+====================================== */
+
+
+input,
+
+textarea,
+
+select {
+
+
+    background:
+
+    rgba(255,255,255,0.90) !important;
+
+
+    color:black !important;
+
+
+    border-radius:12px !important;
+
+
+}
+
+
+
+/* LABEL COLOR */
+
+
+label {
+
+
+    color:white !important;
+
+
+    font-weight:bold !important;
+
+
+}
+
+
+
+
+/* ======================================
+   BUTTON
+====================================== */
+
+
+button {
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #065f46,
+
+    #10b981
+
     ) !important;
 
 
     color:white !important;
 
 
-    border:
+    font-size:20px !important;
 
-    2px solid
 
-    rgba(
-    255,
-    255,
-    255,
-    0.6
-    ) !important;
+    font-weight:bold !important;
 
 
     border-radius:15px !important;
 
 
-    backdrop-filter:blur(10px);
-
-}}
+}
 
 
 
 
-input::placeholder {{
-
-    color:white !important;
-
-}}
+button:hover {
 
 
+    transform:scale(1.05);
 
 
-label {{
-
-    color:white !important;
-
-    font-size:16px !important;
-
-    font-weight:bold !important;
-
-    text-shadow:
-    0px 0px 8px black;
-
-}}
+}
 
 
 
-
-
-
-/* =====================================
-   DROPDOWN TEXT
-===================================== */
-
-
-.gradio-dropdown {{
-
-    background:
-    rgba(
-    0,
-    0,
-    0,
-    0.25
-    ) !important;
-
-}}
-
-
-
-
-/* =====================================
-   BUTTON DESIGN
-===================================== */
-
-
-button {{
-
-    background:
-
-    linear-gradient(
-    135deg,
-    #059669,
-    #10b981
-    ) !important;
-
-
-    color:white !important;
-
-
-    font-size:22px !important;
-
-
-    font-weight:bold !important;
-
-
-    border-radius:20px !important;
-
-
-    padding:15px !important;
-
-
-    box-shadow:
-
-    0px 0px 20px
-
-    #10b981;
-
-}}
-
-
-
-button:hover {{
-
-    transform:scale(1.08);
-
-    transition:0.3s;
-
-}}
-
-
-
-
-
-/* =====================================
+/* ======================================
    OUTPUT BOX
-===================================== */
+====================================== */
 
 
-textarea {{
-
-    background:
-
-    rgba(
-    0,
-    0,
-    0,
-    0.40
-    ) !important;
-
-
-    color:white !important;
+textarea {
 
 
     font-size:18px !important;
@@ -849,28 +801,24 @@ textarea {{
     font-weight:bold !important;
 
 
-    border-radius:20px !important;
-
-}}
+}
 
 
 
+/* REMOVE FOOTER */
 
 
-/* =====================================
-   REMOVE FOOTER
-===================================== */
+footer {
 
 
-footer {{
+    display:none !important;
 
-display:none !important;
 
-}}
-
+}
 
 
 """
+
 # =====================================================
 # PART 3 : GRADIO USER INTERFACE
 # =====================================================
