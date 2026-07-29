@@ -1,4 +1,5 @@
 import os
+import base64
 import joblib
 import pandas as pd
 import gradio as gr
@@ -6,7 +7,7 @@ import gradio as gr
 
 
 # =====================================================
-# LOAD MODEL
+# LOAD MACHINE LEARNING MODEL
 # =====================================================
 
 MODEL_PATH = "college_admission_approval.pkl"
@@ -29,12 +30,35 @@ except Exception as e:
 
 
 # =====================================================
+# LOAD BACKGROUND IMAGE
+# =====================================================
+
+
+def image_to_base64(path):
+
+    with open(path, "rb") as image:
+
+        return base64.b64encode(
+            image.read()
+        ).decode()
+
+
+
+BACKGROUND_IMAGE = image_to_base64(
+    "images/images(1).jpg"
+)
+
+
+
+
+
+# =====================================================
 # PREDICTION FUNCTION
 # =====================================================
 
 
 def predict_admission(
-    
+
     Age,
     Category,
     Family_Income,
@@ -83,14 +107,15 @@ def predict_admission(
 
     if model is None:
 
-        return "❌ Model not loaded"
+        return "❌ Model not found"
 
 
 
     try:
 
 
-        data = pd.DataFrame([{
+        input_data = pd.DataFrame([{
+
 
             "Age":Age,
 
@@ -164,18 +189,21 @@ def predict_admission(
 
             "Tuition_Fee":Tuition_Fee
 
+
         }])
 
 
 
-        result = model.predict(data)[0]
+        result = model.predict(input_data)[0]
 
 
 
         if str(result).lower() in [
+
             "1",
             "yes",
             "approved"
+
         ]:
 
 
@@ -184,7 +212,7 @@ def predict_admission(
 🎉 ADMISSION APPROVED
 
 
-Prediction:
+Prediction Result:
 ✅ Approved
 
 
@@ -202,7 +230,7 @@ Random Forest Classifier
 ❌ ADMISSION NOT APPROVED
 
 
-Prediction:
+Prediction Result:
 ❌ Not Approved
 
 
@@ -215,220 +243,122 @@ Random Forest Classifier
 
     except Exception as e:
 
+
         return f"❌ Prediction Error:\n{e}"
-
-
-
-
 # =====================================================
-# FINAL BACKGROUND SLIDESHOW CSS
+# CSS WITH WORKING BACKGROUND IMAGE
 # =====================================================
 
 
-css = """
+css = f"""
 
-html,body{
+html, body {{
 
-margin:0;
+    margin:0;
+    padding:0;
 
-padding:0;
+}}
 
-background:transparent !important;
 
-}
 
+.gradio-container {{
 
+    background-image:
 
-.gradio-container{
+    linear-gradient(
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.35)
+    ),
 
-background:transparent !important;
+    url(
+    "data:image/jpg;base64,{BACKGROUND_IMAGE}"
+    );
 
-}
 
+    background-size:cover !important;
 
+    background-position:center !important;
 
-/* BACKGROUND */
+    background-attachment:fixed !important;
 
-body::before{
+}}
 
 
-content:"";
 
+#main-container {{
 
-position:fixed;
+    width:90%;
 
+    max-width:1200px;
 
-top:0;
 
-left:0;
+    margin:30px auto;
 
 
-width:100vw;
+    padding:30px;
 
 
-height:100vh;
 
+    background:
 
-z-index:-10;
+    rgba(255,255,255,0.55);
 
 
 
-background-size:cover;
+    backdrop-filter:blur(10px);
 
 
-background-position:center;
 
+    border-radius:25px;
 
 
-animation:changeBG 20s infinite;
 
+    box-shadow:
 
+    0 10px 40px rgba(0,0,0,0.4);
 
-}
+}}
 
 
 
+#main-container * {{
 
-@keyframes changeBG{
+    color:black !important;
 
+}}
 
-0%{
 
-background-image:url('/file=images/images(1).jpg');
 
-}
+button {{
 
+    background:#087f5b !important;
 
+    color:white !important;
 
-25%{
+    font-size:18px !important;
 
-background-image:url('/file=images/images(2).jpg');
+    font-weight:bold !important;
 
-}
+    border-radius:12px !important;
 
+}}
 
 
-50%{
 
-background-image:url('/file=images/images(3).jpg');
+footer {{
 
-}
+    display:none !important;
 
-
-
-75%{
-
-background-image:url('/file=images/images(4).jpg');
-
-}
-
-
-
-100%{
-
-background-image:url('/gradio_api/file=images/images(1).jpg');
-
-}
-
-
-}
-
-
-
-
-
-body::after{
-
-
-content:"";
-
-
-position:fixed;
-
-
-top:0;
-
-left:0;
-
-
-width:100vw;
-
-
-height:100vh;
-
-
-background:rgba(0,0,0,0.25);
-
-
-z-index:-5;
-
-
-}
-
-
-
-
-
-#main-container{
-
-
-width:90%;
-
-
-max-width:1200px;
-
-
-margin:30px auto;
-
-
-padding:30px;
-
-
-background:rgba(255,255,255,0.45);
-
-
-backdrop-filter:blur(12px);
-
-
-border-radius:25px;
-
-
-}
-
-
-#main-container *{
-
-color:black !important;
-
-}
-
-
-button{
-
-
-background:#087f5b !important;
-
-
-color:white !important;
-
-
-font-weight:bold !important;
-
-
-}
-
-
-
-footer{
-
-display:none !important;
-
-}
-
+}}
 
 """
+
+
+
+
+
 # =====================================================
-# HEADER SECTION
+# DEVELOPER INFORMATION
 # =====================================================
 
 
@@ -436,13 +366,13 @@ header = """
 
 <div style="
 
+text-align:center;
+
 padding:25px;
 
-background:rgba(255,255,255,0.35);
+background:rgba(255,255,255,0.40);
 
 border-radius:20px;
-
-text-align:center;
 
 ">
 
@@ -475,7 +405,9 @@ text-align:center;
 
 <p>
 
-<b>College:</b> Panipat Institute of Engineering and Technology
+<b>College:</b>
+
+Panipat Institute of Engineering and Technology
 
 </p>
 
@@ -483,34 +415,35 @@ text-align:center;
 
 <p>
 
-<b>Project:</b> College Admission Prediction using Machine Learning
+<b>Project:</b>
+
+College Admission Prediction using Machine Learning
 
 </p>
 
 
 
 <hr>
-
 
 
 <h3>
 
-💻 Technology Used
+💻 Technologies Used
 
 </h3>
 
 
-
 <p>
 
-Python | Pandas | Scikit-Learn | Random Forest | Joblib | Gradio
+Python | Pandas | Scikit-Learn |
+
+Random Forest | Joblib | Gradio
 
 </p>
 
 
 
 <hr>
-
 
 
 <h3>
@@ -520,12 +453,11 @@ Python | Pandas | Scikit-Learn | Random Forest | Joblib | Gradio
 </h3>
 
 
-
 <p>
 
-This AI based system predicts whether a student admission
-will be approved or not using academic records, entrance
-exam scores, college details and student information.
+This AI-based system predicts student admission approval
+using academic performance, entrance exam scores,
+college details and student information.
 
 </p>
 
@@ -570,7 +502,7 @@ with gr.Blocks(
 """
 # 📝 Enter Student Details
 
-Provide student information for admission prediction.
+Fill all details to predict admission approval.
 
 """
 
@@ -578,40 +510,30 @@ Provide student information for admission prediction.
 
 
 
-        # =============================================
-        # ROW 1
-        # =============================================
+        # ==========================
+        # BASIC DETAILS
+        # ==========================
 
 
         with gr.Row():
 
-
             Age = gr.Number(
-
                 label="Age"
-
             )
-
 
 
             Category = gr.Dropdown(
 
                 choices=[
-
                     "General",
-
                     "OBC",
-
                     "SC",
-
                     "ST"
-
                 ],
 
                 label="Category"
 
             )
-
 
 
             Family_Income = gr.Number(
@@ -624,14 +546,12 @@ Provide student information for admission prediction.
 
 
 
-
-        # =============================================
-        # ROW 2
-        # =============================================
+        # ==========================
+        # ACADEMIC DETAILS
+        # ==========================
 
 
         with gr.Row():
-
 
             Class10 = gr.Number(
 
@@ -640,13 +560,11 @@ Provide student information for admission prediction.
             )
 
 
-
             Class12 = gr.Number(
 
                 label="Class 12 Percentage"
 
             )
-
 
 
             PCM = gr.Number(
@@ -659,15 +577,7 @@ Provide student information for admission prediction.
 
 
 
-
-
-        # =============================================
-        # ROW 3
-        # =============================================
-
-
         with gr.Row():
-
 
             Entrance = gr.Textbox(
 
@@ -676,13 +586,11 @@ Provide student information for admission prediction.
             )
 
 
-
             JEE = gr.Number(
 
                 label="JEE Percentile"
 
             )
-
 
 
             Rank = gr.Number(
@@ -695,15 +603,7 @@ Provide student information for admission prediction.
 
 
 
-
-
-        # =============================================
-        # ROW 4
-        # =============================================
-
-
         with gr.Row():
-
 
             CUET = gr.Number(
 
@@ -712,13 +612,11 @@ Provide student information for admission prediction.
             )
 
 
-
             Branch = gr.Textbox(
 
                 label="Preferred Branch"
 
             )
-
 
 
             College = gr.Textbox(
@@ -731,15 +629,7 @@ Provide student information for admission prediction.
 
 
 
-
-
-        # =============================================
-        # ROW 5
-        # =============================================
-
-
         with gr.Row():
-
 
             College_Type = gr.Dropdown(
 
@@ -756,7 +646,6 @@ Provide student information for admission prediction.
             )
 
 
-
             NIRF = gr.Number(
 
                 label="NIRF Rank"
@@ -764,15 +653,14 @@ Provide student information for admission prediction.
             )
 
 
-
             Tier = gr.Number(
 
                 label="College Tier"
 
             )
-                    # =============================================
-        # ROW 6
-        # =============================================
+                    # ==========================
+        # COLLEGE DETAILS
+        # ==========================
 
 
         with gr.Row():
@@ -802,10 +690,9 @@ Provide student information for admission prediction.
 
 
 
-
-        # =============================================
-        # ROW 7
-        # =============================================
+        # ==========================
+        # VERIFICATION DETAILS
+        # ==========================
 
 
         with gr.Row():
@@ -826,13 +713,11 @@ Provide student information for admission prediction.
             )
 
 
-
             Interview = gr.Number(
 
                 label="Interview Score"
 
             )
-
 
 
             Communication = gr.Number(
@@ -845,11 +730,9 @@ Provide student information for admission prediction.
 
 
 
-
-
-        # =============================================
-        # ROW 8
-        # =============================================
+        # ==========================
+        # EXTRA DETAILS
+        # ==========================
 
 
         with gr.Row():
@@ -860,7 +743,6 @@ Provide student information for admission prediction.
                 label="Aptitude Score"
 
             )
-
 
 
             Scholarship = gr.Dropdown(
@@ -876,7 +758,6 @@ Provide student information for admission prediction.
                 label="Scholarship Applied"
 
             )
-
 
 
             Scholarship_Eligibility = gr.Dropdown(
@@ -897,14 +778,6 @@ Provide student information for admission prediction.
 
 
 
-
-
-
-        # =============================================
-        # ROW 9
-        # =============================================
-
-
         with gr.Row():
 
 
@@ -923,13 +796,11 @@ Provide student information for admission prediction.
             )
 
 
-
             Probability = gr.Number(
 
                 label="Admission Probability"
 
             )
-
 
 
             Fee = gr.Number(
@@ -942,18 +813,14 @@ Provide student information for admission prediction.
 
 
 
-
-
-        # =============================================
-        # PREDICTION BUTTON
-        # =============================================
+        # ==========================
+        # BUTTON
+        # ==========================
 
 
         predict_button = gr.Button(
 
-            "🎯 Predict Admission",
-
-            variant="primary"
+            "🎯 Predict Admission"
 
         )
 
@@ -961,10 +828,9 @@ Provide student information for admission prediction.
 
 
 
-
-        # =============================================
+        # ==========================
         # OUTPUT
-        # =============================================
+        # ==========================
 
 
         output = gr.Textbox(
@@ -974,12 +840,18 @@ Provide student information for admission prediction.
             lines=8
 
         )
-                # =============================================
-        # CONNECT BUTTON WITH PREDICTION FUNCTION
-        # =============================================
+
+
+
+
+
+        # ==========================
+        # CONNECT FUNCTION
+        # ==========================
 
 
         predict_button.click(
+
 
             fn=predict_admission,
 
@@ -1080,54 +952,24 @@ if __name__ == "__main__":
 
 
 
-    image_folder = os.path.abspath("images")
-
-
-
-    print("================================")
-
-    print("📁 IMAGE FOLDER PATH:")
-
-    print(image_folder)
-
-
-
-    print("\n📷 AVAILABLE IMAGES:")
-
-
-
-    if os.path.exists(image_folder):
-
-
-        print(os.listdir(image_folder))
-
-
-    else:
-
-
-        print("❌ Images folder not found")
-
-
-
-    print("================================")
-
-
+    print("🚀 Starting AI College Admission System")
 
 
 
     demo.launch(
 
-    server_name="0.0.0.0",
+        server_name="0.0.0.0",
 
-    server_port=int(
-        os.environ.get(
-            "PORT",
-            7860
+        server_port=int(
+
+            os.environ.get(
+
+                "PORT",
+
+                7860
+
+            )
+
         )
-    ),
 
-    allowed_paths=[
-        os.path.abspath("images")
-    ]
-
-)
+    )
