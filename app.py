@@ -586,40 +586,25 @@ css = f"""
 
 #header-box {{
 
-    text-align:center;
+css = """
 
-    padding:25px;
+#main-container {
 
+    width:95% !important;
 
-    background:
+    max-width:1400px !important;
 
-    rgba(
-    0,
-    0,
-    0,
-    0.35
-    );
+    margin:auto !important;
 
+    padding:25px !important;
 
-    backdrop-filter:blur(8px);
+    background:transparent !important;
 
+    border:none !important;
 
-    border-radius:25px;
+}
 
-
-    border:
-
-    2px solid
-
-    rgba(
-    255,
-    255,
-    255,
-    0.3
-    );
-
-
-}}
+"""
 
 
 
