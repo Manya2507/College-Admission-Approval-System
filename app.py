@@ -294,7 +294,7 @@ animation:changeBG 20s infinite;
 
 0%{
 
-background-image:url('/gradio_api/file=images/images(1).jpg');
+background-image:url('/file=images/images(1).jpg');
 
 }
 
@@ -302,7 +302,7 @@ background-image:url('/gradio_api/file=images/images(1).jpg');
 
 25%{
 
-background-image:url('/gradio_api/file=images/images (2).jpg');
+background-image:url('/file=images/images(2).jpg');
 
 }
 
@@ -310,7 +310,7 @@ background-image:url('/gradio_api/file=images/images (2).jpg');
 
 50%{
 
-background-image:url('/gradio_api/file=images/images (3).jpg');
+background-image:url('/file=images/images(3).jpg');
 
 }
 
@@ -318,7 +318,7 @@ background-image:url('/gradio_api/file=images/images (3).jpg');
 
 75%{
 
-background-image:url('/gradio_api/file=images/images (4).jpg');
+background-image:url('/file=images/images(4).jpg');
 
 }
 
@@ -1117,28 +1117,17 @@ if __name__ == "__main__":
 
     demo.launch(
 
+    server_name="0.0.0.0",
 
-        server_name="0.0.0.0",
+    server_port=int(
+        os.environ.get(
+            "PORT",
+            7860
+        )
+    ),
 
+    allowed_paths=[
+        os.path.abspath("images")
+    ]
 
-        server_port=int(
-
-            os.environ.get(
-
-                "PORT",
-
-                7860
-
-            )
-
-        ),
-
-
-
-        allowed_paths=[
-
-            image_folder
-
-        ]
-
-    )
+)
