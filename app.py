@@ -5,85 +5,18 @@ import gradio as gr
 
 
 # ==========================================================
-# MODEL
+# LOAD MACHINE LEARNING MODEL
 # ==========================================================
+
+MODEL_PATH = "college_admission_approval.pkl"
 
 try:
-
-    model = joblib.load(
-        "college_admission_approval.pkl"
-    )
-
-    print(
-        "✅ Model loaded successfully"
-    )
+    model = joblib.load(MODEL_PATH)
+    print("✅ Admission Model Loaded Successfully")
 
 except Exception as e:
-
-    print(
-        "❌ Model loading error:",
-        e
-    )
-
+    print("❌ Model Loading Error:", e)
     model = None
-
-
-# ==========================================================
-# IMAGE FOLDER
-# ==========================================================
-
-IMAGE_FOLDER = os.path.abspath(
-    "image"
-)
-
-
-# ==========================================================
-# CHECK IMAGE FILES
-# ==========================================================
-
-image_files = [
-
-    "college-img-1.jpg",
-
-    "images (2).jpg",
-
-    "images (3).jpg",
-
-    "images (4).jpg"
-
-]
-
-
-for file_name in image_files:
-
-    full_path = os.path.join(
-
-        IMAGE_FOLDER,
-
-        file_name
-
-    )
-
-
-    if os.path.exists(full_path):
-
-        print(
-
-            "✅ Found:",
-
-            full_path
-
-        )
-
-    else:
-
-        print(
-
-            "❌ Missing:",
-
-            full_path
-
-        )
 
 
 # ==========================================================
@@ -91,211 +24,118 @@ for file_name in image_files:
 # ==========================================================
 
 def predict_admission(
-
     Age,
     Category,
     Family_Income,
-
     Class10_Percentage,
     Class12_Percentage,
     PCM_Percentage,
-
     Entrance_Exam,
     JEE_Percentile,
     JEE_Rank,
-
     CUET_Score,
     Preferred_Branch,
     Preferred_College,
-
     College_Type,
     NIRF_Rank,
     College_Tier,
-
     Branch_Cutoff_Rank,
     Available_Seats,
     Reservation_Quota,
-
     Documents_Verified,
     Interview_Score,
     Communication_Score,
-
     Aptitude_Score,
     Scholarship_Applied,
     Scholarship_Eligibility,
-
     Hostel_Required,
     Admission_Probability,
     Tuition_Fee
-
 ):
 
-
     if model is None:
-
-        return (
-
-            "❌ Model is not loaded."
-
-        )
-
+        return "❌ Model file not found. Please add college_admission_approval.pkl"
 
     try:
 
-
         data = pd.DataFrame([{
 
-            "Age":
-            Age,
+            "Age": Age,
+            "Category": Category,
+            "Family_Income": Family_Income,
 
-            "Category":
-            Category,
+            "Class10_%": Class10_Percentage,
+            "Class12_%": Class12_Percentage,
+            "PCM_%": PCM_Percentage,
 
-            "Family_Income":
-            Family_Income,
+            "Entrance_Exam": Entrance_Exam,
+            "JEE_Percentile": JEE_Percentile,
+            "JEE_Rank": JEE_Rank,
+            "CUET_Score": CUET_Score,
 
+            "Preferred_Branch": Preferred_Branch,
+            "Preferred_College": Preferred_College,
+            "College_Type": College_Type,
 
-            "Class10_%":
-            Class10_Percentage,
+            "NIRF_Rank": NIRF_Rank,
+            "College_Tier": College_Tier,
+            "Branch_Cutoff_Rank": Branch_Cutoff_Rank,
 
-            "Class12_%":
-            Class12_Percentage,
+            "Available_Seats": Available_Seats,
+            "Reservation_Quota": Reservation_Quota,
 
-            "PCM_%":
-            PCM_Percentage,
+            "Documents_Verified": Documents_Verified,
 
+            "Interview_Score": Interview_Score,
+            "Communication_Score": Communication_Score,
+            "Aptitude_Score": Aptitude_Score,
 
-            "Entrance_Exam":
-            Entrance_Exam,
+            "Scholarship_Applied": Scholarship_Applied,
+            "Scholarship_Eligibility": Scholarship_Eligibility,
 
-            "JEE_Percentile":
-            JEE_Percentile,
-
-            "JEE_Rank":
-            JEE_Rank,
-
-            "CUET_Score":
-            CUET_Score,
-
-
-            "Preferred_Branch":
-            Preferred_Branch,
-
-            "Preferred_College":
-            Preferred_College,
-
-            "College_Type":
-            College_Type,
-
-
-            "NIRF_Rank":
-            NIRF_Rank,
-
-            "College_Tier":
-            College_Tier,
-
-            "Branch_Cutoff_Rank":
-            Branch_Cutoff_Rank,
-
-
-            "Available_Seats":
-            Available_Seats,
-
-            "Reservation_Quota":
-            Reservation_Quota,
-
-
-            "Documents_Verified":
-            Documents_Verified,
-
-
-            "Interview_Score":
-            Interview_Score,
-
-            "Communication_Score":
-            Communication_Score,
-
-            "Aptitude_Score":
-            Aptitude_Score,
-
-
-            "Scholarship_Applied":
-            Scholarship_Applied,
-
-            "Scholarship_Eligibility":
-            Scholarship_Eligibility,
-
-
-            "Hostel_Required":
-            Hostel_Required,
-
-            "Admission_Probability":
-            Admission_Probability,
-
-            "Tuition_Fee":
-            Tuition_Fee
+            "Hostel_Required": Hostel_Required,
+            "Admission_Probability": Admission_Probability,
+            "Tuition_Fee": Tuition_Fee
 
         }])
 
+        result = model.predict(data)[0]
 
-        result = model.predict(
-
-            data
-
-        )[0]
-
-
-        if str(
-
-            result
-
-        ).strip().lower() in [
-
+        if str(result).strip().lower() in [
             "1",
-
             "yes",
-
-            "approved",
-
-            "true"
-
+            "approved"
         ]:
 
-
             return """
-
 🎉 ADMISSION APPROVED
+
+The student has a high probability of getting admission.
 
 Prediction Result:
 ✅ Approved
 
 Algorithm:
 Random Forest Classifier
-
 """
 
+        else:
 
-        return """
-
+            return """
 ❌ ADMISSION NOT APPROVED
+
+The student has a low probability of getting admission.
 
 Prediction Result:
 ❌ Not Approved
 
 Algorithm:
 Random Forest Classifier
-
 """
-
 
     except Exception as e:
 
-
-        return (
-
-            f"❌ Prediction Error:\n{e}"
-
-        )
+        return f"❌ Prediction Error:\n{e}"
 
 
 # ==========================================================
@@ -305,34 +145,31 @@ Random Forest Classifier
 css = """
 
 /* =====================================================
-   REMOVE DEFAULT GRADIO BACKGROUND
+   PAGE BACKGROUND
 ===================================================== */
 
 html,
 body {
 
     margin: 0 !important;
-
     padding: 0 !important;
 
-    min-height: 100% !important;
-
-    background: transparent !important;
+    background: #111111 !important;
 
 }
 
 
-/* =====================================================
-   MAIN GRADIO PAGE
-===================================================== */
+/* Remove Gradio's default background */
 
 .gradio-container {
 
-    position: relative !important;
+    max-width: none !important;
 
     min-height: 100vh !important;
 
-    max-width: none !important;
+    margin: 0 !important;
+
+    padding: 0 !important;
 
     background: transparent !important;
 
@@ -348,111 +185,96 @@ body {
     position: fixed !important;
 
     top: 0 !important;
-
     left: 0 !important;
 
     width: 100vw !important;
-
     height: 100vh !important;
 
-    overflow: hidden !important;
-
     z-index: 0 !important;
+
+    overflow: hidden !important;
 
     pointer-events: none !important;
 
 }
 
 
-/* =====================================================
-   SLIDESHOW IMAGES
-===================================================== */
+/* Background images */
 
-.background-image {
+#background-slideshow img {
 
     position: absolute !important;
 
-    top: 0 !important;
+    inset: 0 !important;
 
-    left: 0 !important;
-
-    width: 100vw !important;
-
-    height: 100vh !important;
+    width: 100% !important;
+    height: 100% !important;
 
     object-fit: cover !important;
 
     object-position: center !important;
 
-    display: block !important;
-
     opacity: 0 !important;
 
-    animation:
+    animation-name: imageSlide !important;
 
-    imageSlide
+    animation-duration: 20s !important;
 
-    20s
+    animation-iteration-count: infinite !important;
 
-    infinite
-
-    !important;
+    animation-timing-function: ease-in-out !important;
 
 }
 
 
-/* IMAGE DELAYS */
+/* Image timing */
 
-.image1 {
+#background-slideshow .image1 {
 
-    animation-delay:
-
-    0s !important;
+    animation-delay: 0s !important;
 
 }
 
 
-.image2 {
+#background-slideshow .image2 {
 
-    animation-delay:
-
-    5s !important;
+    animation-delay: 5s !important;
 
 }
 
 
-.image3 {
+#background-slideshow .image3 {
 
-    animation-delay:
-
-    10s !important;
+    animation-delay: 10s !important;
 
 }
 
 
-.image4 {
+#background-slideshow .image4 {
 
-    animation-delay:
-
-    15s !important;
+    animation-delay: 15s !important;
 
 }
 
 
 /* =====================================================
-   ANIMATION
+   SLIDESHOW ANIMATION
 ===================================================== */
 
 @keyframes imageSlide {
 
-
     0% {
 
+        opacity: 0;
+
+        transform: scale(1);
+
+    }
+
+
+    5% {
+
         opacity: 1;
-
-        transform:
-
-        scale(1);
 
     }
 
@@ -461,9 +283,7 @@ body {
 
         opacity: 1;
 
-        transform:
-
-        scale(1.04);
+        transform: scale(1.06);
 
     }
 
@@ -475,16 +295,9 @@ body {
     }
 
 
-    95% {
-
-        opacity: 0;
-
-    }
-
-
     100% {
 
-        opacity: 1;
+        opacity: 0;
 
     }
 
@@ -492,7 +305,7 @@ body {
 
 
 /* =====================================================
-   DARK IMAGE OVERLAY
+   DARK OVERLAY
 ===================================================== */
 
 #background-overlay {
@@ -500,26 +313,12 @@ body {
     position: fixed !important;
 
     top: 0 !important;
-
     left: 0 !important;
 
     width: 100vw !important;
-
     height: 100vh !important;
 
-    background:
-
-    rgba(
-
-        0,
-
-        0,
-
-        0,
-
-        0.20
-
-    ) !important;
+    background: rgba(0, 0, 0, 0.30) !important;
 
     z-index: 1 !important;
 
@@ -529,7 +328,7 @@ body {
 
 
 /* =====================================================
-   CONTENT
+   MAIN CONTENT
 ===================================================== */
 
 #main-content {
@@ -538,57 +337,59 @@ body {
 
     z-index: 2 !important;
 
-    max-width: 1300px !important;
+    width: min(1250px, 94%) !important;
 
-    margin:
+    margin: 35px auto !important;
 
-    30px auto !important;
+    padding: 30px !important;
 
-    padding:
+    background: rgba(
+        255,
+        255,
+        255,
+        0.62
+    ) !important;
 
-    30px !important;
+    backdrop-filter: blur(7px) !important;
 
-    background:
+    -webkit-backdrop-filter: blur(7px) !important;
 
+    border: 2px solid
     rgba(
-
         255,
-
         255,
-
         255,
+        0.75
+    ) !important;
 
+    border-radius: 25px !important;
+
+    box-shadow:
+    0 10px 45px
+    rgba(
+        0,
+        0,
+        0,
         0.50
-
     ) !important;
 
-    backdrop-filter:
+}
 
-    blur(
 
-        4px
+/* =====================================================
+   ALL TEXT BLACK
+===================================================== */
 
-    ) !important;
+#main-content,
+#main-content h1,
+#main-content h2,
+#main-content h3,
+#main-content h4,
+#main-content p,
+#main-content label,
+#main-content span {
 
-    border:
-
-    2px solid
-
-    rgba(
-
-        255,
-
-        255,
-
-        255,
-
-        0.60
-
-    ) !important;
-
-    border-radius:
-
-    25px !important;
+    color: black !important;
 
 }
 
@@ -600,88 +401,61 @@ body {
 #developer {
 
     background:
-
     rgba(
-
         255,
-
         255,
-
         255,
-
-        0.55
-
+        0.50
     ) !important;
 
-    padding:
-
-    30px !important;
-
-    border-radius:
-
-    20px !important;
+    padding: 25px !important;
 
     border-left:
-
     8px solid
-
     #087f5b !important;
 
+    border-radius:
+    18px !important;
+
 }
 
 
-/* =====================================================
-   BLACK TEXT
-===================================================== */
+#developer h1 {
 
-#main-content,
+    text-align: center !important;
 
-#main-content h1,
+    font-size: 38px !important;
 
-#main-content h2,
-
-#main-content h3,
-
-#main-content p,
-
-#main-content label,
-
-#main-content span {
-
-    color:
-
-    black !important;
+    font-weight: 800 !important;
 
 }
 
 
 /* =====================================================
-   INPUTS
+   INPUT FIELDS
 ===================================================== */
 
-input,
-
-textarea,
-
-select {
+#main-content input,
+#main-content textarea,
+#main-content select {
 
     background:
-
     rgba(
-
         255,
-
         255,
-
         255,
-
-        0.90
-
+        0.92
     ) !important;
 
     color:
-
     black !important;
+
+    border:
+    2px solid
+    #4ca88a !important;
+
+    border-radius:
+    10px !important;
 
 }
 
@@ -690,31 +464,33 @@ select {
    BUTTON
 ===================================================== */
 
-button {
+#main-content button {
 
     background:
-
     linear-gradient(
-
         135deg,
-
         #087f5b,
-
         #18a875
-
     ) !important;
 
     color:
-
     white !important;
+
+    font-size:
+    20px !important;
+
+    font-weight:
+    bold !important;
+
+    border-radius:
+    14px !important;
 
 }
 
 
-button * {
+#main-content button * {
 
     color:
-
     white !important;
 
 }
@@ -726,11 +502,71 @@ button * {
 
 footer {
 
-    display:
-
-    none !important;
+    display: none !important;
 
 }
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media screen and (max-width: 700px) {
+
+    #main-content {
+
+        width: 92% !important;
+
+        margin: 10px auto !important;
+
+        padding: 15px !important;
+
+    }
+
+
+    #developer h1 {
+
+        font-size: 25px !important;
+
+    }
+
+}
+
+"""
+
+
+# ==========================================================
+# BACKGROUND HTML
+# ==========================================================
+
+background_html = """
+
+<div id="background-slideshow">
+
+    <img
+        class="image1"
+        src="/gradio_api/file=images/college-img-1.jpg"
+    >
+
+    <img
+        class="image2"
+        src="/gradio_api/file=images/images (2).jpg"
+    >
+
+    <img
+        class="image3"
+        src="/gradio_api/file=images/images (3).jpg"
+    >
+
+    <img
+        class="image4"
+        src="/gradio_api/file=images/images (4).jpg"
+    >
+
+</div>
+
+
+<div id="background-overlay"></div>
 
 """
 
@@ -743,101 +579,53 @@ header = """
 
 <div id="developer">
 
-
-<h1
-
-style="
-
-text-align:center;
-
-"
-
->
-
+<h1>
 🎓 AI College Admission Approval System
-
 </h1>
 
-
 <hr>
-
 
 <h2>
-
 👩‍💻 Developer Details
-
 </h2>
 
-
 <p>
-
 <b>Name:</b>
-
 Manya Singla
-
 </p>
 
-
 <p>
-
 <b>College:</b>
-
-Panipat Institute of Engineering
-and Technology
-
+Panipat Institute of Engineering and Technology
 </p>
 
-
 <p>
-
 <b>Project:</b>
-
-College Admission Prediction
-using Machine Learning
-
+College Admission Prediction using Machine Learning
 </p>
-
 
 <hr>
 
-
 <h3>
-
 💻 Technology Used
-
 </h3>
 
-
 <p>
-
-Python |
-Pandas |
-Scikit-Learn |
-Random Forest |
-Joblib |
-Gradio
-
+Python | Pandas | Scikit-Learn |
+Random Forest | Joblib | Gradio
 </p>
-
 
 <hr>
 
-
 <h3>
-
 🤖 About Project
-
 </h3>
 
-
 <p>
-
-This AI-based system predicts
-college admission approval
-using machine learning.
-
+This AI-based system predicts admission approval
+using academic records, entrance examination scores,
+college preferences and student details.
 </p>
-
 
 </div>
 
@@ -845,82 +633,26 @@ using machine learning.
 
 
 # ==========================================================
-# CREATE APPLICATION
+# CREATE GRADIO APP
 # ==========================================================
 
 with gr.Blocks(
 
     css=css,
 
-    title=
+    theme=gr.themes.Soft(),
 
-    "AI College Admission Approval System"
+    title="AI College Admission Approval System"
 
 ) as demo:
 
 
-    # ======================================================
-    # BACKGROUND
-    # ======================================================
+    # Background is outside the main content card
 
-    gr.HTML(
-
-        """
-
-<div id="background-slideshow">
+    gr.HTML(background_html)
 
 
-<img
-
-class="background-image image1"
-
-src="/gradio_api/file=image/college-img-1.jpg"
-
->
-
-
-<img
-
-class="background-image image2"
-
-src="/gradio_api/file=image/images%20(2).jpg"
-
->
-
-
-<img
-
-class="background-image image3"
-
-src="/gradio_api/file=image/images%20(3).jpg"
-
->
-
-
-<img
-
-class="background-image image4"
-
-src="/gradio_api/file=image/images%20(4).jpg"
-
->
-
-
-</div>
-
-
-<div id="background-overlay">
-
-</div>
-
-"""
-
-    )
-
-
-    # ======================================================
-    # CONTENT
-    # ======================================================
+    # All visible content is inside this one wrapper
 
     with gr.Column(
 
@@ -929,11 +661,9 @@ src="/gradio_api/file=image/images%20(4).jpg"
     ):
 
 
-        gr.HTML(
+        # HEADER
 
-            header
-
-        )
+        gr.HTML(header)
 
 
         gr.Markdown(
@@ -954,36 +684,25 @@ Fill in all student details carefully.
         with gr.Row():
 
             Age = gr.Number(
-
                 label="Age"
-
             )
-
 
             Category = gr.Dropdown(
 
                 [
-
                     "General",
-
                     "OBC",
-
                     "SC",
-
                     "ST"
-
                 ],
 
                 label="Category"
 
             )
 
-
             Family_Income = gr.Number(
 
-                label=
-
-                "Family Income (₹)"
+                label="Family Income (₹)"
 
             )
 
@@ -994,27 +713,19 @@ Fill in all student details carefully.
 
             Class10 = gr.Number(
 
-                label=
-
-                "Class 10 Percentage"
+                label="Class 10 Percentage"
 
             )
-
 
             Class12 = gr.Number(
 
-                label=
-
-                "Class 12 Percentage"
+                label="Class 12 Percentage"
 
             )
 
-
             PCM = gr.Number(
 
-                label=
-
-                "PCM Percentage"
+                label="PCM Percentage"
 
             )
 
@@ -1025,27 +736,19 @@ Fill in all student details carefully.
 
             Entrance = gr.Textbox(
 
-                label=
-
-                "Entrance Exam"
+                label="Entrance Exam"
 
             )
-
 
             JEE = gr.Number(
 
-                label=
-
-                "JEE Percentile"
+                label="JEE Percentile"
 
             )
 
-
             Rank = gr.Number(
 
-                label=
-
-                "JEE Rank"
+                label="JEE Rank"
 
             )
 
@@ -1056,27 +759,19 @@ Fill in all student details carefully.
 
             CUET = gr.Number(
 
-                label=
-
-                "CUET Score"
+                label="CUET Score"
 
             )
-
 
             Branch = gr.Textbox(
 
-                label=
-
-                "Preferred Branch"
+                label="Preferred Branch"
 
             )
 
-
             College = gr.Textbox(
 
-                label=
-
-                "Preferred College"
+                label="Preferred College"
 
             )
 
@@ -1088,34 +783,23 @@ Fill in all student details carefully.
             College_Type = gr.Dropdown(
 
                 [
-
                     "Government",
-
                     "Private"
-
                 ],
 
-                label=
-
-                "College Type"
+                label="College Type"
 
             )
-
 
             NIRF = gr.Number(
 
-                label=
-
-                "NIRF Rank"
+                label="NIRF Rank"
 
             )
 
-
             Tier = gr.Number(
 
-                label=
-
-                "College Tier"
+                label="College Tier"
 
             )
 
@@ -1126,27 +810,19 @@ Fill in all student details carefully.
 
             Cutoff = gr.Number(
 
-                label=
-
-                "Branch Cutoff Rank"
+                label="Branch Cutoff Rank"
 
             )
-
 
             Seats = gr.Number(
 
-                label=
-
-                "Available Seats"
+                label="Available Seats"
 
             )
 
-
             Quota = gr.Textbox(
 
-                label=
-
-                "Reservation Quota"
+                label="Reservation Quota"
 
             )
 
@@ -1158,34 +834,23 @@ Fill in all student details carefully.
             Docs = gr.Dropdown(
 
                 [
-
                     "Yes",
-
                     "No"
-
                 ],
 
-                label=
-
-                "Documents Verified"
+                label="Documents Verified"
 
             )
-
 
             Interview = gr.Number(
 
-                label=
-
-                "Interview Score"
+                label="Interview Score"
 
             )
 
-
             Communication = gr.Number(
 
-                label=
-
-                "Communication Score"
+                label="Communication Score"
 
             )
 
@@ -1196,43 +861,29 @@ Fill in all student details carefully.
 
             Aptitude = gr.Number(
 
-                label=
-
-                "Aptitude Score"
+                label="Aptitude Score"
 
             )
-
 
             Scholarship = gr.Dropdown(
 
                 [
-
                     "Yes",
-
                     "No"
-
                 ],
 
-                label=
-
-                "Scholarship Applied"
+                label="Scholarship Applied"
 
             )
-
 
             Scholarship_Eligibility = gr.Dropdown(
 
                 [
-
                     "Yes",
-
                     "No"
-
                 ],
 
-                label=
-
-                "Scholarship Eligibility"
+                label="Scholarship Eligibility"
 
             )
 
@@ -1244,34 +895,23 @@ Fill in all student details carefully.
             Hostel = gr.Dropdown(
 
                 [
-
                     "Yes",
-
                     "No"
-
                 ],
 
-                label=
-
-                "Hostel Required"
+                label="Hostel Required"
 
             )
-
 
             Probability = gr.Number(
 
-                label=
-
-                "Admission Probability"
+                label="Admission Probability"
 
             )
 
-
             Fee = gr.Number(
 
-                label=
-
-                "Tuition Fee (₹)"
+                label="Tuition Fee (₹)"
 
             )
 
@@ -1291,105 +931,87 @@ Fill in all student details carefully.
 
         output = gr.Textbox(
 
-            label=
-
-            "🎓 Admission Prediction Result",
+            label="🎓 Admission Prediction Result",
 
             lines=8
 
         )
 
 
-        # BUTTON CONNECTION
+        # CONNECT BUTTON
 
         button.click(
 
-            fn=
-
-            predict_admission,
+            fn=predict_admission,
 
             inputs=[
 
                 Age,
-
                 Category,
-
                 Family_Income,
 
                 Class10,
-
                 Class12,
-
                 PCM,
 
                 Entrance,
-
                 JEE,
-
                 Rank,
 
                 CUET,
-
                 Branch,
-
                 College,
 
                 College_Type,
-
                 NIRF,
-
                 Tier,
 
                 Cutoff,
-
                 Seats,
-
                 Quota,
 
                 Docs,
-
                 Interview,
-
                 Communication,
 
                 Aptitude,
-
                 Scholarship,
-
                 Scholarship_Eligibility,
 
                 Hostel,
-
                 Probability,
-
                 Fee
 
             ],
 
-            outputs=
-
-            output
+            outputs=output
 
         )
 
 
 # ==========================================================
-# LAUNCH
+# RUN APPLICATION
 # ==========================================================
 
 if __name__ == "__main__":
 
+    image_folder = os.path.abspath("images")
+
+    print("📁 Image folder:", image_folder)
+
+    print(
+        "📷 Images found:",
+        os.listdir(image_folder)
+        if os.path.exists(image_folder)
+        else "IMAGE FOLDER NOT FOUND"
+    )
+
 
     demo.launch(
 
-        server_name=
+        server_name="0.0.0.0",
 
-        "0.0.0.0",
-
-
-        server_port=
-
-        int(
+        server_port=int(
 
             os.environ.get(
 
@@ -1401,10 +1023,9 @@ if __name__ == "__main__":
 
         ),
 
-
         allowed_paths=[
 
-            IMAGE_FOLDER
+            image_folder
 
         ]
 
