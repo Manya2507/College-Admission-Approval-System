@@ -5,9 +5,9 @@ import gradio as gr
 
 
 
-# ==========================================================
+# =====================================================
 # LOAD MODEL
-# ==========================================================
+# =====================================================
 
 MODEL_PATH = "college_admission_approval.pkl"
 
@@ -28,13 +28,13 @@ except Exception as e:
 
 
 
-# ==========================================================
+# =====================================================
 # PREDICTION FUNCTION
-# ==========================================================
+# =====================================================
 
 
 def predict_admission(
-
+    
     Age,
     Category,
     Family_Income,
@@ -83,7 +83,7 @@ def predict_admission(
 
     if model is None:
 
-        return "❌ Model file not found"
+        return "❌ Model not loaded"
 
 
 
@@ -91,7 +91,6 @@ def predict_admission(
 
 
         data = pd.DataFrame([{
-
 
             "Age":Age,
 
@@ -165,8 +164,6 @@ def predict_admission(
 
             "Tuition_Fee":Tuition_Fee
 
-
-
         }])
 
 
@@ -218,30 +215,19 @@ Random Forest Classifier
 
     except Exception as e:
 
-
         return f"❌ Prediction Error:\n{e}"
 
 
 
 
-
-
-# ==========================================================
-# FINAL CSS WITH WORKING BACKGROUND SLIDESHOW
-# ==========================================================
+# =====================================================
+# FINAL BACKGROUND SLIDESHOW CSS
+# =====================================================
 
 
 css = """
 
-
-
-/* ===============================
-   REMOVE DEFAULT GRADIO BACKGROUND
-================================ */
-
-
-html,
-body{
+html,body{
 
 margin:0;
 
@@ -253,23 +239,15 @@ background:transparent !important;
 
 
 
-
-
 .gradio-container{
 
-
 background:transparent !important;
-
 
 }
 
 
 
-/* ===============================
-   BACKGROUND SLIDESHOW
-================================ */
-
-
+/* BACKGROUND */
 
 body::before{
 
@@ -285,12 +263,10 @@ top:0;
 left:0;
 
 
-
 width:100vw;
 
 
 height:100vh;
-
 
 
 z-index:-10;
@@ -304,7 +280,7 @@ background-position:center;
 
 
 
-animation:bgSlide 20s infinite;
+animation:changeBG 20s infinite;
 
 
 
@@ -313,15 +289,12 @@ animation:bgSlide 20s infinite;
 
 
 
-
-@keyframes bgSlide{
+@keyframes changeBG{
 
 
 0%{
 
-
-background-image:url('/gradio_api/file=images/college-img-1.jpg');
-
+background-image:url('/gradio_api/file=images/images(1).jpg');
 
 }
 
@@ -329,9 +302,7 @@ background-image:url('/gradio_api/file=images/college-img-1.jpg');
 
 25%{
 
-
 background-image:url('/gradio_api/file=images/images (2).jpg');
-
 
 }
 
@@ -339,9 +310,7 @@ background-image:url('/gradio_api/file=images/images (2).jpg');
 
 50%{
 
-
 background-image:url('/gradio_api/file=images/images (3).jpg');
-
 
 }
 
@@ -349,9 +318,7 @@ background-image:url('/gradio_api/file=images/images (3).jpg');
 
 75%{
 
-
 background-image:url('/gradio_api/file=images/images (4).jpg');
-
 
 }
 
@@ -359,21 +326,15 @@ background-image:url('/gradio_api/file=images/images (4).jpg');
 
 100%{
 
+background-image:url('/gradio_api/file=images/images(1).jpg');
 
-background-image:url('/gradio_api/file=images/college-img-1.jpg');
+}
 
 
 }
 
 
 
-}
-
-
-
-
-
-/* Dark transparent overlay */
 
 
 body::after{
@@ -396,9 +357,7 @@ width:100vw;
 height:100vh;
 
 
-
 background:rgba(0,0,0,0.25);
-
 
 
 z-index:-5;
@@ -407,13 +366,6 @@ z-index:-5;
 }
 
 
-
-
-
-
-/* ===============================
-   MAIN GLASS CONTAINER
-================================ */
 
 
 
@@ -426,49 +378,29 @@ width:90%;
 max-width:1200px;
 
 
-
 margin:30px auto;
-
 
 
 padding:30px;
 
 
-
 background:rgba(255,255,255,0.45);
-
 
 
 backdrop-filter:blur(12px);
 
 
-
 border-radius:25px;
 
 
-
-box-shadow:
-
-0 10px 40px rgba(0,0,0,0.4);
-
-
-
 }
-
-
-
 
 
 #main-container *{
 
-
 color:black !important;
 
-
 }
-
-
-
 
 
 button{
@@ -483,40 +415,34 @@ color:white !important;
 font-weight:bold !important;
 
 
-border-radius:12px !important;
-
-
 }
-
-
 
 
 
 footer{
 
-
 display:none !important;
-
 
 }
 
 
 """
-# ==========================================================
+# =====================================================
 # HEADER SECTION
-# ==========================================================
+# =====================================================
+
 
 header = """
 
 <div style="
-
-text-align:center;
 
 padding:25px;
 
 background:rgba(255,255,255,0.35);
 
 border-radius:20px;
+
+text-align:center;
 
 ">
 
@@ -546,54 +472,45 @@ border-radius:20px;
 </p>
 
 
+
 <p>
 
-<b>College:</b>
-
-Panipat Institute of Engineering and Technology
+<b>College:</b> Panipat Institute of Engineering and Technology
 
 </p>
 
 
+
 <p>
 
-<b>Project:</b>
-
-College Admission Prediction using Machine Learning
+<b>Project:</b> College Admission Prediction using Machine Learning
 
 </p>
 
 
 
 <hr>
+
 
 
 <h3>
 
-💻 Technologies Used
+💻 Technology Used
 
 </h3>
 
 
+
 <p>
 
-Python |
-
-Pandas |
-
-Scikit-Learn |
-
-Random Forest |
-
-Joblib |
-
-Gradio
+Python | Pandas | Scikit-Learn | Random Forest | Joblib | Gradio
 
 </p>
 
 
 
 <hr>
+
 
 
 <h3>
@@ -603,11 +520,12 @@ Gradio
 </h3>
 
 
+
 <p>
 
-This AI-based system predicts admission approval
-using student academic details, entrance scores,
-college preferences and other admission factors.
+This AI based system predicts whether a student admission
+will be approved or not using academic records, entrance
+exam scores, college details and student information.
 
 </p>
 
@@ -620,9 +538,9 @@ college preferences and other admission factors.
 
 
 
-# ==========================================================
+# =====================================================
 # CREATE GRADIO APP
-# ==========================================================
+# =====================================================
 
 
 with gr.Blocks(
@@ -652,7 +570,7 @@ with gr.Blocks(
 """
 # 📝 Enter Student Details
 
-Fill all details to predict admission approval.
+Provide student information for admission prediction.
 
 """
 
@@ -660,9 +578,9 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
+        # =============================================
         # ROW 1
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -673,6 +591,7 @@ Fill all details to predict admission approval.
                 label="Age"
 
             )
+
 
 
             Category = gr.Dropdown(
@@ -705,9 +624,10 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
+
+        # =============================================
         # ROW 2
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -739,9 +659,11 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
+
+
+        # =============================================
         # ROW 3
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -773,9 +695,11 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
+
+
+        # =============================================
         # ROW 4
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -807,9 +731,11 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
+
+
+        # =============================================
         # ROW 5
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -844,9 +770,9 @@ Fill all details to predict admission approval.
                 label="College Tier"
 
             )
-                    # ===============================================
+                    # =============================================
         # ROW 6
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -859,13 +785,11 @@ Fill all details to predict admission approval.
             )
 
 
-
             Seats = gr.Number(
 
                 label="Available Seats"
 
             )
-
 
 
             Quota = gr.Textbox(
@@ -878,9 +802,10 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
+
+        # =============================================
         # ROW 7
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -920,9 +845,11 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
+
+
+        # =============================================
         # ROW 8
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -970,9 +897,12 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
+
+
+
+        # =============================================
         # ROW 9
-        # ===============================================
+        # =============================================
 
 
         with gr.Row():
@@ -1012,9 +942,11 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
-        # PREDICT BUTTON
-        # ===============================================
+
+
+        # =============================================
+        # PREDICTION BUTTON
+        # =============================================
 
 
         predict_button = gr.Button(
@@ -1029,9 +961,10 @@ Fill all details to predict admission approval.
 
 
 
-        # ===============================================
-        # OUTPUT BOX
-        # ===============================================
+
+        # =============================================
+        # OUTPUT
+        # =============================================
 
 
         output = gr.Textbox(
@@ -1041,9 +974,9 @@ Fill all details to predict admission approval.
             lines=8
 
         )
-                # ===============================================
-        # CONNECT BUTTON WITH FUNCTION
-        # ===============================================
+                # =============================================
+        # CONNECT BUTTON WITH PREDICTION FUNCTION
+        # =============================================
 
 
         predict_button.click(
@@ -1126,12 +1059,10 @@ Fill all details to predict admission approval.
 
                 Fee
 
-
             ],
 
 
             outputs=output
-
 
         )
 
@@ -1139,9 +1070,10 @@ Fill all details to predict admission approval.
 
 
 
-# ==========================================================
+
+# =====================================================
 # RUN APPLICATION
-# ==========================================================
+# =====================================================
 
 
 if __name__ == "__main__":
@@ -1152,36 +1084,32 @@ if __name__ == "__main__":
 
 
 
-    print(
+    print("================================")
 
-        "📁 Image Folder:",
+    print("📁 IMAGE FOLDER PATH:")
 
-        image_folder
+    print(image_folder)
 
-    )
+
+
+    print("\n📷 AVAILABLE IMAGES:")
 
 
 
     if os.path.exists(image_folder):
 
 
-        print(
-
-            "📷 Images Found:",
-
-            os.listdir(image_folder)
-
-        )
+        print(os.listdir(image_folder))
 
 
     else:
 
 
-        print(
+        print("❌ Images folder not found")
 
-            "❌ Images folder not found"
 
-        )
+
+    print("================================")
 
 
 
@@ -1204,6 +1132,7 @@ if __name__ == "__main__":
             )
 
         ),
+
 
 
         allowed_paths=[
