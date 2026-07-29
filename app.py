@@ -188,82 +188,76 @@ else:
 # PREDICTION FUNCTION
 # =====================================================
 
-
 def predict_admission(
-
     Age,
-
     Category,
-
     Family_Income,
-
     Class10_Percentage,
-
     Class12_Percentage,
-
     PCM_Percentage,
-
     Entrance_Exam,
-
     JEE_Percentile,
-
     JEE_Rank,
-
     CUET_Score,
-
     Preferred_Branch,
-
     Preferred_College,
-
     College_Type,
-
     NIRF_Rank,
-
     College_Tier,
-
     Branch_Cutoff_Rank,
-
     Available_Seats,
-
     Reservation_Quota,
-
     Documents_Verified,
-
     Interview_Score,
-
     Communication_Score,
-
     Aptitude_Score,
-
     Scholarship_Applied,
-
     Scholarship_Eligibility,
-
     Hostel_Required,
-
     Admission_Probability,
-
     Tuition_Fee
-
 ):
 
 
     if model is None:
-
-
         return "❌ Model not loaded"
-
 
 
     try:
 
 
-        input_data = pd.DataFrame([{
+        # ===============================
+        # LABEL ENCODING
+        # ===============================
+
+
+        category_map = {
+            "General":0,
+            "OBC":1,
+            "SC":2,
+            "ST":3
+        }
+
+
+        college_map = {
+            "Government":0,
+            "Private":1
+        }
+
+
+        yes_no_map = {
+            "No":0,
+            "Yes":1
+        }
+
+
+
+        data = pd.DataFrame([{
 
 
             "Age":Age,
 
-            "Category":Category,
+            "Category":category_map.get(Category,0),
 
             "Family_Income":Family_Income,
 
@@ -275,7 +269,8 @@ def predict_admission(
             "PCM_%":PCM_Percentage,
 
 
-            "Entrance_Exam":Entrance_Exam,
+            "Entrance_Exam":0,
+
 
             "JEE_Percentile":JEE_Percentile,
 
@@ -285,15 +280,19 @@ def predict_admission(
             "CUET_Score":CUET_Score,
 
 
-            "Preferred_Branch":Preferred_Branch,
-
-            "Preferred_College":Preferred_College,
+            "Preferred_Branch":0,
 
 
-            "College_Type":College_Type,
+            "Preferred_College":0,
+
+
+            "College_Type":college_map.get(
+                College_Type,0
+            ),
 
 
             "NIRF_Rank":NIRF_Rank,
+
 
             "College_Tier":College_Tier,
 
@@ -304,53 +303,61 @@ def predict_admission(
             "Available_Seats":Available_Seats,
 
 
-            "Reservation_Quota":Reservation_Quota,
+            "Reservation_Quota":0,
 
 
-            "Documents_Verified":Documents_Verified,
+            "Documents_Verified":
+            yes_no_map.get(
+                Documents_Verified,0
+            ),
 
 
             "Interview_Score":Interview_Score,
 
-            "Communication_Score":Communication_Score,
 
-            "Aptitude_Score":Aptitude_Score,
-
-
-            "Scholarship_Applied":Scholarship_Applied,
-
-            "Scholarship_Eligibility":Scholarship_Eligibility,
+            "Communication_Score":
+            Communication_Score,
 
 
-            "Hostel_Required":Hostel_Required,
+            "Aptitude_Score":
+            Aptitude_Score,
 
 
-            "Admission_Probability":Admission_Probability,
+            "Scholarship_Applied":
+            yes_no_map.get(
+                Scholarship_Applied,0
+            ),
 
 
-            "Tuition_Fee":Tuition_Fee
+            "Scholarship_Eligibility":
+            yes_no_map.get(
+                Scholarship_Eligibility,0
+            ),
+
+
+            "Hostel_Required":
+            yes_no_map.get(
+                Hostel_Required,0
+            ),
+
+
+            "Admission_Probability":
+            Admission_Probability,
+
+
+            "Tuition_Fee":
+            Tuition_Fee
 
 
         }])
 
 
 
-        prediction = model.predict(
-            input_data
-        )[0]
+        prediction = model.predict(data)[0]
 
 
 
-
-        if str(prediction).lower() in [
-
-            "1",
-
-            "yes",
-
-            "approved"
-
-        ]:
+        if prediction == 1:
 
 
             return """
@@ -358,12 +365,10 @@ def predict_admission(
 🎉 ADMISSION APPROVED
 
 
-Student has a high chance of getting admission.
+✅ Student is eligible for admission.
 
-
-Algorithm Used:
+🤖 Model:
 Random Forest Classifier
-
 
 """
 
@@ -376,12 +381,10 @@ Random Forest Classifier
 ❌ ADMISSION NOT APPROVED
 
 
-Student has a low chance of admission.
+Student does not meet admission criteria.
 
-
-Algorithm Used:
+🤖 Model:
 Random Forest Classifier
-
 
 """
 
@@ -393,7 +396,6 @@ Random Forest Classifier
         return f"""
 
 ❌ Prediction Error
-
 
 {e}
 
