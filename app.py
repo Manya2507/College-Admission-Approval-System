@@ -43,116 +43,105 @@ except Exception as e:
 # =====================================================
 
 
+# =====================================================
+# LOAD BACKGROUND IMAGES
+# =====================================================
+
+import os
+import base64
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+print("=" * 60)
+print("BASE DIRECTORY:", BASE_DIR)
+print("=" * 60)
+
+print("Files in BASE_DIR:")
+
+try:
+    print(os.listdir(BASE_DIR))
+except Exception as e:
+    print("Error:", e)
+
+IMAGES_DIR = os.path.join(BASE_DIR, "images")
+
+print("\nImages Folder Path:")
+print(IMAGES_DIR)
+
+print("\nDoes images folder exist?")
+print(os.path.exists(IMAGES_DIR))
+
+if os.path.exists(IMAGES_DIR):
+    print("\nImages Folder Contents:")
+    print(os.listdir(IMAGES_DIR))
+else:
+    print("\n❌ images folder NOT FOUND!")
+
+
 def load_background_images():
 
-
     image_order = [
-
         "1.jpg",
         "2.jpg",
         "3.jpg",
         "4.jpg",
         "5.jpg"
-
     ]
 
+    encoded_images = []
 
-    images = []
+    for image in image_order:
 
+        image_path = os.path.join(IMAGES_DIR, image)
 
-    base_dir = os.path.dirname(
-        os.path.abspath(__file__)
-    )
+        print(f"\nChecking: {image_path}")
 
+        if os.path.isfile(image_path):
 
-    image_folder = os.path.join(
-        base_dir,
-        "images"
-    )
-
-
-
-    for img in image_order:
-
-
-        path = os.path.join(
-            image_folder,
-            img
-        )
-
-
-        if os.path.exists(path):
-
+            print(f"✅ Found: {image}")
 
             try:
 
-                with open(
-                    path,
-                    "rb"
-                ) as file:
+                with open(image_path, "rb") as f:
 
-
-                    encoded = base64.b64encode(
-                        file.read()
-                    ).decode()
-
-
-                    images.append(encoded)
-
-
-                    print(
-                        "✅ Loaded:",
-                        img
+                    encoded_images.append(
+                        base64.b64encode(f.read()).decode("utf-8")
                     )
-
 
             except Exception as e:
 
-
-                print(
-                    "Image Error:",
-                    e
-                )
-
+                print(f"❌ Error reading {image}: {e}")
 
         else:
 
+            print(f"❌ Image NOT FOUND: {image_path}")
 
-            print(
-                "⚠️ Image not found:",
-                path
-            )
-
-
-
-    return images
-
-
-
+    return encoded_images
 
 
 BACKGROUND_IMAGES = load_background_images()
 
+print("\n" + "=" * 60)
+print("Total Images Loaded:", len(BACKGROUND_IMAGES))
+print("=" * 60)
 
-
-print(
-    "Total Images Loaded:",
-    len(BACKGROUND_IMAGES)
-)
-
-
-
-# Default blank background if images missing
-
+# Prevent Render from crashing if images are missing
 if len(BACKGROUND_IMAGES) == 0:
 
+    print("⚠️ No images loaded. Using blank background.")
 
-    BACKGROUND_IMAGES = [
+    BACKGROUND_IMAGES = [""] * 5
 
-        ""
+elif len(BACKGROUND_IMAGES) < 5:
 
-    ]
+    print("⚠️ Some images are missing.")
 
+    while len(BACKGROUND_IMAGES) < 5:
+        BACKGROUND_IMAGES.append(BACKGROUND_IMAGES[-1])
+
+else:
+
+    print("✅ All 5 images loaded successfully.")
 
 
 
