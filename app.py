@@ -422,10 +422,6 @@ else:
 
 css = f"""
 
-/* =====================================
-   FULL SCREEN BACKGROUND
-===================================== */
-
 .gradio-container {{
 
     min-height:100vh !important;
@@ -440,86 +436,115 @@ css = f"""
 
     background-attachment:fixed !important;
 
-
-    animation: backgroundSlide 60s infinite ease-in-out;
-
-
-    @keyframes backgroundSlide {
-
-0% {
-
-background-image:
-linear-gradient(
-rgba(0,0,0,0.35),
-rgba(0,0,0,0.35)
-),
-url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
-
-}
+    animation: backgroundSlide 120s infinite ease-in-out;
 
 
-20% {
+    background-image:
 
-background-image:
-linear-gradient(
-rgba(0,0,0,0.35),
-rgba(0,0,0,0.35)
-),
-url("data:image/jpg;base64,{BACKGROUND_IMAGES[1]}");
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
 
-}
-
-
-40% {
-
-background-image:
-linear-gradient(
-rgba(0,0,0,0.35),
-rgba(0,0,0,0.35)
-),
-url("data:image/jpg;base64,{BACKGROUND_IMAGES[2]}");
-
-}
-
-
-60% {
-
-background-image:
-linear-gradient(
-rgba(0,0,0,0.35),
-rgba(0,0,0,0.35)
-),
-url("data:image/jpg;base64,{BACKGROUND_IMAGES[3]}");
-
-}
-
-
-80% {
-
-background-image:
-linear-gradient(
-rgba(0,0,0,0.35),
-rgba(0,0,0,0.35)
-),
-url("data:image/jpg;base64,{BACKGROUND_IMAGES[4]}");
-
-}
-
-
-100% {
-
-background-image:
-linear-gradient(
-rgba(0,0,0,0.35),
-rgba(0,0,0,0.35)
-),
-url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
-
-}
-
+    url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
 }}
 
+
+
+@keyframes backgroundSlide {{
+
+0% {{
+
+    background-image:
+
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+
+    url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
+
+}}
+
+
+
+20% {{
+
+    background-image:
+
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+
+    url("data:image/jpg;base64,{BACKGROUND_IMAGES[1]}");
+
+}}
+
+
+
+40% {{
+
+    background-image:
+
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+
+    url("data:image/jpg;base64,{BACKGROUND_IMAGES[2]}");
+
+}}
+
+
+
+60% {{
+
+    background-image:
+
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+
+    url("data:image/jpg;base64,{BACKGROUND_IMAGES[3]}");
+
+}}
+
+
+
+80% {{
+
+    background-image:
+
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+
+    url("data:image/jpg;base64,{BACKGROUND_IMAGES[4]}");
+
+}}
+
+
+
+100% {{
+
+    background-image:
+
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+
+    url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
+
+}}
+
+}}
+
+"""
 
 
 /* =====================================
