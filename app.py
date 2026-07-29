@@ -48,74 +48,39 @@ except Exception as e:
 
 def load_background_images():
 
-
     image_order = [
-
         "1.jpg",
-
         "3.jpg",
-
         "4.jpg",
-
         "5.jpg",
-
         "2.jpg"
-
     ]
-
 
     encoded_images = []
 
-
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
     for image in image_order:
 
-
         image_path = os.path.join(
-
+            BASE_DIR,
             "images",
-
             image
-
         )
-
-
 
         if os.path.exists(image_path):
 
-
-            with open(
-
-                image_path,
-
-                "rb"
-
-            ) as file:
-
+            with open(image_path, "rb") as file:
 
                 encoded_images.append(
-
                     base64.b64encode(
-
                         file.read()
-
                     ).decode()
-
                 )
-
 
         else:
 
-
-            print(
-
-                "❌ Image missing:",
-
-                image_path
-
-            )
-
-
+            print("❌ Image missing:", image_path)
 
 
     return encoded_images
