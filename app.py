@@ -398,7 +398,7 @@ css = f"""
     background-attachment:fixed !important;
 
 
-    animation:backgroundSlide 25s infinite;
+   animation: backgroundSlide 25s infinite ease-in-out;
 
 
     background-image:
