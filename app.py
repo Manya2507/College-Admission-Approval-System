@@ -552,13 +552,13 @@ url(
 
     rgba(
 
-    255,
+        255,
 
-    255,
+        255,
 
-    255,
+        255,
 
-    0.65
+        0.65
 
     );
 
@@ -570,9 +570,7 @@ url(
 
 
 
-    -webkit-backdrop-filter:
-
-    blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 
 
 
@@ -618,6 +616,7 @@ url(
 
 }}
 
+"""
 
 
 
