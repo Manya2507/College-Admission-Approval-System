@@ -10,6 +10,7 @@ import gradio as gr
 # LOAD MACHINE LEARNING MODEL
 # =====================================================
 
+
 MODEL_PATH = "college_admission_approval.pkl"
 
 
@@ -30,23 +31,102 @@ except Exception as e:
 
 
 # =====================================================
-# LOAD BACKGROUND IMAGE
+# LOAD BACKGROUND IMAGES FOR SLIDESHOW
 # =====================================================
 
 
-def image_to_base64(path):
+def convert_image_to_base64(image_path):
 
-    with open(path, "rb") as image:
+    with open(image_path, "rb") as img:
 
         return base64.b64encode(
-            image.read()
+            img.read()
         ).decode()
 
 
 
-BACKGROUND_IMAGE = image_to_base64(
-    "images/images(1).jpg"
-)
+def load_background_images():
+
+
+    image_files = [
+
+        "images(1).jpg",
+
+        "images (3).jpg",
+
+        "images (4).jpg",
+
+        "images (5).jpg"
+        
+        "images (2).jpg"
+        
+
+    ]
+
+
+    encoded = []
+
+
+
+    for image in image_files:
+
+
+        image_path = os.path.join(
+
+            os.path.dirname(__file__),
+
+            "images",
+
+            image
+
+        )
+
+
+        try:
+
+
+            encoded.append(
+
+                convert_image_to_base64(
+
+                    image_path
+
+                )
+
+            )
+
+
+        except Exception as e:
+
+
+            print(
+                "Image Loading Error:",
+                image,
+                e
+            )
+
+
+
+    return encoded
+
+
+
+
+
+BACKGROUND_IMAGES = load_background_images()
+
+
+
+if len(BACKGROUND_IMAGES) == 4:
+
+    print("✅ All 4 background images loaded")
+
+else:
+
+    print(
+        "⚠️ Background images loaded:",
+        len(BACKGROUND_IMAGES)
+    )
 
 
 
@@ -60,45 +140,71 @@ BACKGROUND_IMAGE = image_to_base64(
 def predict_admission(
 
     Age,
+
     Category,
+
     Family_Income,
 
+
     Class10_Percentage,
+
     Class12_Percentage,
+
     PCM_Percentage,
 
+
     Entrance_Exam,
+
     JEE_Percentile,
+
     JEE_Rank,
+
 
     CUET_Score,
 
+
     Preferred_Branch,
+
     Preferred_College,
+
 
     College_Type,
 
+
     NIRF_Rank,
+
     College_Tier,
+
 
     Branch_Cutoff_Rank,
 
+
     Available_Seats,
+
 
     Reservation_Quota,
 
+
     Documents_Verified,
 
+
     Interview_Score,
+
     Communication_Score,
+
     Aptitude_Score,
 
+
     Scholarship_Applied,
+
     Scholarship_Eligibility,
+
 
     Hostel_Required,
 
+
     Admission_Probability,
+
 
     Tuition_Fee
 
@@ -107,14 +213,16 @@ def predict_admission(
 
     if model is None:
 
-        return "❌ Model not found"
+
+        return "❌ Model file not found"
+
 
 
 
     try:
 
 
-        input_data = pd.DataFrame([{
+        data = pd.DataFrame([{
 
 
             "Age":Age,
@@ -175,16 +283,13 @@ def predict_admission(
 
             "Scholarship_Applied":Scholarship_Applied,
 
-
-            "Scholarship_Eligibility":
-            Scholarship_Eligibility,
+            "Scholarship_Eligibility":Scholarship_Eligibility,
 
 
             "Hostel_Required":Hostel_Required,
 
 
-            "Admission_Probability":
-            Admission_Probability,
+            "Admission_Probability":Admission_Probability,
 
 
             "Tuition_Fee":Tuition_Fee
@@ -194,14 +299,16 @@ def predict_admission(
 
 
 
-        result = model.predict(input_data)[0]
+        result = model.predict(data)[0]
 
 
 
         if str(result).lower() in [
 
             "1",
+
             "yes",
+
             "approved"
 
         ]:
@@ -212,11 +319,11 @@ def predict_admission(
 🎉 ADMISSION APPROVED
 
 
-Prediction Result:
-✅ Approved
+✅ Student has high probability of admission.
 
 
 Algorithm:
+
 Random Forest Classifier
 
 """
@@ -230,11 +337,11 @@ Random Forest Classifier
 ❌ ADMISSION NOT APPROVED
 
 
-Prediction Result:
-❌ Not Approved
+Student has low probability of admission.
 
 
 Algorithm:
+
 Random Forest Classifier
 
 """
@@ -246,7 +353,7 @@ Random Forest Classifier
 
         return f"❌ Prediction Error:\n{e}"
 # =====================================================
-# CSS WITH WORKING BACKGROUND IMAGE
+# CSS DESIGN WITH CONTINUOUS BACKGROUND SLIDESHOW
 # =====================================================
 
 
@@ -255,7 +362,10 @@ css = f"""
 html, body {{
 
     margin:0;
+
     padding:0;
+
+    min-height:100%;
 
 }}
 
@@ -263,118 +373,547 @@ html, body {{
 
 .gradio-container {{
 
+    min-height:100vh;
+
+
     background-image:
 
     linear-gradient(
+
         rgba(0,0,0,0.35),
+
         rgba(0,0,0,0.35)
+
     ),
 
     url(
-    "data:image/jpg;base64,{BACKGROUND_IMAGE}"
+    "data:image/jpg;base64,{BACKGROUND_IMAGES[0]}"
     );
 
 
-    background-size:cover !important;
+    background-size:cover;
 
-    background-position:center !important;
 
-    background-attachment:fixed !important;
+    background-position:center;
+
+
+    background-attachment:fixed;
+
+
+    animation:
+
+    backgroundSlide 20s infinite;
+
 
 }}
 
 
 
+
+/* =====================================
+   BACKGROUND IMAGE SLIDESHOW
+===================================== */
+
+
+@keyframes backgroundSlide {{
+
+
+
+0% {{
+
+background-image:
+
+linear-gradient(
+
+rgba(0,0,0,0.35),
+
+rgba(0,0,0,0.35)
+
+),
+
+url(
+
+"data:image/jpg;base64,{BACKGROUND_IMAGES[0]}"
+
+);
+
+}}
+
+
+
+25% {{
+
+background-image:
+
+linear-gradient(
+
+rgba(0,0,0,0.35),
+
+rgba(0,0,0,0.35)
+
+),
+
+url(
+
+"data:image/jpg;base64,{BACKGROUND_IMAGES[1]}"
+
+);
+
+}}
+
+
+
+50% {{
+
+background-image:
+
+linear-gradient(
+
+rgba(0,0,0,0.35),
+
+rgba(0,0,0,0.35)
+
+),
+
+url(
+
+"data:image/jpg;base64,{BACKGROUND_IMAGES[3]}"
+
+);
+
+}}
+
+
+
+75% {{
+
+background-image:
+
+linear-gradient(
+
+rgba(0,0,0,0.35),
+
+rgba(0,0,0,0.35)
+
+),
+
+url(
+
+"data:image/jpg;base64,{BACKGROUND_IMAGES[4]}"
+
+);
+
+}}
+
+
+
+100% {{
+
+background-image:
+
+linear-gradient(
+
+rgba(0,0,0,0.35),
+
+rgba(0,0,0,0.35)
+
+),
+
+url(
+
+"data:image/jpg;base64,{BACKGROUND_IMAGES[5]}"
+
+);
+
+}}
+
+
+125% {{
+
+background-image:
+
+linear-gradient(
+
+rgba(0,0,0,0.35),
+
+rgba(0,0,0,0.35)
+
+),
+
+url(
+
+"data:image/jpg;base64,{BACKGROUND_IMAGES[2]}"
+
+);
+
+}}
+
+
+
+
+}
+
+
+
+
+
+/* =====================================
+   MAIN GLASS CONTAINER
+===================================== */
+
+
 #main-container {{
+
 
     width:90%;
 
-    max-width:1200px;
+
+    max-width:1250px;
 
 
-    margin:30px auto;
+    margin:35px auto;
 
 
-    padding:30px;
+    padding:35px;
 
 
 
     background:
 
-    rgba(255,255,255,0.55);
+    rgba(
+
+    255,
+
+    255,
+
+    255,
+
+    0.65
+
+    );
 
 
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(15px);
+
+
+
+    border-radius:30px;
+
+
+
+    border:
+
+    2px solid
+
+    rgba(
+
+    255,
+
+    255,
+
+    255,
+
+    0.7
+
+    );
+
+
+
+    box-shadow:
+
+    0 15px 50px
+
+    rgba(
+
+    0,
+
+    0,
+
+    0,
+
+    0.5
+
+    );
+
+
+
+}
+
+
+
+
+
+/* =====================================
+   HEADER STYLE
+===================================== */
+
+
+#header-box {{
+
+
+    text-align:center;
+
+
+    padding:25px;
+
+
+
+    background:
+
+    rgba(
+
+    255,
+
+    255,
+
+    255,
+
+    0.45
+
+    );
 
 
 
     border-radius:25px;
 
 
+}}
 
-    box-shadow:
 
-    0 10px 40px rgba(0,0,0,0.4);
+
+
+
+#header-box h1 {{
+
+
+    font-size:42px;
+
+
+    font-weight:900;
+
+
+
+    color:#064e3b !important;
+
+
+
+    animation:
+
+    titleAnimation 3s infinite alternate;
+
 
 }}
 
 
 
-#main-container * {{
+
+
+@keyframes titleAnimation {{
+
+
+from {{
+
+transform:scale(1);
+
+}}
+
+
+to {{
+
+transform:scale(1.05);
+
+}}
+
+
+}}
+
+
+
+
+
+#header-box h2 {{
+
+
+color:#047857 !important;
+
+
+}}
+
+
+
+
+
+#header-box p {{
+
+
+font-size:17px;
+
+
+color:#111 !important;
+
+
+}}
+
+
+
+
+
+/* =====================================
+   INPUT BOXES
+===================================== */
+
+
+input,
+
+textarea,
+
+select {{
+
+
+    background:
+
+    rgba(
+
+    255,
+
+    255,
+
+    255,
+
+    0.90
+
+    ) !important;
+
+
+
+    border:
+
+    2px solid
+
+    #10b981 !important;
+
+
+
+    border-radius:12px !important;
+
+
 
     color:black !important;
 
+
+
 }}
 
+
+
+
+
+label {{
+
+
+color:#064e3b !important;
+
+
+font-weight:bold !important;
+
+
+}}
+
+
+
+
+
+/* =====================================
+   BUTTON
+===================================== */
 
 
 button {{
 
-    background:#087f5b !important;
 
-    color:white !important;
+background:
 
-    font-size:18px !important;
+linear-gradient(
 
-    font-weight:bold !important;
+135deg,
 
-    border-radius:12px !important;
+#065f46,
+
+#10b981
+
+) !important;
+
+
+
+color:white !important;
+
+
+
+font-size:20px !important;
+
+
+
+font-weight:bold !important;
+
+
+
+border-radius:15px !important;
+
+
+
+padding:12px !important;
+
 
 }}
 
+
+
+
+
+button:hover {{
+
+
+transform:scale(1.05);
+
+
+transition:0.3s;
+
+
+}
+
+
+
+
+
+/* REMOVE GRADIO FOOTER */
 
 
 footer {{
 
-    display:none !important;
+display:none !important;
 
 }}
 
+
+
 """
-
-
-
-
-
 # =====================================================
-# DEVELOPER INFORMATION
+# HEADER / DEVELOPER SECTION
 # =====================================================
 
 
 header = """
 
-<div style="
-
-text-align:center;
-
-padding:25px;
-
-background:rgba(255,255,255,0.40);
-
-border-radius:20px;
-
-">
+<div id="header-box">
 
 
 <h1>
@@ -384,14 +923,24 @@ border-radius:20px;
 </h1>
 
 
-<hr>
-
 
 <h2>
 
-👩‍💻 Developer Details
+Machine Learning Based Admission Prediction Platform
 
 </h2>
+
+
+
+<hr>
+
+
+
+<h3>
+
+👩‍💻 Developer Details
+
+</h3>
 
 
 
@@ -405,9 +954,7 @@ border-radius:20px;
 
 <p>
 
-<b>College:</b>
-
-Panipat Institute of Engineering and Technology
+<b>College:</b> Panipat Institute of Engineering and Technology
 
 </p>
 
@@ -415,9 +962,7 @@ Panipat Institute of Engineering and Technology
 
 <p>
 
-<b>Project:</b>
-
-College Admission Prediction using Machine Learning
+<b>Project:</b> College Admission Prediction using Machine Learning
 
 </p>
 
@@ -426,11 +971,13 @@ College Admission Prediction using Machine Learning
 <hr>
 
 
+
 <h3>
 
 💻 Technologies Used
 
 </h3>
+
 
 
 <p>
@@ -446,20 +993,17 @@ Random Forest | Joblib | Gradio
 <hr>
 
 
-<h3>
-
-🤖 About Project
-
-</h3>
-
 
 <p>
 
-This AI-based system predicts student admission approval
-using academic performance, entrance exam scores,
-college details and student information.
+🤖 This AI system predicts admission approval using
+
+student academic performance, entrance exam scores,
+
+college preferences and admission-related details.
 
 </p>
+
 
 
 </div>
@@ -471,7 +1015,7 @@ college details and student information.
 
 
 # =====================================================
-# CREATE GRADIO APP
+# CREATE GRADIO APPLICATION
 # =====================================================
 
 
@@ -500,9 +1044,10 @@ with gr.Blocks(
         gr.Markdown(
 
 """
-# 📝 Enter Student Details
 
-Fill all details to predict admission approval.
+## 📝 Enter Student Details
+
+Provide complete student information for prediction.
 
 """
 
@@ -510,30 +1055,40 @@ Fill all details to predict admission approval.
 
 
 
-        # ==========================
+
+        # ===============================
         # BASIC DETAILS
-        # ==========================
+        # ===============================
 
 
         with gr.Row():
 
+
             Age = gr.Number(
+
                 label="Age"
+
             )
 
 
             Category = gr.Dropdown(
 
                 choices=[
+
                     "General",
+
                     "OBC",
+
                     "SC",
+
                     "ST"
+
                 ],
 
                 label="Category"
 
             )
+
 
 
             Family_Income = gr.Number(
@@ -546,12 +1101,13 @@ Fill all details to predict admission approval.
 
 
 
-        # ==========================
+        # ===============================
         # ACADEMIC DETAILS
-        # ==========================
+        # ===============================
 
 
         with gr.Row():
+
 
             Class10 = gr.Number(
 
@@ -579,6 +1135,7 @@ Fill all details to predict admission approval.
 
         with gr.Row():
 
+
             Entrance = gr.Textbox(
 
                 label="Entrance Exam"
@@ -605,6 +1162,7 @@ Fill all details to predict admission approval.
 
         with gr.Row():
 
+
             CUET = gr.Number(
 
                 label="CUET Score"
@@ -629,7 +1187,13 @@ Fill all details to predict admission approval.
 
 
 
+        # ===============================
+        # COLLEGE DETAILS
+        # ===============================
+
+
         with gr.Row():
+
 
             College_Type = gr.Dropdown(
 
@@ -658,9 +1222,9 @@ Fill all details to predict admission approval.
                 label="College Tier"
 
             )
-                    # ==========================
-        # COLLEGE DETAILS
-        # ==========================
+
+
+
 
 
         with gr.Row():
@@ -690,9 +1254,9 @@ Fill all details to predict admission approval.
 
 
 
-        # ==========================
+        # ===============================
         # VERIFICATION DETAILS
-        # ==========================
+        # ===============================
 
 
         with gr.Row():
@@ -730,9 +1294,9 @@ Fill all details to predict admission approval.
 
 
 
-        # ==========================
-        # EXTRA DETAILS
-        # ==========================
+        # ===============================
+        # ADDITIONAL DETAILS
+        # ===============================
 
 
         with gr.Row():
@@ -808,29 +1372,25 @@ Fill all details to predict admission approval.
                 label="Tuition Fee (₹)"
 
             )
-
-
-
-
-
-        # ==========================
-        # BUTTON
-        # ==========================
+# =====================================================
+# PREDICTION BUTTON
+# =====================================================
 
 
         predict_button = gr.Button(
 
-            "🎯 Predict Admission"
+            "🎯 Predict Admission",
+
+            variant="primary"
 
         )
 
 
 
 
-
-        # ==========================
-        # OUTPUT
-        # ==========================
+# =====================================================
+# OUTPUT BOX
+# =====================================================
 
 
         output = gr.Textbox(
@@ -845,9 +1405,9 @@ Fill all details to predict admission approval.
 
 
 
-        # ==========================
-        # CONNECT FUNCTION
-        # ==========================
+# =====================================================
+# CONNECT BUTTON WITH MODEL
+# =====================================================
 
 
         predict_button.click(
@@ -934,7 +1494,9 @@ Fill all details to predict admission approval.
             ],
 
 
+
             outputs=output
+
 
         )
 
@@ -942,9 +1504,8 @@ Fill all details to predict admission approval.
 
 
 
-
 # =====================================================
-# RUN APPLICATION
+# RUN APPLICATION FOR RENDER
 # =====================================================
 
 
@@ -952,15 +1513,18 @@ if __name__ == "__main__":
 
 
 
-    print("🚀 Starting AI College Admission System")
+    print("🚀 Starting AI College Admission Approval System")
 
 
 
     demo.launch(
 
+
         server_name="0.0.0.0",
 
+
         server_port=int(
+
 
             os.environ.get(
 
@@ -971,5 +1535,6 @@ if __name__ == "__main__":
             )
 
         )
+
 
     )
