@@ -980,73 +980,38 @@ display:none !important;
 # =====================================================
 
 
-
 header = """
 
 <div id="header-box">
-
 
 <h1>
 🎓 AI College Admission Approval System
 </h1>
 
-
 <h2>
 Machine Learning Based Admission Prediction Platform
 </h2>
 
-
 <hr>
-
 
 <h3>
 👩‍💻 Developer Details
 </h3>
 
-
 <p>
 <b>Name:</b> Manya Singla
 </p>
 
-
 <p>
-<b>College:</b> Panipat Institute of Engineering and Technology
+<b>Project:</b> College Admission Approval System
 </p>
-
-
-<p>
-<b>Project:</b> College Admission Prediction using Machine Learning
-</p>
-
-
 
 <hr>
 
-
-<h3>
-💻 Technologies Used
-</h3>
-
-
 <p>
-Python | Pandas | Scikit-Learn |
-Random Forest | Joblib | Gradio
+🤖 Predict admission approval using academic,
+entrance exam and college preference details.
 </p>
-
-
-
-<hr>
-
-
-<p>
-
-🤖 AI system predicts admission approval
-based on academic performance,
-entrance exam scores,
-college preference and student details.
-
-</p>
-
 
 </div>
 
@@ -1054,48 +1019,29 @@ college preference and student details.
 
 
 
-
-
-# =====================================================
-# CREATE GRADIO BLOCKS
-# =====================================================
-
-
 with gr.Blocks(
-
     css=css,
-
     title="AI College Admission Approval System"
-
 ) as demo:
 
 
-
-    with gr.Column(
-
-        elem_id="main-container"
-
-    ):
-
+    with gr.Column(elem_id="main-container"):
 
 
         gr.HTML(header)
 
 
 
+        # =========================================
+        # STUDENT DETAILS
+        # =========================================
+
+
         gr.Markdown(
-"""
-## 📝 Enter Student Details
-
-Fill all details and click Predict Admission.
-"""
+        """
+        ## 👤 Student Basic Details
+        """
         )
-
-
-
-        # ==============================
-        # BASIC DETAILS
-        # ==============================
 
 
         with gr.Row():
@@ -1104,418 +1050,332 @@ Fill all details and click Predict Admission.
                 label="Age"
             )
 
-
             Category = gr.Dropdown(
-
-                choices=[
-
-                    "General",
-                    "OBC",
-                    "SC",
-                    "ST"
-
-                ],
-
+                ["General","OBC","SC","ST"],
                 label="Category"
-
             )
-
 
             Family_Income = gr.Number(
-
                 label="Family Income (₹)"
-
             )
 
 
 
-
-        # ==============================
+        # =========================================
         # ACADEMIC DETAILS
-        # ==============================
+        # =========================================
+
+
+        gr.Markdown(
+        """
+        ## 📚 Academic Details
+        """
+        )
 
 
         with gr.Row():
 
-
             Class10 = gr.Number(
-
                 label="Class 10 Percentage"
-
             )
 
 
             Class12 = gr.Number(
-
                 label="Class 12 Percentage"
-
             )
 
 
             PCM = gr.Number(
-
                 label="PCM Percentage"
-
             )
 
 
+
+        # =========================================
+        # ENTRANCE DETAILS
+        # =========================================
+
+
+        gr.Markdown(
+        """
+        ## 📝 Entrance Exam Details
+        """
+        )
 
 
         with gr.Row():
 
 
             Entrance = gr.Textbox(
-
                 label="Entrance Exam"
-
             )
 
 
             JEE = gr.Number(
-
                 label="JEE Percentile"
-
             )
 
 
             Rank = gr.Number(
-
                 label="JEE Rank"
-
             )
-
 
 
 
         with gr.Row():
 
-
             CUET = gr.Number(
-
                 label="CUET Score"
-
             )
 
 
+
+        # =========================================
+        # COLLEGE PREFERENCE DETAILS
+        # =========================================
+
+
+        gr.Markdown(
+        """
+        ## 🏫 College Preference Details
+        """
+        )
+
+
+        with gr.Row():
+
+
             Branch = gr.Textbox(
-
                 label="Preferred Branch"
-
             )
 
 
             College = gr.Textbox(
-
                 label="Preferred College"
-
             )
 
 
+            College_Type = gr.Dropdown(
+                [
+                    "Government",
+                    "Private"
+                ],
+                label="College Type"
+            )
 
-
-
-        # ==============================
-        # COLLEGE DETAILS
-        # ==============================
 
 
         with gr.Row():
 
 
-            College_Type = gr.Dropdown(
-
-                choices=[
-
-                    "Government",
-                    "Private"
-
-                ],
-
-                label="College Type"
-
-            )
-
-
             NIRF = gr.Number(
-
                 label="NIRF Rank"
-
             )
 
 
             Tier = gr.Number(
-
                 label="College Tier"
-
             )
 
+
+            Cutoff = gr.Number(
+                label="Branch Cutoff Rank"
+            )
 
 
 
         with gr.Row():
 
 
-            Cutoff = gr.Number(
-
-                label="Branch Cutoff Rank"
-
-            )
-
-
             Seats = gr.Number(
-
                 label="Available Seats"
-
             )
 
 
             Quota = gr.Textbox(
-
                 label="Reservation Quota"
-
             )
 
 
 
-
-
-
-        # ==============================
+        # =========================================
         # VERIFICATION DETAILS
-        # ==============================
+        # =========================================
+
+
+        gr.Markdown(
+        """
+        ## 📄 Document & Interview Details
+        """
+        )
 
 
         with gr.Row():
 
-
             Docs = gr.Dropdown(
-
-                choices=[
-
+                [
                     "Yes",
                     "No"
-
                 ],
-
                 label="Documents Verified"
-
             )
 
 
             Interview = gr.Number(
-
                 label="Interview Score"
-
             )
 
 
             Communication = gr.Number(
-
                 label="Communication Score"
-
             )
 
-
-
-
-
-        # ==============================
-        # ADDITIONAL DETAILS
-        # ==============================
 
 
         with gr.Row():
 
 
             Aptitude = gr.Number(
-
                 label="Aptitude Score"
-
-            )
-
-
-            Scholarship = gr.Dropdown(
-
-                choices=[
-
-                    "Yes",
-                    "No"
-
-                ],
-
-                label="Scholarship Applied"
-
-            )
-
-
-            Scholarship_Eligibility = gr.Dropdown(
-
-                choices=[
-
-                    "Yes",
-                    "No"
-
-                ],
-
-                label="Scholarship Eligibility"
-
             )
 
 
 
+        # =========================================
+        # EXTRA DETAILS
+        # =========================================
+
+
+        gr.Markdown(
+        """
+        ## 💰 Scholarship & Other Details
+        """
+        )
 
 
         with gr.Row():
 
 
-            Hostel = gr.Dropdown(
-
-                choices=[
-
+            Scholarship = gr.Dropdown(
+                [
                     "Yes",
                     "No"
-
                 ],
-
-                label="Hostel Required"
-
+                label="Scholarship Applied"
             )
 
 
+            Scholarship_Eligibility = gr.Dropdown(
+                [
+                    "Yes",
+                    "No"
+                ],
+                label="Scholarship Eligibility"
+            )
+
+
+            Hostel = gr.Dropdown(
+                [
+                    "Yes",
+                    "No"
+                ],
+                label="Hostel Required"
+            )
+
+
+        with gr.Row():
+
+
             Probability = gr.Number(
-
                 label="Admission Probability"
-
             )
 
 
             Fee = gr.Number(
-
                 label="Tuition Fee (₹)"
-
             )
 
 
 
+        # =========================================
+        # BUTTON
+        # =========================================
 
+
+        predict_button = gr.Button(
+            "🎯 Predict Admission",
+            variant="primary"
+        )
+
+
+        output = gr.Textbox(
+            label="🎓 Prediction Result",
+            lines=8
+        )
 
         # ==============================
         # PREDICT BUTTON
         # ==============================
 
 
-        predict_button = gr.Button(
-
-            "🎯 Predict Admission",
-
-            variant="primary"
-
-        )
-
-
-
-
-
-        output = gr.Textbox(
-
-            label="🎓 Admission Prediction Result",
-
-            lines=8
-
-        )
-# =====================================================
-# PART 4 : BUTTON CONNECTION
-# =====================================================
-
-
         predict_button.click(
 
-            fn=predict_admission,
+    fn=predict_admission,
 
+    inputs=[
 
-            inputs=[
+        Age,
+        Category,
+        Family_Income,
 
+        Class10,
+        Class12,
+        PCM,
 
-                Age,
+        Entrance,
+        JEE,
+        Rank,
 
-                Category,
+        CUET,
 
-                Family_Income,
+        Branch,
+        College,
 
+        College_Type,
 
-                Class10,
+        NIRF,
+        Tier,
 
-                Class12,
+        Cutoff,
 
-                PCM,
+        Seats,
 
+        Quota,
 
-                Entrance,
+        Docs,
 
-                JEE,
+        Interview,
 
-                Rank,
+        Communication,
 
+        Aptitude,
 
-                CUET,
+        Scholarship,
 
+        Scholarship_Eligibility,
 
-                Branch,
+        Hostel,
 
-                College,
+        Probability,
 
+        Fee
 
-                College_Type,
+    ],
 
+    outputs=output
 
-                NIRF,
-
-                Tier,
-
-
-                Cutoff,
-
-
-                Seats,
-
-
-                Quota,
-
-
-                Docs,
-
-
-                Interview,
-
-
-                Communication,
-
-
-                Aptitude,
-
-
-                Scholarship,
-
-
-                Scholarship_Eligibility,
-
-
-                Hostel,
-
-
-                Probability,
-
-
-                Fee
-
-
-            ],
-
-
-            outputs=output
-
-        )
-        # =====================================================
+)
+# =====================================================
 # RUN APPLICATION
 # =====================================================
 
