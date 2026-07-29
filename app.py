@@ -533,7 +533,7 @@ url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 }}
 
 
-#main-container {
+#main-container {{
 
     width:90% !important;
 
@@ -551,13 +551,13 @@ url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
     backdrop-filter:none !important;
 
-}
+}}
 
 
 
 
 
-#header-box {
+#header-box {{
 
     text-align:center;
 
@@ -567,11 +567,11 @@ url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
     border:none !important;
 
-}
+}}
 
 .gradio-container .block,
 .gradio-container .form,
-.gradio-container .panel {
+.gradio-container .panel {{
 
     background:transparent !important;
 
@@ -579,11 +579,11 @@ url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
     box-shadow:none !important;
 
-}
+}}
 
 
 
-#header-box h1 {
+#header-box h1 {{
 
     font-size:45px;
 
@@ -595,11 +595,11 @@ url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
     3px 3px 10px black;
 
-}
+}}
 
 
 
-#header-box h2 {
+#header-box h2 {{
 
     font-size:28px;
 
@@ -609,11 +609,11 @@ url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
     2px 2px 8px black;
 
-}
+}}
 
 
 
-#header-box h3 {
+#header-box h3 {{
 
     color:#00ffcc !important;
 
@@ -621,11 +621,11 @@ url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
     2px 2px 8px black;
 
-}
+}}
 
 
 
-#header-box p {
+#header-box p {{
 
     color:white !important;
 
@@ -635,11 +635,11 @@ url("data:image/jpg;base64,{BACKGROUND_IMAGES[0]}");
 
     2px 2px 8px black;
 
-}
+}}
 
 
 
-label {
+label {{
 
     color:white !important;
 
@@ -649,7 +649,7 @@ label {
 
     2px 2px 6px black;
 
-}
+}}
 
 
 input,
