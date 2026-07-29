@@ -610,17 +610,24 @@ css = """
 
 
 #header-box h1 {{
+css = """
+
+#header-box h1 {
 
     font-size:45px;
 
     font-weight:900;
 
-    color:white !important;
+    color:white;
 
     text-shadow:
     0px 0px 15px #10b981;
 
-}}
+}
+
+"""
+
+    
 
 
 
