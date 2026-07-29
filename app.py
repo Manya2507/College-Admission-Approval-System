@@ -10,11 +10,22 @@ import gradio as gr
 # ==========================================================
 
 try:
-    model = joblib.load("college_admission_approval.pkl")
-    print("✅ Admission Model Loaded Successfully")
+
+    model = joblib.load(
+        "college_admission_approval.pkl"
+    )
+
+    print(
+        "✅ Admission Model Loaded Successfully"
+    )
 
 except Exception as e:
-    print("❌ Model Loading Error:", e)
+
+    print(
+        "❌ Model Loading Error:",
+        e
+    )
+
     model = None
 
 
@@ -26,43 +37,61 @@ IMAGE_FOLDER = "image"
 
 
 # ==========================================================
-# CONVERT LOCAL IMAGE TO BASE64
+# CONVERT IMAGE TO BASE64
 # ==========================================================
 
 def image_to_base64(image_path):
 
     try:
 
-        with open(image_path, "rb") as image_file:
+        with open(
+            image_path,
+            "rb"
+        ) as image_file:
 
             encoded_image = base64.b64encode(
+
                 image_file.read()
-            ).decode("utf-8")
+
+            ).decode(
+                "utf-8"
+            )
+
 
         return (
+
             "data:image/jpeg;base64,"
+
             + encoded_image
+
         )
+
 
     except Exception as e:
 
         print(
-            f"❌ Cannot load {image_path}:",
-            e
+
+            f"❌ Image Error: {image_path}"
+
         )
+
+        print(e)
 
         return ""
 
 
 # ==========================================================
-# LOAD ALL BACKGROUND IMAGES
+# LOAD BACKGROUND IMAGES
 # ==========================================================
 
 IMAGE_1 = image_to_base64(
 
     os.path.join(
+
         IMAGE_FOLDER,
+
         "college-img-1.jpg"
+
     )
 
 )
@@ -71,8 +100,11 @@ IMAGE_1 = image_to_base64(
 IMAGE_2 = image_to_base64(
 
     os.path.join(
+
         IMAGE_FOLDER,
+
         "images (2).jpg"
+
     )
 
 )
@@ -81,8 +113,11 @@ IMAGE_2 = image_to_base64(
 IMAGE_3 = image_to_base64(
 
     os.path.join(
+
         IMAGE_FOLDER,
+
         "images (3).jpg"
+
     )
 
 )
@@ -91,14 +126,19 @@ IMAGE_3 = image_to_base64(
 IMAGE_4 = image_to_base64(
 
     os.path.join(
+
         IMAGE_FOLDER,
+
         "images (4).jpg"
+
     )
 
 )
 
 
-print("✅ Background images loaded")
+print(
+    "✅ Background Images Loaded"
+)
 
 
 # ==========================================================
@@ -145,22 +185,34 @@ def predict_admission(
 
 ):
 
+
     if model is None:
 
         return (
-            "❌ Model file not found."
+
+            "❌ Model file not found.\n\n"
+
+            "Please upload:\n"
+
+            "college_admission_approval.pkl"
+
         )
 
 
     try:
 
+
         data = pd.DataFrame([{
 
-            "Age": Age,
+            "Age":
+            Age,
 
-            "Category": Category,
+            "Category":
+            Category,
 
-            "Family_Income": Family_Income,
+            "Family_Income":
+            Family_Income,
+
 
             "Class10_%":
             Class10_Percentage,
@@ -170,6 +222,7 @@ def predict_admission(
 
             "PCM_%":
             PCM_Percentage,
+
 
             "Entrance_Exam":
             Entrance_Exam,
@@ -183,6 +236,7 @@ def predict_admission(
             "CUET_Score":
             CUET_Score,
 
+
             "Preferred_Branch":
             Preferred_Branch,
 
@@ -191,6 +245,7 @@ def predict_admission(
 
             "College_Type":
             College_Type,
+
 
             "NIRF_Rank":
             NIRF_Rank,
@@ -201,14 +256,17 @@ def predict_admission(
             "Branch_Cutoff_Rank":
             Branch_Cutoff_Rank,
 
+
             "Available_Seats":
             Available_Seats,
 
             "Reservation_Quota":
             Reservation_Quota,
 
+
             "Documents_Verified":
             Documents_Verified,
+
 
             "Interview_Score":
             Interview_Score,
@@ -219,11 +277,13 @@ def predict_admission(
             "Aptitude_Score":
             Aptitude_Score,
 
+
             "Scholarship_Applied":
             Scholarship_Applied,
 
             "Scholarship_Eligibility":
             Scholarship_Eligibility,
+
 
             "Hostel_Required":
             Hostel_Required,
@@ -238,11 +298,15 @@ def predict_admission(
 
 
         result = model.predict(
+
             data
+
         )[0]
 
 
-        if str(result).lower() in [
+        if str(
+            result
+        ).lower() in [
 
             "1",
 
@@ -253,6 +317,7 @@ def predict_admission(
             "true"
 
         ]:
+
 
             return """
 
@@ -272,6 +337,7 @@ Random Forest Classifier
 
         else:
 
+
             return """
 
 ❌ ADMISSION NOT APPROVED
@@ -289,6 +355,7 @@ Random Forest Classifier
 
 
     except Exception as e:
+
 
         return (
 
@@ -483,7 +550,12 @@ body {
 
     height: 100vh !important;
 
-    background: rgba(0, 0, 0, 0.25) !important;
+    background: rgba(
+        0,
+        0,
+        0,
+        0.25
+    ) !important;
 
     z-index: 1 !important;
 
@@ -607,6 +679,7 @@ footer {
 
 """
 
+
 # ==========================================================
 # HEADER
 # ==========================================================
@@ -615,7 +688,9 @@ header = """
 
 <div id="developer">
 
-<h1 style="text-align:center;">
+<h1
+style="text-align:center;"
+>
 
 🎓 AI College Admission Approval System
 
@@ -629,24 +704,38 @@ header = """
 
 </h2>
 
+
+<p>
+
 <b>Name:</b>
 
 Manya Singla
 
-<br><br>
+</p>
+
+
+<p>
 
 <b>College:</b>
 
-Panipat Institute of Engineering and Technology
+Panipat Institute of Engineering
+and Technology
 
-<br><br>
+</p>
+
+
+<p>
 
 <b>Project:</b>
 
 College Admission Prediction
 using Machine Learning
 
+</p>
+
+
 <hr>
+
 
 <h3>
 
@@ -654,10 +743,21 @@ using Machine Learning
 
 </h3>
 
-Python | Pandas | Scikit-Learn |
-Random Forest | Joblib | Gradio
+
+<p>
+
+Python |
+Pandas |
+Scikit-Learn |
+Random Forest |
+Joblib |
+Gradio
+
+</p>
+
 
 <hr>
+
 
 <h3>
 
@@ -665,9 +765,15 @@ Random Forest | Joblib | Gradio
 
 </h3>
 
-This AI-based system predicts admission approval
-using academic records, entrance examination scores,
+
+<p>
+
+This AI-based system predicts
+admission approval using academic
+records, entrance examination scores,
 college preferences and student details.
+
+</p>
 
 </div>
 
@@ -675,7 +781,7 @@ college preferences and student details.
 
 
 # ==========================================================
-# CREATE APP
+# CREATE GRADIO APP
 # ==========================================================
 
 with gr.Blocks(
@@ -689,83 +795,123 @@ with gr.Blocks(
 
 
     # ======================================================
-    # BACKGROUND
+    # BACKGROUND SLIDESHOW
     # ======================================================
 
-   gr.HTML(
-    f"""
-    <div id="background-slideshow">
+    gr.HTML(
 
-        <img
-        class="background-image image1"
-        src="{IMAGE_1}"
-        >
+        f"""
 
-        <img
-        class="background-image image2"
-        src="{IMAGE_2}"
-        >
-
-        <img
-        class="background-image image3"
-        src="{IMAGE_3}"
-        >
-
-        <img
-        class="background-image image4"
-        src="{IMAGE_4}"
-        >
-
-    </div>
-
-    <div id="overlay"></div>
-    """
-)
-
-    # ======================================================
-    # HEADER
-    # ======================================================
-
-gr.HTML(
-        header
-)
+<div id="background-slideshow">
 
 
-gr.Markdown(
+<img
 
- """
+class="background-image image1"
 
-# 📝 Enter Student Details
+src="{IMAGE_1}"
 
-Fill in all student details carefully.
+>
 
-        """
+
+<img
+
+class="background-image image2"
+
+src="{IMAGE_2}"
+
+>
+
+
+<img
+
+class="background-image image3"
+
+src="{IMAGE_3}"
+
+>
+
+
+<img
+
+class="background-image image4"
+
+src="{IMAGE_4}"
+
+>
+
+
+</div>
+
+
+<div id="overlay">
+
+</div>
+
+"""
 
     )
 
 
     # ======================================================
-    # INPUTS
+    # HEADER
+    # ======================================================
+
+    gr.HTML(
+
+        header
+
+    )
+
+
+    # ======================================================
+    # FORM TITLE
+    # ======================================================
+
+    gr.Markdown(
+
+        """
+
+# 📝 Enter Student Details
+
+Fill in all student details carefully.
+
+"""
+
+    )
+
+
+    # ======================================================
+    # ROW 1
     # ======================================================
 
     with gr.Row():
 
         Age = gr.Number(
+
             label="Age"
+
         )
+
 
         Category = gr.Dropdown(
 
             [
+
                 "General",
+
                 "OBC",
+
                 "SC",
+
                 "ST"
+
             ],
 
             label="Category"
 
         )
+
 
         Family_Income = gr.Number(
 
@@ -775,58 +921,110 @@ Fill in all student details carefully.
         )
 
 
+    # ======================================================
+    # ROW 2
+    # ======================================================
+
     with gr.Row():
 
         Class10 = gr.Number(
-            label="Class 10 Percentage"
+
+            label=
+            "Class 10 Percentage"
+
         )
+
 
         Class12 = gr.Number(
-            label="Class 12 Percentage"
+
+            label=
+            "Class 12 Percentage"
+
         )
+
 
         PCM = gr.Number(
-            label="PCM Percentage"
+
+            label=
+            "PCM Percentage"
+
         )
 
+
+    # ======================================================
+    # ROW 3
+    # ======================================================
 
     with gr.Row():
 
         Entrance = gr.Textbox(
-            label="Entrance Exam"
+
+            label=
+            "Entrance Exam"
+
         )
+
 
         JEE = gr.Number(
-            label="JEE Percentile"
+
+            label=
+            "JEE Percentile"
+
         )
+
 
         Rank = gr.Number(
-            label="JEE Rank"
+
+            label=
+            "JEE Rank"
+
         )
 
+
+    # ======================================================
+    # ROW 4
+    # ======================================================
 
     with gr.Row():
 
         CUET = gr.Number(
-            label="CUET Score"
+
+            label=
+            "CUET Score"
+
         )
+
 
         Branch = gr.Textbox(
-            label="Preferred Branch"
+
+            label=
+            "Preferred Branch"
+
         )
+
 
         College = gr.Textbox(
-            label="Preferred College"
+
+            label=
+            "Preferred College"
+
         )
 
+
+    # ======================================================
+    # ROW 5
+    # ======================================================
 
     with gr.Row():
 
         College_Type = gr.Dropdown(
 
             [
+
                 "Government",
+
                 "Private"
+
             ],
 
             label=
@@ -834,37 +1032,67 @@ Fill in all student details carefully.
 
         )
 
+
         NIRF = gr.Number(
-            label="NIRF Rank"
+
+            label=
+            "NIRF Rank"
+
         )
+
 
         Tier = gr.Number(
-            label="College Tier"
+
+            label=
+            "College Tier"
+
         )
 
+
+    # ======================================================
+    # ROW 6
+    # ======================================================
 
     with gr.Row():
 
         Cutoff = gr.Number(
-            label="Branch Cutoff Rank"
+
+            label=
+            "Branch Cutoff Rank"
+
         )
+
 
         Seats = gr.Number(
-            label="Available Seats"
+
+            label=
+            "Available Seats"
+
         )
+
 
         Quota = gr.Textbox(
-            label="Reservation Quota"
+
+            label=
+            "Reservation Quota"
+
         )
 
+
+    # ======================================================
+    # ROW 7
+    # ======================================================
 
     with gr.Row():
 
         Docs = gr.Dropdown(
 
             [
+
                 "Yes",
+
                 "No"
+
             ],
 
             label=
@@ -872,27 +1100,45 @@ Fill in all student details carefully.
 
         )
 
+
         Interview = gr.Number(
-            label="Interview Score"
+
+            label=
+            "Interview Score"
+
         )
+
 
         Communication = gr.Number(
+
             label=
             "Communication Score"
+
         )
 
+
+    # ======================================================
+    # ROW 8
+    # ======================================================
 
     with gr.Row():
 
         Aptitude = gr.Number(
-            label="Aptitude Score"
+
+            label=
+            "Aptitude Score"
+
         )
+
 
         Scholarship = gr.Dropdown(
 
             [
+
                 "Yes",
+
                 "No"
+
             ],
 
             label=
@@ -900,11 +1146,15 @@ Fill in all student details carefully.
 
         )
 
+
         Scholarship_Eligibility = gr.Dropdown(
 
             [
+
                 "Yes",
+
                 "No"
+
             ],
 
             label=
@@ -913,13 +1163,20 @@ Fill in all student details carefully.
         )
 
 
+    # ======================================================
+    # ROW 9
+    # ======================================================
+
     with gr.Row():
 
         Hostel = gr.Dropdown(
 
             [
+
                 "Yes",
+
                 "No"
+
             ],
 
             label=
@@ -927,12 +1184,14 @@ Fill in all student details carefully.
 
         )
 
+
         Probability = gr.Number(
 
             label=
             "Admission Probability"
 
         )
+
 
         Fee = gr.Number(
 
@@ -943,7 +1202,7 @@ Fill in all student details carefully.
 
 
     # ======================================================
-    # BUTTON
+    # PREDICT BUTTON
     # ======================================================
 
     button = gr.Button(
@@ -983,51 +1242,78 @@ Fill in all student details carefully.
         inputs=[
 
             Age,
+
             Category,
+
             Family_Income,
 
+
             Class10,
+
             Class12,
+
             PCM,
 
+
             Entrance,
+
             JEE,
+
             Rank,
 
+
             CUET,
+
             Branch,
+
             College,
 
+
             College_Type,
+
             NIRF,
+
             Tier,
 
+
             Cutoff,
+
             Seats,
+
             Quota,
 
+
             Docs,
+
             Interview,
+
             Communication,
 
+
             Aptitude,
+
             Scholarship,
+
             Scholarship_Eligibility,
 
+
             Hostel,
+
             Probability,
+
             Fee
 
         ],
 
         outputs=
+
         output
 
     )
 
 
 # ==========================================================
-# RUN APP
+# RUN APPLICATION
 # ==========================================================
 
 if __name__ == "__main__":
@@ -1038,6 +1324,7 @@ if __name__ == "__main__":
         "0.0.0.0",
 
         server_port=
+
         int(
 
             os.environ.get(
