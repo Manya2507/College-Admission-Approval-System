@@ -299,6 +299,19 @@ function predictAdmission(){
         </h2>
 
 
+
+        <br>
+
+
+        📊 Admission Probability:
+
+        <b>
+
+        ${data.probability}%
+
+        </b>
+
+
         <br><br>
 
 
