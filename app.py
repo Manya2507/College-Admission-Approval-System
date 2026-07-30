@@ -311,502 +311,187 @@ image5 = BACKGROUND_IMAGES[4]
 
 css = f"""
 
-
-
-/* =====================================
-   FULL PAGE BACKGROUND
-===================================== */
-
-
-body {
-
-
-    margin:0 !important;
-
-    padding:0 !important;
-
-
-}
-
-
-
-
-.gradio-container {
-
-
+.gradio-container {{
     min-height:100vh !important;
-
-
     width:100% !important;
-
-
     background:transparent !important;
+}}
 
 
-}
-
-
-
-
-
-/* =====================================
-   BACKGROUND SLIDESHOW LAYER
-===================================== */
-
-
-.gradio-container::before {
-
+.gradio-container::before {{
 
     content:"";
 
-
     position:fixed;
 
-
     top:0;
-
-
     left:0;
 
-
     width:100%;
-
-
     height:100%;
-
-
 
     z-index:-1;
 
-
-
     background-size:cover;
-
 
     background-position:center;
 
-
     background-repeat:no-repeat;
 
+    animation: backgroundChange 120s infinite;
 
-
-    animation:
-
-    backgroundChange
-
-    120s
-
-    infinite;
+}}
 
 
 
-}
+@keyframes backgroundChange {{
 
-
-
-
-
-@keyframes backgroundChange {
-
-
-
-0% {
-
-
+0% {{
 
 background-image:
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
-
 url("data:image/jpg;base64,{image1}");
 
-
-
-}
-
+}}
 
 
 
-20% {
-
-
+20% {{
 
 background-image:
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
-
 url("data:image/jpg;base64,{image2}");
 
-
-
-}
-
+}}
 
 
 
-40% {
-
-
+40% {{
 
 background-image:
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
-
 url("data:image/jpg;base64,{image3}");
 
-
-
-}
-
+}}
 
 
 
-60% {
-
-
+60% {{
 
 background-image:
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
-
 url("data:image/jpg;base64,{image4}");
 
-
-
-}
-
+}}
 
 
 
-80% {
-
-
+80% {{
 
 background-image:
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
-
 url("data:image/jpg;base64,{image5}");
 
-
-
-}
-
+}}
 
 
 
-100% {
-
-
+100% {{
 
 background-image:
-
 linear-gradient(
-
 rgba(0,0,0,0.45),
-
 rgba(0,0,0,0.45)
-
 ),
-
 url("data:image/jpg;base64,{image1}");
 
+}}
 
-
-}
-
-
-}
+}}
 
 
 
 
-
-
-/* =====================================
- REMOVE WHITE CONTAINERS
-===================================== */
-
-
+/* Remove boxes */
 
 .block,
-
-
 .panel,
-
-
 .form,
+fieldset {{
 
-
-fieldset {
-
-
-
-background:
-
-transparent !important;
-
+background:transparent !important;
 
 border:none !important;
-
 
 box-shadow:none !important;
 
-
-}
-
+}}
 
 
 
-
-
-
-/* =====================================
- TEXT DESIGN
-===================================== */
-
-
-h1,
-
-
-h2,
-
-
-h3,
-
-
-p,
-
-
-label,
-
-
-span {
-
-
+h1,h2,h3,p,label,span {{
 
 color:white !important;
 
+text-shadow:2px 2px 8px black !important;
 
-
-text-shadow:
-
-2px 2px 8px black !important;
-
-
-
-}
+}}
 
 
 
-
-
-
-
-/* =====================================
- TITLE STYLE
-===================================== */
-
-
-#title {
-
-
-
-font-size:45px !important;
-
-
-font-weight:900 !important;
-
-
-text-align:center !important;
-
-
-color:white !important;
-
-
-
-text-shadow:
-
-3px 3px 10px black !important;
-
-
-}
-
-
-
-
-
-
-/* =====================================
- INPUT BOX DESIGN
-===================================== */
-
-
-input,
-
-
-textarea,
-
-
-select {
-
-
+button {{
 
 background:
-
-rgba(255,255,255,0.85)
-
-!important;
-
-
-
-color:black !important;
-
-
-
-border-radius:12px !important;
-
-
-
-border:
-
-2px solid #00ff99 !important;
-
-
-
-}
-
-
-
-
-
-
-/* =====================================
- BUTTON STYLE
-===================================== */
-
-
-
-button {
-
-
-
-background:
-
 linear-gradient(
-
 135deg,
-
 #00c853,
-
 #00e676
-
-)
-
-!important;
-
-
+) !important;
 
 color:white !important;
-
-
-
-font-size:16px !important;
-
-
 
 font-weight:bold !important;
 
-
-
 border-radius:15px !important;
 
-
-
-border:none !important;
-
-
-
-padding:12px !important;
+}}
 
 
 
-transition:
+input,
+textarea,
+select {{
 
-0.3s;
+background:rgba(255,255,255,0.85) !important;
 
+color:black !important;
 
+border-radius:12px !important;
 
-}
+}}
 
-
-
-
-button:hover {
-
-
-
-transform:
-
-scale(1.05);
-
-
-
-}
-
-
-
-
-
-
-/* =====================================
- REMOVE FOOTER
-===================================== */
-
-
-footer {
-
-
+footer {{
 
 display:none !important;
 
+}}
 
-}
-
-
-
-"""
-# ==========================================================
+"""# ==========================================================
 # PART 3/6
 # GRADIO INTERFACE DESIGN
 # ==========================================================
