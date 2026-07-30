@@ -27,17 +27,84 @@ from flask import (
 
 app = Flask(__name__)
 
-
-
-
-
 # ==========================================================
-# LOAD MACHINE LEARNING MODEL
+# CATEGORY MAPPINGS
 # ==========================================================
 
+category_map = {
+    "General": 0,
+    "OBC": 1,
+    "SC": 2,
+    "ST": 3
+}
+
+exam_map = {
+    "JEE": 0,
+    "CUET": 1,
+    "NEET": 2,
+    "Other": 3
+}
+
+branch_map = {
+    "CSE": 0,
+    "IT": 1,
+    "ECE": 2,
+    "EEE": 3,
+    "Mechanical": 4,
+    "Civil": 5
+}
+
+college_map = {
+    "PIET": 0,
+    "NIT": 1,
+    "IIT": 2,
+    "Other": 3
+}
+
+college_type_map = {
+    "Government": 0,
+    "Private": 1
+}
+
+tier_map = {
+    "1": 1,
+    "2": 2,
+    "3": 3
+}
+
+quota_map = {
+    "General": 0,
+    "EWS": 1,
+    "OBC": 2,
+    "SC": 3,
+    "ST": 4
+}
+
+documents_map = {
+    "No": 0,
+    "Yes": 1
+}
+
+scholarship_applied_map = {
+    "No": 0,
+    "Yes": 1
+}
+
+scholarship_eligibility_map = {
+    "Eligible": 0,
+    "Not Eligible": 1
+}
+
+hostel_map = {
+    "No": 0,
+    "Yes": 1
+}
+
+# ==========================================================
+# LOAD MODEL
+# ==========================================================
 
 MODEL_PATH = "college_admission_approval.pkl"
-
 
 
 try:
@@ -104,171 +171,71 @@ def predict():
 
         input_data = pd.DataFrame([{
 
+    "Age": float(data.get("Age") or 0),
 
-            "Age":
+    "Category": category_map.get(data.get("Category"), 4),
 
-            float(data["Age"]),
+    "Family_Income": float(data.get("Family_Income") or 0),
 
+    "Class10_%": float(data.get("Class10_%") or 0),
 
+    "Class12_%": float(data.get("Class12_%") or 0),
 
-            "Category":
+    "PCM_%": float(data.get("PCM_%") or 0),
 
-            data["Category"],
+    "Entrance_Exam": exam_map.get(data.get("Entrance_Exam"), 0),
 
+    "JEE_Percentile": float(data.get("JEE_Percentile") or 0),
 
+    "JEE_Rank": float(data.get("JEE_Rank") or 0),
 
-            "Family_Income":
+    "CUET_Score": float(data.get("CUET_Score") or 0),
 
-            float(data["Family_Income"]),
+    "Preferred_Branch": branch_map.get(data.get("Preferred_Branch"), 0),
 
+    "Preferred_College": college_map.get(data.get("Preferred_College"), 0),
 
+    "College_Type": college_type_map.get(data.get("College_Type"), 0),
 
-            "Class10_%":
+    "NIRF_Rank": float(data.get("NIRF_Rank") or 0),
 
-            float(data["Class10_%"]),
+    "College_Tier": tier_map.get(data.get("College_Tier"), 0),
 
+    "Branch_Cutoff_Rank": float(data.get("Branch_Cutoff_Rank") or 0),
 
+    "Available_Seats": float(data.get("Available_Seats") or 0),
 
-            "Class12_%":
+    "Reservation_Quota": quota_map.get(data.get("Reservation_Quota"), 4),
 
-            float(data["Class12_%"]),
+    "Documents_Verified": documents_map.get(data.get("Documents_Verified"), 0),
 
+    "Interview_Score": float(data.get("Interview_Score") or 0),
 
+    "Communication_Score": float(data.get("Communication_Score") or 0),
 
-            "PCM_%":
+    "Aptitude_Score": float(data.get("Aptitude_Score") or 0),
 
-            float(data["PCM_%"]),
+    "Scholarship_Applied": scholarship_applied_map.get(
+        data.get("Scholarship_Applied"), 0
+    ),
 
+    "Scholarship_Eligibility": scholarship_eligibility_map.get(
+        data.get("Scholarship_Eligibility"), 0
+    ),
 
+    "Hostel_Required": hostel_map.get(
+        data.get("Hostel_Required"), 0
+    ),
 
-            "Entrance_Exam":
+    "Admission_Probability": float(
+        data.get("Admission_Probability") or 0
+    ),
 
-            data["Entrance_Exam"],
+    "Tuition_Fee": float(
+        data.get("Tuition_Fee") or 0
+    )
 
-
-
-            "JEE_Percentile":
-
-            float(data["JEE_Percentile"]),
-
-
-
-            "JEE_Rank":
-
-            float(data["JEE_Rank"]),
-
-
-
-            "CUET_Score":
-
-            float(data["CUET_Score"]),
-
-
-
-            "Preferred_Branch":
-
-            data["Preferred_Branch"],
-
-
-
-            "Preferred_College":
-
-            data["Preferred_College"],
-
-
-
-            "College_Type":
-
-            data["College_Type"],
-
-
-
-            "NIRF_Rank":
-
-            float(data["NIRF_Rank"]),
-
-
-
-            "College_Tier":
-
-            float(data["College_Tier"]),
-
-
-
-            "Branch_Cutoff_Rank":
-
-            float(data["Branch_Cutoff_Rank"]),
-
-
-
-            "Available_Seats":
-
-            float(data["Available_Seats"]),
-
-
-
-            "Reservation_Quota":
-
-            data["Reservation_Quota"],
-
-
-
-            "Documents_Verified":
-
-            data["Documents_Verified"],
-
-
-
-            "Interview_Score":
-
-            float(data["Interview_Score"]),
-
-
-
-            "Communication_Score":
-
-            float(data["Communication_Score"]),
-
-
-
-            "Aptitude_Score":
-
-            float(data["Aptitude_Score"]),
-
-
-
-            "Scholarship_Applied":
-
-            data["Scholarship_Applied"],
-
-
-
-            "Scholarship_Eligibility":
-
-            data["Scholarship_Eligibility"],
-
-
-
-            "Hostel_Required":
-
-            data["Hostel_Required"],
-
-
-
-            "Admission_Probability":
-
-            float(data["Admission_Probability"]),
-
-
-
-            "Tuition_Fee":
-
-            float(data["Tuition_Fee"])
-
-
-
-        }])
-
+}])
 
 
 
