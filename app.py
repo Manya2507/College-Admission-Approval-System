@@ -1778,110 +1778,151 @@ with gr.Blocks(
 
 
 # ==========================================================
-# CONNECT BUTTON WITH MODEL
+# CONNECT PREDICTION BUTTON
+# IMPORTANT:
+# DO NOT CREATE gr.Blocks AGAIN HERE
 # ==========================================================
 
 
 
+predict_button.click(
 
+    fn=predict_admission,
+
+
+    inputs=[
+
+
+        Age,
+
+
+        Category,
+
+
+        Family_Income,
+
+
+        Class10,
+
+
+        Class12,
+
+
+        PCM,
+
+
+        Entrance,
+
+
+        JEE,
+
+
+        Rank,
+
+
+        CUET,
+
+
+        Branch,
+
+
+        College,
+
+
+        College_Type,
+
+
+        NIRF,
+
+
+        Tier,
+
+
+        Cutoff,
+
+
+        Seats,
+
+
+        Quota,
+
+
+        Docs,
+
+
+        Interview,
+
+
+        Communication,
+
+
+        Aptitude,
+
+
+        Scholarship,
+
+
+        Scholarship_Eligibility,
+
+
+        Hostel,
+
+
+        Probability,
+
+
+        Fee
+
+
+    ],
+
+
+    outputs=[
+
+
+        output,
+
+
+        probability_gauge
+
+
+    ]
+
+)
 
 
 
 
 
 # ==========================================================
-# START APPLICATION
+# RUN APPLICATION
+# KEEP THIS OUTSIDE gr.Blocks
 # ==========================================================
 
-
-with gr.Blocks(
-
-    css=css,
-
-    title="AI College Admission Approval System"
-
-) as demo:
-
-
-    gr.HTML(header)
-
-
-    # all input fields here
-
-
-    predict_button = gr.Button(
-        "🎯 Predict Admission"
-    )
-
-
-    output = gr.Textbox()
-
-
-    probability_gauge = gr.Slider(
-        minimum=0,
-        maximum=100
-    )
-
-
-    # ✅ PASTE HERE
-
-    predict_button.click(
-
-        fn=predict_admission,
-
-        inputs=[
-
-            Age,
-            Category,
-            Family_Income,
-            Class10,
-            Class12,
-            PCM,
-            Entrance,
-            JEE,
-            Rank,
-            CUET,
-            Branch,
-            College,
-            College_Type,
-            NIRF,
-            Tier,
-            Cutoff,
-            Seats,
-            Quota,
-            Docs,
-            Interview,
-            Communication,
-            Aptitude,
-            Scholarship,
-            Scholarship_Eligibility,
-            Hostel,
-            Probability,
-            Fee
-
-        ],
-
-        outputs=[
-
-            output,
-            probability_gauge
-
-        ]
-
-    )
-
-
-
-# keep this outside
 
 if __name__ == "__main__":
 
+
     demo.launch(
+
+
         server_name="0.0.0.0",
+
+
         server_port=int(
+
             os.environ.get(
+
                 "PORT",
+
                 7860
+
             )
-        )
+
+        ),
+
+
+        show_error=True
+
+
     )
