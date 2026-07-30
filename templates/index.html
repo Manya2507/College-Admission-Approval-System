@@ -46,6 +46,291 @@ Student Prediction Form Loading Test
 
 
 </div>
+<!-- ============================= -->
+<!-- STUDENT DETAILS BUTTONS -->
+<!-- ============================= -->
+
+
+<div class="buttons">
+
+
+<button onclick="showSection('basic')">
+👤 Basic Details
+</button>
+
+
+<button onclick="showSection('academic')">
+📚 Academic Analysis
+</button>
+
+
+<button onclick="showSection('entrance')">
+🎯 Entrance Analysis
+</button>
+
+
+<button onclick="showSection('college')">
+🏫 College Matching
+</button>
+
+
+<button onclick="showSection('verification')">
+✅ Verification
+</button>
+
+
+<button onclick="showSection('extra')">
+💰 Scholarship Details
+</button>
+
+
+</div>
+
+
+
+
+
+<!-- ============================= -->
+<!-- BASIC DETAILS -->
+<!-- ============================= -->
+
+
+<div id="basic" class="section">
+
+
+<h2>
+👤 Student Basic Details
+</h2>
+
+
+<input id="Age" placeholder="Age">
+
+
+<select id="Category">
+
+<option>General</option>
+
+<option>OBC</option>
+
+<option>SC</option>
+
+<option>ST</option>
+
+</select>
+
+
+<input id="Family_Income"
+placeholder="Family Income">
+
+
+</div>
+
+
+
+
+
+<!-- ============================= -->
+<!-- ACADEMIC DETAILS -->
+<!-- ============================= -->
+
+
+<div id="academic" class="section hidden">
+
+
+<h2>
+📚 Academic Details
+</h2>
+
+
+<input id="Class10_%"
+placeholder="Class 10 Percentage">
+
+
+<input id="Class12_%"
+placeholder="Class 12 Percentage">
+
+
+<input id="PCM_%"
+placeholder="PCM Percentage">
+
+
+</div>
+
+
+
+
+
+<!-- ============================= -->
+<!-- ENTRANCE DETAILS -->
+<!-- ============================= -->
+
+
+<div id="entrance" class="section hidden">
+
+
+<h2>
+🎯 Entrance Exam Details
+</h2>
+
+
+<input id="Entrance_Exam"
+placeholder="Entrance Exam">
+
+
+<input id="JEE_Percentile"
+placeholder="JEE Percentile">
+
+
+<input id="JEE_Rank"
+placeholder="JEE Rank">
+
+
+<input id="CUET_Score"
+placeholder="CUET Score">
+
+
+</div>
+
+
+
+
+
+<!-- ============================= -->
+<!-- COLLEGE DETAILS -->
+<!-- ============================= -->
+
+
+<div id="college" class="section hidden">
+
+
+<h2>
+🏫 College Preference Details
+</h2>
+
+
+<input id="Preferred_Branch"
+placeholder="Preferred Branch">
+
+
+<input id="Preferred_College"
+placeholder="Preferred College">
+
+
+<input id="College_Type"
+placeholder="College Type">
+
+
+<input id="NIRF_Rank"
+placeholder="NIRF Rank">
+
+
+<input id="College_Tier"
+placeholder="College Tier">
+
+
+<input id="Branch_Cutoff_Rank"
+placeholder="Branch Cutoff Rank">
+
+
+<input id="Available_Seats"
+placeholder="Available Seats">
+
+
+<input id="Reservation_Quota"
+placeholder="Reservation Quota">
+
+
+</div>
+
+
+
+
+
+<!-- ============================= -->
+<!-- VERIFICATION DETAILS -->
+<!-- ============================= -->
+
+
+<div id="verification" class="section hidden">
+
+
+<h2>
+✅ Verification Details
+</h2>
+
+
+<input id="Documents_Verified"
+placeholder="Documents Verified">
+
+
+<input id="Interview_Score"
+placeholder="Interview Score">
+
+
+<input id="Communication_Score"
+placeholder="Communication Score">
+
+
+<input id="Aptitude_Score"
+placeholder="Aptitude Score">
+
+
+</div>
+
+
+
+
+
+<!-- ============================= -->
+<!-- EXTRA DETAILS -->
+<!-- ============================= -->
+
+
+<div id="extra" class="section hidden">
+
+
+<h2>
+💰 Scholarship Details
+</h2>
+
+
+<input id="Scholarship_Applied"
+placeholder="Scholarship Applied">
+
+
+<input id="Scholarship_Eligibility"
+placeholder="Scholarship Eligibility">
+
+
+<input id="Hostel_Required"
+placeholder="Hostel Required">
+
+
+<input id="Admission_Probability"
+placeholder="Previous Admission Probability">
+
+
+<input id="Tuition_Fee"
+placeholder="Tuition Fee">
+
+
+</div>
+
+
+
+
+
+<button onclick="predictAdmission()">
+
+🚀 Predict Admission
+
+</button>
+
+
+
+<div id="result">
+
+</div>
 
 
 
