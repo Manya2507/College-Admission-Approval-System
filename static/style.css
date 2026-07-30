@@ -287,15 +287,15 @@ background-size:
 
 .overlay{
 
+    position:relative;
+
+    z-index:10;
 
     width:100%;
 
-
     min-height:100vh;
 
-
     padding:30px;
-
 
 }
 
@@ -314,12 +314,13 @@ background-size:
 
 .header{
 
+    position:relative;
+
+    z-index:20;
 
     text-align:center;
 
-
     padding:25px;
-
 
 }
 
@@ -388,15 +389,13 @@ background-size:
 
 .developer{
 
+    background:rgba(0,0,0,0.45);
 
-    margin-top:20px;
+    padding:20px;
 
+    border-radius:20px;
 
-    font-size:18px;
-
-
-    line-height:1.8;
-
+    color:white;
 
 }
 
