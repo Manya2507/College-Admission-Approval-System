@@ -1,6 +1,6 @@
-gradio
+flask
 pandas
 numpy
 scikit-learn
 joblib
-requests
+gunicorn
