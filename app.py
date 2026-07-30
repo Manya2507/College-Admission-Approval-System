@@ -1,6 +1,6 @@
 # ==========================================================
 # AI COLLEGE ADMISSION APPROVAL SYSTEM
-# COMPLETE BULLETPROOF SCRIPT
+# ALL 25 INPUT FIELDS + HIGH-VISIBILITY BACKGROUND SLIDESHOW
 # ==========================================================
 
 import base64
@@ -32,13 +32,11 @@ if os.path.exists(IMAGE_FOLDER):
         if file.lower().endswith((".jpg", ".jpeg", ".png")):
             image_path = os.path.join(IMAGE_FOLDER, file)
 
-            # Determine correct mime type dynamically (.jpg vs .png)
             mime_type, _ = mimetypes.guess_type(image_path)
             mime_type = mime_type or "image/jpeg"
 
             with open(image_path, "rb") as img:
                 encoded_image = base64.b64encode(img.read()).decode()
-                # Store as full data URI string
                 BACKGROUND_IMAGES.append(
                     f"data:{mime_type};base64,{encoded_image}"
                 )
@@ -46,73 +44,107 @@ if os.path.exists(IMAGE_FOLDER):
 else:
     print("❌ 'images' folder not found")
 
-print("Total Images Loaded:", len(BACKGROUND_IMAGES))
-
-# Fallback dummy image if no folder/images exist
+# Fallback online high-res images if no local images exist
 if len(BACKGROUND_IMAGES) == 0:
-    # 1x1 transparent PNG pixel as default fallback to avoid startup crash
-    fallback_uri = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-    BACKGROUND_IMAGES = [fallback_uri] * 5
+    BACKGROUND_IMAGES = [
+        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600",
+        "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1600",
+        "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1600",
+        "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=1600",
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600",
+    ]
 
-# Ensure minimum 5 images for CSS 5-stage keyframes
+# Ensure at least 5 images exist for keyframe transitions
 while len(BACKGROUND_IMAGES) < 5:
     BACKGROUND_IMAGES.append(BACKGROUND_IMAGES[0])
 
 # ==========================================================
-# PART 2: BACKGROUND SLIDESHOW CSS
+# PART 2: STYLED CSS FOR HIGH VISIBILITY OVER SLIDESHOW
 # ==========================================================
 
 css = f"""
+/* Fix main page viewport */
 .gradio-container {{
     min-height: 100vh !important;
     width: 100% !important;
     background: transparent !important;
+    padding: 20px !important;
 }}
 
+/* Fixed Background Slideshow Animation */
 .gradio-container::before {{
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: -1;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    animation: backgroundChange 120s infinite;
+    animation: backgroundChange 25s infinite ease-in-out;
+    filter: brightness(0.55); /* Darkened slightly to boost foreground text readability */
 }}
 
 @keyframes backgroundChange {{
-    0%, 100% {{ background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("{BACKGROUND_IMAGES[0]}"); }}
-    20% {{ background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("{BACKGROUND_IMAGES[1]}"); }}
-    40% {{ background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("{BACKGROUND_IMAGES[2]}"); }}
-    60% {{ background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("{BACKGROUND_IMAGES[3]}"); }}
-    80% {{ background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("{BACKGROUND_IMAGES[4]}"); }}
+    0%, 100% {{ background-image: url("{BACKGROUND_IMAGES[0]}"); }}
+    20% {{ background-image: url("{BACKGROUND_IMAGES[1]}"); }}
+    40% {{ background-image: url("{BACKGROUND_IMAGES[2]}"); }}
+    60% {{ background-image: url("{BACKGROUND_IMAGES[3]}"); }}
+    80% {{ background-image: url("{BACKGROUND_IMAGES[4]}"); }}
 }}
 
-.block, .panel, .form, fieldset {{
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+/* Frosted Glass Panels for Form Groups */
+.gradio-group {{
+    background: rgba(15, 23, 42, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    margin-top: 15px !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
 }}
 
-h1, h2, h3, p, label, span {{
-    color: white !important;
-    text-shadow: 2px 2px 8px black !important;
+/* Header & Label Text Readability Enhancement */
+h1, h2, h3, h4, p, span {{
+    color: #ffffff !important;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9) !important;
 }}
 
-button {{
-    background: linear-gradient(135deg, #00c853, #00e676) !important;
-    color: white !important;
-    font-weight: bold !important;
-    border-radius: 15px !important;
+label span {{
+    color: #f8fafc !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9) !important;
 }}
 
+/* High Contrast Input Fields */
 input, textarea, select {{
-    background: rgba(255, 255, 255, 0.85) !important;
-    color: black !important;
-    border-radius: 12px !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-weight: 500 !important;
+    border: 2px solid #94a3b8 !important;
+    border-radius: 8px !important;
+}}
+
+/* Button Styling */
+button.primary {{
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4) !important;
+}}
+
+button.secondary {{
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(5px) !important;
+    font-weight: 600 !important;
 }}
 
 footer {{
@@ -121,14 +153,13 @@ footer {{
 """
 
 # ==========================================================
-# PART 5: PREPROCESSING & PREDICTION
+# PART 3: PREPROCESSING & PREDICTION
 # ==========================================================
 
 
 def preprocess_input(df):
     df = df.copy()
 
-    # Fixed Dictionary Mappings
     yes_no_map = {"Yes": 1, "No": 0}
     if "Hostel" in df.columns:
         df["Hostel"] = df["Hostel"].map(yes_no_map)
@@ -147,20 +178,16 @@ def preprocess_input(df):
     if "Documents" in df.columns:
         df["Documents"] = df["Documents"].map(document_map)
 
-    # Convert remaining non-numeric columns using hash-based encoding or numeric conversion
     for col in df.columns:
         if df[col].dtype == "object":
-            # Simple numeric hash fallback to avoid all strings becoming 0
             df[col] = df[col].apply(
                 lambda x: abs(hash(str(x))) % 1000 if pd.notna(x) else 0
             )
 
     df = df.fillna(0)
 
-    # Align columns with model feature names if available
     if model is not None and hasattr(model, "feature_names_in_"):
         expected_cols = model.feature_names_in_
-        # Reorder and add any missing expected columns
         for col in expected_cols:
             if col not in df.columns:
                 df[col] = 0
@@ -172,12 +199,11 @@ def preprocess_input(df):
 def predict_admission(data):
     try:
         if model is None:
-            return "❌ Model not loaded", 0
+            return "❌ Model file not found.", 0
 
         processed_data = preprocess_input(data)
         prediction = model.predict(processed_data)[0]
 
-        # Get probability safely
         if hasattr(model, "predict_proba"):
             probs = model.predict_proba(processed_data)[0]
             probability = (
@@ -190,10 +216,10 @@ def predict_admission(data):
 
         if prediction == 1:
             message = (
-                f"🎉 Admission Approved\n\nProbability: {probability}%"
+                f"🎉 Admission Approved!\n\nEstimated Probability: {probability}%"
             )
         else:
-            message = f"❌ Admission Not Approved\n\nProbability: {probability}%"
+            message = f"❌ Admission Not Approved.\n\nEstimated Probability: {probability}%"
 
         return message, probability
 
@@ -263,40 +289,35 @@ def final_prediction(
     return predict_admission(input_data)
 
 
-def toggle_section(current_state):
-    return gr.update(visible=not current_state)
-
-
 # ==========================================================
-# PART 3 & 4: GRADIO INTERFACE
+# PART 4: GRADIO USER INTERFACE
 # ==========================================================
 
 with gr.Blocks(css=css, title="AI College Admission Approval System") as demo:
 
     gr.HTML(
         """
-        <div id="title" style="text-align: center; margin-bottom: 20px;">
-            <h1 style="font-size: 32px;">🎓 AI College Admission Approval System</h1>
-            <span style="font-size: 22px;">Smart AI Based College Admission Prediction</span><br>
-            <span style="font-size: 16px;">Developed by Manya</span>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <h1 style="font-size: 34px; font-weight: 800;">🎓 AI College Admission Approval System</h1>
+            <p style="font-size: 18px; color: #e2e8f0;">Smart AI-Based College Admission Prediction Platform</p>
         </div>
         """
     )
 
-    gr.Markdown("### 👇 Click the sections below to enter student details")
+    gr.Markdown("### 👇 Click the sections below to open and edit student details")
 
-    # SECTION BUTTONS
+    # SECTION NAVIGATION BUTTONS
     with gr.Row():
-        academic_btn = gr.Button("📚 Academic Details")
-        entrance_btn = gr.Button("🎯 Entrance Exam")
-        college_btn = gr.Button("🏫 College Preference")
+        academic_btn = gr.Button("📚 Academic Details", variant="secondary")
+        entrance_btn = gr.Button("🎯 Entrance Exam", variant="secondary")
+        college_btn = gr.Button("🏫 College Preference", variant="secondary")
 
     with gr.Row():
-        verification_btn = gr.Button("✅ Verification")
-        scholarship_btn = gr.Button("💰 Scholarship")
+        verification_btn = gr.Button("✅ Verification", variant="secondary")
+        scholarship_btn = gr.Button("💰 Scholarship", variant="secondary")
 
-    # SECTIONS WITH TOGGLES
-    with gr.Group(visible=False) as academic_section:
+    # SECTION 1: ACADEMICS
+    with gr.Group(visible=True) as academic_section:
         gr.Markdown("## 📚 Academic Details")
         with gr.Row():
             Age = gr.Number(label="Age", value=18)
@@ -305,17 +326,18 @@ with gr.Blocks(css=css, title="AI College Admission Approval System") as demo:
                 label="Category",
                 value="General",
             )
-            Family_Income = gr.Number(label="Family Income", value=500000)
+            Family_Income = gr.Number(label="Family Income (₹)", value=500000)
         with gr.Row():
-            Class10 = gr.Number(label="Class 10 Percentage", value=85)
-            Class12 = gr.Number(label="Class 12 Percentage", value=85)
-            PCM = gr.Number(label="PCM Percentage", value=85)
+            Class10 = gr.Number(label="Class 10 Percentage (%)", value=85)
+            Class12 = gr.Number(label="Class 12 Percentage (%)", value=85)
+            PCM = gr.Number(label="PCM Percentage (%)", value=85)
         with gr.Row():
             Graduation = gr.Textbox(
                 label="Previous Qualification", value="High School"
             )
             Backlogs = gr.Number(label="Number of Backlogs", value=0)
 
+    # SECTION 2: ENTRANCE EXAM
     with gr.Group(visible=False) as entrance_section:
         gr.Markdown("## 🎯 Entrance Exam Details")
         with gr.Row():
@@ -326,6 +348,7 @@ with gr.Blocks(css=css, title="AI College Admission Approval System") as demo:
             Percentile = gr.Number(label="Percentile", value=95.0)
             Attempts = gr.Number(label="Number of Attempts", value=1)
 
+    # SECTION 3: COLLEGE PREFERENCE
     with gr.Group(visible=False) as college_section:
         gr.Markdown("## 🏫 College Preference Details")
         with gr.Row():
@@ -347,6 +370,7 @@ with gr.Blocks(css=css, title="AI College Admission Approval System") as demo:
             )
             Location = gr.Textbox(label="Preferred Location", value="Metro")
 
+    # SECTION 4: VERIFICATION
     with gr.Group(visible=False) as verification_section:
         gr.Markdown("## ✅ Verification Details")
         with gr.Row():
@@ -355,9 +379,14 @@ with gr.Blocks(css=css, title="AI College Admission Approval System") as demo:
                 label="Documents Status",
                 value="Verified",
             )
-            Interview_Score = gr.Number(label="Interview Score", value=8)
-            Communication = gr.Number(label="Communication Skill", value=8)
+            Interview_Score = gr.Number(
+                label="Interview Score (Out of 10)", value=8
+            )
+            Communication = gr.Number(
+                label="Communication Skill (Out of 10)", value=8
+            )
 
+    # SECTION 5: SCHOLARSHIP
     with gr.Group(visible=False) as scholarship_section:
         gr.Markdown("## 💰 Scholarship Details")
         with gr.Row():
@@ -367,40 +396,41 @@ with gr.Blocks(css=css, title="AI College Admission Approval System") as demo:
             Family_Status = gr.Textbox(
                 label="Family Status", value="Middle Class"
             )
-            Fee_Budget = gr.Number(label="Fee Budget", value=200000)
+            Fee_Budget = gr.Number(label="Fee Budget (₹)", value=200000)
 
     # OUTPUT REGION
-    gr.Markdown("## 🚀 Final Admission Prediction")
-    predict_button = gr.Button("🚀 Predict Admission", variant="primary")
+    with gr.Group():
+        gr.Markdown("## 🚀 Final Admission Prediction")
+        predict_button = gr.Button(
+            "🚀 Predict Admission Status", variant="primary"
+        )
 
-    result = gr.Textbox(label="Prediction Result", lines=3)
-    probability = gr.Slider(
-        minimum=0, maximum=100, value=0, label="📊 Admission Probability (%)"
-    )
+        result = gr.Textbox(label="Prediction Result", lines=3)
+        probability = gr.Slider(
+            minimum=0,
+            maximum=100,
+            value=0,
+            label="📊 Admission Probability (%)",
+        )
 
-    # TOGGLE EVENTS
+    # SECTION TOGGLE EVENTS
     academic_btn.click(
-        fn=lambda: gr.update(visible=True),
-        outputs=academic_section,
+        fn=lambda: gr.update(visible=True), outputs=academic_section
     )
     entrance_btn.click(
-        fn=lambda: gr.update(visible=True),
-        outputs=entrance_section,
+        fn=lambda: gr.update(visible=True), outputs=entrance_section
     )
     college_btn.click(
-        fn=lambda: gr.update(visible=True),
-        outputs=college_section,
+        fn=lambda: gr.update(visible=True), outputs=college_section
     )
     verification_btn.click(
-        fn=lambda: gr.update(visible=True),
-        outputs=verification_section,
+        fn=lambda: gr.update(visible=True), outputs=verification_section
     )
     scholarship_btn.click(
-        fn=lambda: gr.update(visible=True),
-        outputs=scholarship_section,
+        fn=lambda: gr.update(visible=True), outputs=scholarship_section
     )
 
-    # PREDICTION EVENT
+    # EXECUTE PREDICTION EVENT
     predict_button.click(
         fn=final_prediction,
         inputs=[
@@ -434,7 +464,7 @@ with gr.Blocks(css=css, title="AI College Admission Approval System") as demo:
     )
 
 # ==========================================================
-# PART 6: LAUNCH
+# PART 5: LAUNCH APP
 # ==========================================================
 
 if __name__ == "__main__":
