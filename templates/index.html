@@ -1,46 +1,22 @@
-<!-- ======================================================
- AI COLLEGE ADMISSION APPROVAL SYSTEM
- PART 2/5
- HTML FRONTEND DASHBOARD
-====================================================== -->
-
-
 <!DOCTYPE html>
 
-<html lang="en">
-
+<html>
 
 <head>
 
-
-<meta charset="UTF-8">
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <title>
-AI College Admission Approval System
+AI College Admission System
 </title>
-
-
 
 <link rel="stylesheet" href="/static/style.css">
 
-
 </head>
-
 
 
 <body>
 
 
-
 <div class="overlay">
-
-
-
-<!-- ================= HEADER ================= -->
 
 
 <div class="header">
@@ -52,91 +28,60 @@ AI College Admission Approval System
 
 
 <h2>
-Machine Learning Based Admission Prediction Platform
+Machine Learning Admission Prediction
 </h2>
 
 
 <p>
-Predict your admission chances using academic,
-entrance exam and college details.
+Developer: Manya Singla
 </p>
-
-
-
-<div class="developer">
 
 
 <h3>
-👩‍💻 Developer Details
+Student Prediction Form Loading Test
 </h3>
 
 
-<p>
-<b>Name:</b> Manya Singla
-</p>
-
-
-<p>
-<b>College:</b> Panipat Institute of Engineering and Technology
-</p>
-
-
-<p>
-<b>Technology:</b> Python | Flask | Machine Learning | Random Forest
-</p>
-
-
 </div>
 
 
 </div>
 
+ <!-- ============================= -->
+<!-- STUDENT DETAILS BUTTONS -->
+<!-- ============================= -->
 
 
+<div class="buttons">
 
 
-<!-- ================= BUTTON MENU ================= -->
-
-
-<div class="menu">
+<button onclick="showSection('basic')">
+👤 Basic Details
+</button>
 
 
 <button onclick="showSection('academic')">
-
 📚 Academic Analysis
-
 </button>
-
 
 
 <button onclick="showSection('entrance')">
-
 🎯 Entrance Analysis
-
 </button>
-
 
 
 <button onclick="showSection('college')">
-
 🏫 College Matching
-
 </button>
-
 
 
 <button onclick="showSection('verification')">
-
 ✅ Verification
-
 </button>
 
 
-
-<button onclick="showSection('scholarship')">
-
-💰 Scholarship
-
+<button onclick="showSection('extra')">
+💰 Scholarship Details
 </button>
 
 
@@ -146,25 +91,51 @@ entrance exam and college details.
 
 
 
+<!-- ============================= -->
+<!-- BASIC DETAILS -->
+<!-- ============================= -->
 
 
-<!-- ================= FORM ================= -->
+<div id="basic" class="section">
 
 
-<div class="form-container">
+<h2>
+👤 Student Basic Details
+</h2>
+
+
+<input id="Age" placeholder="Age">
+
+
+<select id="Category">
+
+<option>General</option>
+
+<option>OBC</option>
+
+<option>SC</option>
+
+<option>ST</option>
+
+</select>
+
+
+<input id="Family_Income"
+placeholder="Family Income">
+
+
+</div>
 
 
 
-<form id="admissionForm">
 
 
+<!-- ============================= -->
+<!-- ACADEMIC DETAILS -->
+<!-- ============================= -->
 
 
-
-<!-- =============== ACADEMIC ================= -->
-
-
-<div id="academic" class="section">
+<div id="academic" class="section hidden">
 
 
 <h2>
@@ -172,64 +143,16 @@ entrance exam and college details.
 </h2>
 
 
-<div class="grid">
+<input id="Class10_%"
+placeholder="Class 10 Percentage">
 
 
-
-<input 
-type="number"
-id="Age"
-placeholder="Age"
->
+<input id="Class12_%"
+placeholder="Class 12 Percentage">
 
 
-
-<select id="Category">
-
-<option>General</option>
-<option>OBC</option>
-<option>SC</option>
-<option>ST</option>
-
-</select>
-
-
-
-
-<input
-type="number"
-id="Family_Income"
-placeholder="Family Income ₹"
->
-
-
-
-
-<input
-type="number"
-id="Class10_%"
-placeholder="Class 10 Percentage"
->
-
-
-
-<input
-type="number"
-id="Class12_%"
-placeholder="Class 12 Percentage"
->
-
-
-
-<input
-type="number"
-id="PCM_%"
-placeholder="PCM Percentage"
->
-
-
-
-</div>
+<input id="PCM_%"
+placeholder="PCM Percentage">
 
 
 </div>
@@ -238,11 +161,9 @@ placeholder="PCM Percentage"
 
 
 
-
-
-
-
-<!-- =============== ENTRANCE ================= -->
+<!-- ============================= -->
+<!-- ENTRANCE DETAILS -->
+<!-- ============================= -->
 
 
 <div id="entrance" class="section hidden">
@@ -253,45 +174,20 @@ placeholder="PCM Percentage"
 </h2>
 
 
-
-<div class="grid">
-
-
-
-<input
-id="Entrance_Exam"
-placeholder="Entrance Exam Name"
->
+<input id="Entrance_Exam"
+placeholder="Entrance Exam">
 
 
+<input id="JEE_Percentile"
+placeholder="JEE Percentile">
 
 
-<input
-type="number"
-id="JEE_Percentile"
-placeholder="JEE Percentile"
->
+<input id="JEE_Rank"
+placeholder="JEE Rank">
 
 
-
-<input
-type="number"
-id="JEE_Rank"
-placeholder="JEE Rank"
->
-
-
-
-<input
-type="number"
-id="CUET_Score"
-placeholder="CUET Score"
->
-
-
-
-
-</div>
+<input id="CUET_Score"
+placeholder="CUET Score">
 
 
 </div>
@@ -300,11 +196,9 @@ placeholder="CUET Score"
 
 
 
-
-
-
-
-<!-- =============== COLLEGE ================= -->
+<!-- ============================= -->
+<!-- COLLEGE DETAILS -->
+<!-- ============================= -->
 
 
 <div id="college" class="section hidden">
@@ -315,84 +209,36 @@ placeholder="CUET Score"
 </h2>
 
 
-
-<div class="grid">
-
-
-
-<input
-id="Preferred_Branch"
-placeholder="Preferred Branch"
->
+<input id="Preferred_Branch"
+placeholder="Preferred Branch">
 
 
-
-<input
-id="Preferred_College"
-placeholder="Preferred College"
->
+<input id="Preferred_College"
+placeholder="Preferred College">
 
 
-
-<select id="College_Type">
-
-
-<option>
-Government
-</option>
+<input id="College_Type"
+placeholder="College Type">
 
 
-<option>
-Private
-</option>
+<input id="NIRF_Rank"
+placeholder="NIRF Rank">
 
 
-</select>
+<input id="College_Tier"
+placeholder="College Tier">
 
 
+<input id="Branch_Cutoff_Rank"
+placeholder="Branch Cutoff Rank">
 
 
-<input
-type="number"
-id="NIRF_Rank"
-placeholder="NIRF Rank"
->
+<input id="Available_Seats"
+placeholder="Available Seats">
 
 
-
-<input
-type="number"
-id="College_Tier"
-placeholder="College Tier"
->
-
-
-
-<input
-type="number"
-id="Branch_Cutoff_Rank"
-placeholder="Branch Cutoff Rank"
->
-
-
-
-<input
-type="number"
-id="Available_Seats"
-placeholder="Available Seats"
->
-
-
-
-
-<input
-id="Reservation_Quota"
-placeholder="Reservation Quota"
->
-
-
-
-</div>
+<input id="Reservation_Quota"
+placeholder="Reservation Quota">
 
 
 </div>
@@ -401,70 +247,33 @@ placeholder="Reservation Quota"
 
 
 
-
-
-
-
-<!-- =============== VERIFICATION ================= -->
+<!-- ============================= -->
+<!-- VERIFICATION DETAILS -->
+<!-- ============================= -->
 
 
 <div id="verification" class="section hidden">
 
 
 <h2>
-✅ Verification & Interview Details
+✅ Verification Details
 </h2>
 
 
-
-<div class="grid">
-
-
-
-<select id="Documents_Verified">
+<input id="Documents_Verified"
+placeholder="Documents Verified">
 
 
-<option>
-Yes
-</option>
+<input id="Interview_Score"
+placeholder="Interview Score">
 
 
-<option>
-No
-</option>
+<input id="Communication_Score"
+placeholder="Communication Score">
 
 
-</select>
-
-
-
-
-<input
-type="number"
-id="Interview_Score"
-placeholder="Interview Score"
->
-
-
-
-
-<input
-type="number"
-id="Communication_Score"
-placeholder="Communication Score"
->
-
-
-
-<input
-type="number"
-id="Aptitude_Score"
-placeholder="Aptitude Score"
->
-
-
-
-</div>
+<input id="Aptitude_Score"
+placeholder="Aptitude Score">
 
 
 </div>
@@ -473,100 +282,37 @@ placeholder="Aptitude Score"
 
 
 
+<!-- ============================= -->
+<!-- EXTRA DETAILS -->
+<!-- ============================= -->
 
 
-
-
-<!-- =============== SCHOLARSHIP ================= -->
-
-
-<div id="scholarship" class="section hidden">
+<div id="extra" class="section hidden">
 
 
 <h2>
-💰 Scholarship & Additional Details
+💰 Scholarship Details
 </h2>
 
 
-
-<div class="grid">
-
-
-
-<select id="Scholarship_Applied">
+<input id="Scholarship_Applied"
+placeholder="Scholarship Applied">
 
 
-<option>
-Yes
-</option>
+<input id="Scholarship_Eligibility"
+placeholder="Scholarship Eligibility">
 
 
-<option>
-No
-</option>
+<input id="Hostel_Required"
+placeholder="Hostel Required">
 
 
-</select>
+<input id="Admission_Probability"
+placeholder="Previous Admission Probability">
 
 
-
-
-
-<select id="Scholarship_Eligibility">
-
-
-<option>
-Yes
-</option>
-
-
-<option>
-No
-</option>
-
-
-</select>
-
-
-
-
-
-<select id="Hostel_Required">
-
-
-<option>
-Yes
-</option>
-
-
-<option>
-No
-</option>
-
-
-</select>
-
-
-
-
-<input
-type="number"
-id="Admission_Probability"
-placeholder="Previous Admission Probability"
->
-
-
-
-
-<input
-type="number"
-id="Tuition_Fee"
-placeholder="Tuition Fee ₹"
->
-
-
-
-</div>
+<input id="Tuition_Fee"
+placeholder="Tuition Fee">
 
 
 </div>
@@ -575,16 +321,7 @@ placeholder="Tuition Fee ₹"
 
 
 
-
-
-
-<!-- ================= PREDICT BUTTON ================= -->
-
-
-<button 
-type="button"
-class="predict-btn"
-onclick="predictAdmission()">
+<button onclick="predictAdmission()">
 
 🚀 Predict Admission
 
@@ -592,59 +329,15 @@ onclick="predictAdmission()">
 
 
 
-
-
-
-</form>
-
-
+<div id="result">
 
 </div>
-
-
-
-
-
-
-
-
-<!-- ================= RESULT ================= -->
-
-
-<div class="result-box">
-
-
-<h2>
-🎓 Prediction Result
-</h2>
-
-
-
-<p id="result">
-
-Fill all details and click predict.
-
-</p>
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
 
 
 
 <script src="/static/script.js"></script>
 
 
-
 </body>
-
 
 </html>
