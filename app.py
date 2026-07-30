@@ -125,8 +125,7 @@ def predict():
                 "message": "college_admission_approval.pkl not found"
             })
 
-        data = request.get_json()
-
+        data = request.get_json(force=True)
         input_data = pd.DataFrame([{
 
             "Age": float(data.get("Age", 0)),
@@ -268,18 +267,43 @@ def predict():
             result = "🎓 ADMISSION APPROVED"
             message = "Congratulations! The student is eligible for admission."
 
+                prediction = model.predict(input_data)[0]
+
+        if hasattr(model, "predict_proba"):
+            probability = round(
+                max(model.predict_proba(input_data)[0]) * 100,
+                2
+            )
+        else:
+            probability = 0
+
+        if str(prediction).lower() in [
+            "1",
+            "approved",
+            "yes",
+            "true"
+        ]:
+
+            result = "🎓 ADMISSION APPROVED"
+            message = "Congratulations! The student is eligible for admission."
+
         else:
 
             result = "❌ ADMISSION REJECTED"
             message = "Sorry! The student is not eligible for admission."
-                    return jsonify({
 
+        return jsonify({
             "status": result,
-
             "message": message,
-
             "probability": probability
+        })
 
+    except Exception as e:
+
+        return jsonify({
+            "status": "Prediction Error",
+            "message": str(e),
+            "probability": 0
         })
 
     except Exception as e:
