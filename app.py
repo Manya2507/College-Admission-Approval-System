@@ -20,7 +20,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 
-app = Flask(__name__)
+
 
 # ==========================================================
 # CATEGORY MAPPINGS
@@ -279,40 +279,28 @@ def predict():
 
         if str(prediction).lower() in [
 
-            "1",
+    "1",
+    "yes",
+    "approved",
+    "true"
 
-            "yes",
+]:
 
-            "approved",
+    result = "ADMISSION APPROVED"
+    message = "Student has high admission possibility"
 
-            "true"
+else:
 
-        ]:
-
-
-            result = "ADMISSION APPROVED"
-
-            message = "Student has high admission possibility"
-
-
-
-        else:
+    result = "ADMISSION NOT APPROVED"
+    message = "Student has low admission possibility"
 
 
-            result = "ADMISSION NOT APPROVED"
+return jsonify({
 
-            message = "Student has low admission possibility"
+    "status": result,
+    "message": message
 
-
-
-
-
-
-
-    return jsonify({
-       "status": result,
-       "message": message
-    })
+})
 
 
 
