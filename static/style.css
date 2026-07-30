@@ -976,3 +976,36 @@ width:100%;
 
 
 }
+.section{
+
+margin:30px;
+
+padding:25px;
+
+background:rgba(0,0,0,0.45);
+
+border-radius:20px;
+
+color:white;
+
+}
+
+
+.hidden{
+
+display:none;
+
+}
+
+
+.buttons{
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
