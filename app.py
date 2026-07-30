@@ -309,10 +309,10 @@ def predict():
 
 
 
-       return jsonify({
-    "status": result,
-    "message": message
-})
+    return jsonify({
+       "status": result,
+       "message": message
+    })
 
 
 
