@@ -285,17 +285,17 @@ background-size:
 
 
 
-.overlay{
+.overlay {
 
+    position: relative;
 
-    width:100%;
+    z-index: 10;
 
+    min-height: 100vh;
 
-    min-height:100vh;
+    width: 100%;
 
-
-    padding:30px;
-
+    padding: 30px;
 
 }
 
@@ -312,14 +312,17 @@ background-size:
 
 
 
-.header{
+.header {
 
+    position:relative;
+
+    z-index:20;
 
     text-align:center;
 
+    padding:30px;
 
-    padding:25px;
-
+    color:white;
 
 }
 
@@ -386,20 +389,35 @@ background-size:
 
 
 
-.developer{
+.developer {
 
 
-    margin-top:20px;
+    margin-top:25px;
 
 
-    font-size:18px;
+    padding:20px;
 
 
-    line-height:1.8;
+    border-radius:20px;
+
+
+    background:
+
+    rgba(0,0,0,0.45);
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.5);
+
+
+    backdrop-filter:blur(8px);
+
+
+    color:white;
 
 
 }
-
 
 
 
