@@ -960,9 +960,14 @@ width:100%;
 
 }
 .result-title{
-    margin-bottom:5px;
+    margin:0 0 8px 0;
+    font-size:40px;
+    color:#00ffcc;
 }
 
 .result-message{
-    margin-top:0;
+    margin:0;
+    font-size:24px;
+    color:white;
+    line-height:1.4;
 }
