@@ -87,7 +87,7 @@ body::before{
 
     background-repeat:no-repeat;
  
-    filter: brightness(1.15) contrast(1.15) saturate(1.2);
+    
 
 
 
@@ -256,7 +256,7 @@ background-size:100%;
 
 to{
 
-background-size:105%;
+background-size:115%;
 
 }
 
