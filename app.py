@@ -339,24 +339,11 @@ else:
 
         return jsonify({
 
+    "status": "❌ Prediction Error",
 
-            "status":
+    "message": str(e)
 
-            "❌ Prediction Error",
-
-
-            "message":
-
-            str(e),
-
-
-            "probability":
-
-            0
-
-
-        })
-
+})
 
 
 
