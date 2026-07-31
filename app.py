@@ -295,62 +295,31 @@ def predict():
 
         if str(prediction).lower() in [
 
+    "approved",
 
-            "approved",
+    "yes",
 
-            "yes",
+    "1"
 
-            "1"
+]:
 
+    result = {
 
-        ]:
+        "status": "🎉 ADMISSION APPROVED",
 
+        "message": "Congratulations! The student is eligible for admission."
 
+    }
 
-            result = {
+else:
 
-                "status":
+    result = {
 
-                "🎉 ADMISSION APPROVED",
+        "status": "❌ ADMISSION NOT APPROVED",
 
+        "message": "Sorry! The student is not eligible for admission."
 
-                "message":
-
-                "High chance of admission",
-
-
-                "probability":
-
-                probability
-
-            }
-
-
-
-        else:
-
-
-
-            result = {
-
-
-                "status":
-
-                "❌ ADMISSION NOT APPROVED",
-
-
-                "message":
-
-                "Low chance of admission",
-
-
-                "probability":
-
-                probability
-
-
-            }
-
+    }
 
 
 
