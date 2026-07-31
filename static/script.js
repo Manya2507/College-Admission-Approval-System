@@ -286,46 +286,17 @@ function predictAdmission(){
 
     .then(data => {
 
+    resultBox.innerHTML = `
 
-
-        resultBox.innerHTML = `
-
-
-
-        <h2>
-
-        ${data.status}
-
-        </h2>
-
-
-
-        <br>
-
-
-        📊 Admission Probability:
-
-        <b>
-
-        ${data.probability}%
-
-        </b>
-
+        <h2>${data.status}</h2>
 
         <br><br>
 
+        <p>${data.message}</p>
 
+    `;
 
-        ${data.message}
-
-
-
-        `;
-
-
-
-    })
-
+})
 
 
     .catch(error => {
