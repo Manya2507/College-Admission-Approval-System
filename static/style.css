@@ -661,15 +661,10 @@ background-size:
 
 
 .grid{
-
     display:grid;
-
     grid-template-columns:repeat(3,1fr);
-
-    column-gap:15px;
-
-    row-gap:10px;
-
+    gap:12px;
+    margin-top:10px;
 }
 
 
