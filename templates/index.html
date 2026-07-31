@@ -83,6 +83,10 @@ Student Prediction Form Loading Test
 <button onclick="showSection('extra')">
 💰 Scholarship Details
 </button>
+ 
+<button onclick="showSection('others')">
+📌 Others
+</button>
 
 
 </div>
@@ -329,27 +333,31 @@ Student Prediction Form Loading Test
 <!-- SCHOLARSHIP DETAILS -->
 <!-- ============================= -->
 
-<div id="extra" class="section hidden">
+<div class="form-group">
+    <label>Scholarship Applied</label>
+    <select id="Scholarship_Applied">
+        <option>Yes</option>
+        <option>No</option>
+    </select>
+</div>
 
-    <h2>💰 Scholarship Details</h2>
+<div class="form-group">
+    <label>Scholarship Eligibility</label>
+    <select id="Scholarship_Eligibility">
+        <option>Eligible</option>
+        <option>Not Eligible</option>
+    </select>
+</div>
+
+ <!-- ============================= -->
+<!-- OTHERS -->
+<!-- ============================= -->
+
+<div id="others" class="section hidden">
+
+    <h2>📌 Other Details</h2>
 
     <div class="grid">
-
-        <div class="form-group">
-            <label>Scholarship Applied</label>
-            <select id="Scholarship_Applied">
-                <option>Yes</option>
-                <option>No</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>Scholarship Eligibility</label>
-            <select id="Scholarship_Eligibility">
-                <option>Eligible</option>
-                <option>Not Eligible</option>
-            </select>
-        </div>
 
         <div class="form-group">
             <label>Hostel Required</label>
@@ -361,18 +369,19 @@ Student Prediction Form Loading Test
 
         <div class="form-group">
             <label>Admission Probability</label>
-            <input id="Admission_Probability" placeholder="Enter Admission Probability">
+            <input id="Admission_Probability"
+                   placeholder="Enter Admission Probability">
         </div>
 
         <div class="form-group">
             <label>Tuition Fee</label>
-            <input id="Tuition_Fee" placeholder="Enter Tuition Fee">
+            <input id="Tuition_Fee"
+                   placeholder="Enter Tuition Fee">
         </div>
 
     </div>
 
 </div>
-
 
 <button class="predict-btn" onclick="predictAdmission()">
     🚀 Predict Admission
