@@ -52,7 +52,7 @@ Student Prediction Form Loading Test
 <!-- ============================= -->
 
 
-<div class="buttons">
+<div class="menu">
 
 
 <button onclick="showSection('basic')">
@@ -321,18 +321,17 @@ placeholder="Tuition Fee">
 
 
 
-<button onclick="predictAdmission()">
-
-🚀 Predict Admission
-
+<button class="predict-btn" onclick="predictAdmission()">
+    🚀 Predict Admission
 </button>
 
 
 
-<div id="result">
+<div class="result-box">
+
+    <div id="result"></div>
 
 </div>
-
 
 
 <script src="/static/script.js"></script>
