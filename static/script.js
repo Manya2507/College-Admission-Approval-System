@@ -288,16 +288,13 @@ function predictAdmission(){
 
     resultBox.innerHTML = `
 
-        <h2>${data.status}</h2>
+        <h2 class="result-title">${data.status}</h2>
 
-        <br><br>
-
-        <p>${data.message}</p>
+        <p class="result-message">${data.message}</p>
 
     `;
 
 })
-
 
     .catch(error => {
 
