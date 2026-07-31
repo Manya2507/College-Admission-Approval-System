@@ -98,22 +98,34 @@ Student Prediction Form Loading Test
 
 <div id="basic" class="section">
 
-<h2>👤 Student Basic Details</h2>
+    <h2>👤 Student Basic Details</h2>
 
-<div class="grid">
+    <div class="grid">
 
-<input id="Age" placeholder="Age">
+        <div class="form-group">
+            <label>Age</label>
+            <input id="Age" placeholder="Enter Age">
+        </div>
 
-<select id="Category">
-...
-</select>
+        <div class="form-group">
+            <label>Category</label>
+            <select id="Category">
+                <option>ST</option>
+                <option>OBC</option>
+                <option>SC</option>
+                <option>EWS</option>
+                <option>General</option>
+            </select>
+        </div>
 
-<input id="Family_Income" placeholder="Family Income">
+        <div class="form-group">
+            <label>Family Income</label>
+            <input id="Family_Income" placeholder="Enter Family Income">
+        </div>
+
+    </div>
 
 </div>
-
-</div>
-
 
 
 
@@ -124,17 +136,26 @@ Student Prediction Form Loading Test
 
 <div id="academic" class="section hidden">
 
-<h2>📚 Academic Details</h2>
+    <h2>📚 Academic Details</h2>
 
-<div class="grid">
+    <div class="grid">
 
-<input id="Class10_%">
+        <div class="form-group">
+            <label>Class 10 Percentage</label>
+            <input id="Class10_%" placeholder="Enter Class 10 Percentage">
+        </div>
 
-<input id="Class12_%">
+        <div class="form-group">
+            <label>Class 12 Percentage</label>
+            <input id="Class12_%" placeholder="Enter Class 12 Percentage">
+        </div>
 
-<input id="PCM_%">
+        <div class="form-group">
+            <label>PCM Percentage</label>
+            <input id="PCM_%" placeholder="Enter PCM Percentage">
+        </div>
 
-</div>
+    </div>
 
 </div>
 
@@ -146,26 +167,27 @@ Student Prediction Form Loading Test
 <!-- ============================= -->
 
 
-<div id="entrance" class="section hidden">
-
-<h2>🎯 Entrance Exam Details</h2>
-
-<div class="grid">
-
-<select id="Entrance_Exam">
-...
-</select>
-
-<input id="JEE_Percentile">
-
-<input id="JEE_Rank">
-
-<input id="CUET_Score">
-
+<div class="form-group">
+    <label>Entrance Exam</label>
+    <select id="Entrance_Exam">
+        ...
+    </select>
 </div>
 
+<div class="form-group">
+    <label>JEE Percentile</label>
+    <input id="JEE_Percentile" placeholder="Enter JEE Percentile">
 </div>
 
+<div class="form-group">
+    <label>JEE Rank</label>
+    <input id="JEE_Rank" placeholder="Enter JEE Rank">
+</div>
+
+<div class="form-group">
+    <label>CUET Score</label>
+    <input id="CUET_Score" placeholder="Enter CUET Score">
+</div>
 
 
 
@@ -174,32 +196,45 @@ Student Prediction Form Loading Test
 <!-- ============================= -->
 
 
-<div id="college" class="section hidden">
-
-<h2>🏫 College Preference Details</h2>
-
-<div class="grid">
-
+<div class="form-group">
+<label>Preferred Branch</label>
 <select id="Preferred_Branch">...</select>
+</div>
 
+<div class="form-group">
+<label>Preferred College</label>
 <select id="Preferred_College">...</select>
+</div>
 
+<div class="form-group">
+<label>College Type</label>
 <select id="College_Type">...</select>
+</div>
 
-<input id="NIRF_Rank">
+<div class="form-group">
+<label>NIRF Rank</label>
+<input id="NIRF_Rank" placeholder="Enter NIRF Rank">
+</div>
 
+<div class="form-group">
+<label>College Tier</label>
 <select id="College_Tier">...</select>
+</div>
 
-<input id="Branch_Cutoff_Rank">
+<div class="form-group">
+<label>Branch Cutoff Rank</label>
+<input id="Branch_Cutoff_Rank" placeholder="Enter Cutoff Rank">
+</div>
 
-<input id="Available_Seats">
+<div class="form-group">
+<label>Available Seats</label>
+<input id="Available_Seats" placeholder="Enter Available Seats">
+</div>
 
+<div class="form-group">
+<label>Reservation Quota</label>
 <select id="Reservation_Quota">...</select>
-
 </div>
-
-</div>
-
 
 
 
@@ -208,26 +243,48 @@ Student Prediction Form Loading Test
 <!-- ============================= -->
 
 
+<!-- ============================= -->
+<!-- VERIFICATION DETAILS -->
+<!-- ============================= -->
+
 <div id="verification" class="section hidden">
 
-<h2>✅ Verification Details</h2>
+    <h2>✅ Verification Details</h2>
 
-<div class="grid">
+    <div class="grid">
 
-<select id="Documents_Verified">
-...
-</select>
+        <div class="form-group">
+            <label>Documents Verified</label>
+            <select id="Documents_Verified">
+                <option>No</option>
+                <option>Yes</option>
+            </select>
+        </div>
 
-<input id="Interview_Score">
+        <div class="form-group">
+            <label>Interview Score</label>
+            <input
+                id="Interview_Score"
+                placeholder="Enter Interview Score">
+        </div>
 
-<input id="Communication_Score">
+        <div class="form-group">
+            <label>Communication Score</label>
+            <input
+                id="Communication_Score"
+                placeholder="Enter Communication Score">
+        </div>
 
-<input id="Aptitude_Score">
+        <div class="form-group">
+            <label>Aptitude Score</label>
+            <input
+                id="Aptitude_Score"
+                placeholder="Enter Aptitude Score">
+        </div>
+
+    </div>
 
 </div>
-
-</div>
-
 
 
 
@@ -236,26 +293,57 @@ Student Prediction Form Loading Test
 <!-- ============================= -->
 
 
+<!-- ============================= -->
+<!-- SCHOLARSHIP DETAILS -->
+<!-- ============================= -->
+
 <div id="extra" class="section hidden">
 
-<h2>💰 Scholarship Details</h2>
+    <h2>💰 Scholarship Details</h2>
 
-<div class="grid">
+    <div class="grid">
 
-<select id="Scholarship_Applied">...</select>
+        <div class="form-group">
+            <label>Scholarship Applied</label>
+            <select id="Scholarship_Applied">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
 
-<select id="Scholarship_Eligibility">...</select>
+        <div class="form-group">
+            <label>Scholarship Eligibility</label>
+            <select id="Scholarship_Eligibility">
+                <option>Eligible</option>
+                <option>Not Eligible</option>
+            </select>
+        </div>
 
-<select id="Hostel_Required">...</select>
+        <div class="form-group">
+            <label>Hostel Required</label>
+            <select id="Hostel_Required">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
 
-<input id="Admission_Probability">
+        <div class="form-group">
+            <label>Admission Probability</label>
+            <input
+                id="Admission_Probability"
+                placeholder="Enter Admission Probability">
+        </div>
 
-<input id="Tuition_Fee">
+        <div class="form-group">
+            <label>Tuition Fee</label>
+            <input
+                id="Tuition_Fee"
+                placeholder="Enter Tuition Fee">
+        </div>
+
+    </div>
 
 </div>
-
-</div>
-
 
 
 
