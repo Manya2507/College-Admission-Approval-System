@@ -122,9 +122,9 @@ background-image:
 
 linear-gradient(
 
-rgba(0,0,40,0.65),
+rgba(0,0,40,0.20),
 
-rgba(0,0,40,0.65)
+rgba(0,0,40,0.20)
 
 ),
 
@@ -143,9 +143,9 @@ background-image:
 
 linear-gradient(
 
-rgba(0,0,40,0.65),
+rgba(0,0,40,0.20),
 
-rgba(0,0,40,0.65)
+rgba(0,0,40,0.20)
 
 ),
 
@@ -164,9 +164,9 @@ background-image:
 
 linear-gradient(
 
-rgba(0,0,40,0.65),
+rgba(0,0,40,0.20),
 
-rgba(0,0,40,0.65)
+rgba(0,0,40,0.20)
 
 ),
 
@@ -185,9 +185,9 @@ background-image:
 
 linear-gradient(
 
-rgba(0,0,40,0.65),
+rgba(0,0,40,0.20),
 
-rgba(0,0,40,0.65)
+rgba(0,0,40,0.20)
 
 ),
 
@@ -206,9 +206,9 @@ background-image:
 
 linear-gradient(
 
-rgba(0,0,40,0.65),
+rgba(0,0,40,0.20),
 
-rgba(0,0,40,0.65)
+rgba(0,0,40,0.20)
 
 ),
 
@@ -227,9 +227,9 @@ background-image:
 
 linear-gradient(
 
-rgba(0,0,40,0.65),
+rgba(0,0,40,0.20),
 
-rgba(0,0,40,0.65)
+rgba(0,0,40,0.20)
 
 ),
 
@@ -459,54 +459,32 @@ background-size:115%;
 
 .menu button{
 
+    padding:18px 35px;
 
-    padding:15px 25px;
+    border-radius:18px;
 
+    border:2px solid rgba(255,255,255,.45);
 
-    border-radius:30px;
-
-
-    border:
-
-    2px solid white;
-
-
-
-    cursor:pointer;
-
-
-
-    background:
-
-    linear-gradient(
-
-    135deg,
-
-    #00c6ff,
-
-    #0072ff
-
+    background:linear-gradient(
+        135deg,
+        rgba(70,170,255,.92),
+        rgba(111,86,255,.92)
     );
-
-
 
     color:white;
 
+    font-size:19px;
 
-    font-size:17px;
+    font-weight:700;
 
+    cursor:pointer;
 
-    font-weight:bold;
+    transition:.3s;
 
-
-
-    transition:
-
-    0.3s;
-
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.35);
 
 }
-
 
 
 
@@ -514,28 +492,15 @@ background-size:115%;
 
 .menu button:hover{
 
+    transform:translateY(-4px);
 
-    transform:
-
-    scale(1.1);
-
-
-
-    background:
-
-    linear-gradient(
-
-    135deg,
-
-    #00ff99,
-
-    #00c6ff
-
+    background:linear-gradient(
+        135deg,
+        #40e0ff,
+        #7f5cff
     );
 
-
 }
-
 
 
 
@@ -569,39 +534,21 @@ background-size:115%;
 
 .section{
 
+    background: rgba(10,18,45,0.58);
 
-    background:
+    padding:30px;
 
-    rgba(0,0,30,0.45);
+    border-radius:28px;
 
+    border:1px solid rgba(255,255,255,0.20);
 
+    backdrop-filter:blur(14px);
 
-    padding:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
 
-
-
-    border-radius:25px;
-
-
-    border:
-
-    1px solid rgba(255,255,255,0.4);
-
-
-
-    backdrop-filter:
-
-    blur(10px);
-
-
-
-    animation:
-
-    fadeIn 0.5s;
-
+    animation:fadeIn 0.5s;
 
 }
-
 
 
 
@@ -624,18 +571,18 @@ background-size:115%;
 
 .section h2{
 
+    color:#15F5FF;
 
-    color:#00ffff;
+    font-size:42px;
 
-
-    margin-bottom:20px;
-
+    margin-bottom:30px;
 
     text-align:center;
 
+    text-shadow:
+    0 0 10px rgba(0,255,255,.4);
 
 }
-
 
 
 
@@ -662,10 +609,15 @@ background-size:115%;
 }
 
 .form-group label{
-    color:#ffffff;
-    font-size:15px;
-    font-weight:600;
-    margin-bottom:6px;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
 }
 
 
@@ -677,24 +629,19 @@ select{
 
     width:100%;
 
-    padding:12px 15px;
+    padding:18px;
 
-    margin: 0;          /* Add this */
+    border-radius:16px;
 
-    border-radius:12px;
+    font-size:20px;
 
     border:none;
 
-    outline:none;
-
-    font-size:16px;
-
-    background:rgba(255,255,255,0.9);
+    background:white;
 
     color:black;
 
 }
-
 
 
 
@@ -973,97 +920,127 @@ width:100%;
     line-height:1.4;
 }
 /*==========================================
-      PIET HEADER
+        PIET HEADER
 ==========================================*/
 
 .college-header{
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
-    gap:25px;
+    gap:35px;
 
-    margin-bottom:20px;
+    margin-bottom:35px;
 
 }
 
 .college-logo{
 
-    width:110px;
-
-    height:110px;
+    width:130px;
+    height:130px;
 
     border-radius:50%;
 
     background:white;
 
-    padding:8px;
+    padding:10px;
 
-    box-shadow:0px 0px 20px rgba(255,255,255,0.6);
+    box-shadow:
+    0 0 25px rgba(255,255,255,.8);
+
+}
+
+.college-details{
+
+    text-align:center;
 
 }
 
 .college-name{
 
-    font-size:58px;
+    font-size:72px;
 
     font-weight:900;
 
-    margin:0;
+    line-height:1.05;
 
-    letter-spacing:2px;
+    text-transform:uppercase;
+
+    letter-spacing:3px;
 
     background:linear-gradient(
-        90deg,
-        #FFD700,
-        #FFF176,
-        #FFC107,
-        #FFD700
+        180deg,
+        #ffffff 0%,
+        #e6ffff 25%,
+        #8ffcff 55%,
+        #35e7ff 100%
     );
 
     -webkit-background-clip:text;
-
     -webkit-text-fill-color:transparent;
 
-    text-shadow:3px 3px 15px rgba(0,0,0,0.4);
+    text-shadow:
+        0 0 12px rgba(0,255,255,.8),
+        0 0 25px rgba(0,255,255,.5),
+        4px 4px 8px rgba(0,0,0,.9);
 
 }
 
 .college-subtitle{
 
-    margin-top:8px;
+    margin-top:15px;
 
-    font-size:24px;
+    font-size:28px;
+
+    font-weight:600;
+
+    letter-spacing:3px;
 
     color:white;
-
-    letter-spacing:2px;
 
 }
 
 .project-title{
 
-    margin-top:25px;
+    margin-top:45px;
 
-    font-size:48px;
-
-    color:#00ffff;
+    font-size:70px;
 
     font-weight:900;
 
-    text-shadow:3px 3px 12px black;
+    color:#11F3FF;
+
+    text-shadow:
+    0 0 15px rgba(0,255,255,.5),
+    5px 5px 12px black;
+
+}
+
+.project-subtitle{
+
+    margin-top:18px;
+
+    font-size:40px;
+
+    color:white;
+
+    font-weight:700;
 
 }
 
 .developer-name{
 
-    margin-top:15px;
+    margin-top:25px;
 
     font-size:24px;
 
     color:white;
+
+}
+
+.developer-name b{
+
+    color:#12F5FF;
 
 }
