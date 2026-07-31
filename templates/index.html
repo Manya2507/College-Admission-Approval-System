@@ -1,60 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+AI College Admission System
+</title>
 
-    <title>AI College Admission Approval System</title>
-
-    <link rel="stylesheet" href="/static/style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
 
 </head>
 
+
 <body>
+
 
 <div class="overlay">
 
-<!-- ===================================================== -->
-<!-- PIET HEADER -->
-<!-- ===================================================== -->
 
 <div class="header">
 
+
+<!-- ==========================
+     COLLEGE HEADER
+========================== -->
+
 <div class="college-header">
+
 
 <img src="/static/images/piet_logo.png"
 class="college-logo">
 
+
 <div>
 
 <h1 class="college-name">
-
-PANIPAT INSTITUTE OF ENGINEERING <br>
-AND TECHNOLOGY
-
+Panipat Institute Of Engineering And Technology
 </h1>
 
-<div class="location-line">
 
-<hr>
+<p class="college-subtitle">
+Samalkha, Panipat
+</p>
 
-<span>
-📍 Panipat, Haryana
-</span>
-
-<hr>
 
 </div>
 
-</div>
 
 </div>
+
+
+
+<!-- ==========================
+     PROJECT TITLE
+========================== -->
+
 
 <h2 class="project-title">
 
@@ -62,308 +63,394 @@ AND TECHNOLOGY
 
 </h2>
 
+
+
 <h3 class="project-subtitle">
 
 Machine Learning Admission Prediction
 
 </h3>
 
-<p class="developer">
 
-Developer :
-<b>Manya Singla</b>
+
+<p class="developer-name">
+
+Developer : Manya Singla
 
 </p>
 
+
+</div>
+    </div>
+
+    <h1 class="project-title">
+        🎓 AI College Admission Approval System
+    </h1>
+
+    <h2>
+        Machine Learning Admission Prediction
+    </h2>
+
+    <p class="developer-name">
+        Developer : <strong>Manya Singla</strong>
+    </p>
+
 </div>
 
-<!-- ===================================================== -->
-<!-- MENU -->
-<!-- ===================================================== -->
+</div>
+
+ <!-- ============================= -->
+<!-- STUDENT DETAILS BUTTONS -->
+<!-- ============================= -->
+
 
 <div class="menu">
+
 
 <button onclick="showSection('basic')">
 👤 Basic Details
 </button>
 
+
 <button onclick="showSection('academic')">
 📚 Academic Analysis
 </button>
+
 
 <button onclick="showSection('entrance')">
 🎯 Entrance Analysis
 </button>
 
+
 <button onclick="showSection('college')">
 🏫 College Matching
 </button>
+
 
 <button onclick="showSection('verification')">
 ✅ Verification
 </button>
 
-<button onclick="showSection('extra')">
-💰 Scholarship
-</button>
 
+<button onclick="showSection('extra')">
+💰 Scholarship Details
+</button>
+ 
 <button onclick="showSection('others')">
 📌 Others
 </button>
 
+
 </div>
 
-<!-- ===================================================== -->
+
+
+
+
+<!-- ============================= -->
 <!-- BASIC DETAILS -->
-<!-- ===================================================== -->
+<!-- ============================= -->
+
 
 <div id="basic" class="section">
 
-<div class="section-title">
+    <h2>👤 Student Basic Details</h2>
 
-<hr>
+    <div class="grid">
 
-<h2>
-👤 Student Basic Details
-</h2>
+        <div class="form-group">
+            <label>Age</label>
+            <input id="Age" placeholder="Enter Age">
+        </div>
 
-<hr>
+        <div class="form-group">
+            <label>Category</label>
+            <select id="Category">
+                <option>ST</option>
+                <option>OBC</option>
+                <option>SC</option>
+                <option>EWS</option>
+                <option>General</option>
+            </select>
+        </div>
 
-</div>
+        <div class="form-group">
+            <label>Family Income</label>
+            <input id="Family_Income" placeholder="Enter Family Income">
+        </div>
 
-<div class="grid">
-
-<div class="form-group">
-
-<label>Age</label>
-
-<input
-id="Age"
-placeholder="Enter Age">
-
-</div>
-
-<div class="form-group">
-
-<label>Category</label>
-
-<select id="Category">
-
-<option>General</option>
-<option>OBC</option>
-<option>SC</option>
-<option>ST</option>
-<option>EWS</option>
-
-</select>
+    </div>
 
 </div>
 
-<div class="form-group">
 
-<label>Family Income</label>
 
-<input
-id="Family_Income"
-placeholder="Enter Family Income">
+<!-- ============================= -->
+<!-- ACADEMIC DETAILS -->
+<!-- ============================= -->
 
-</div>
-
-</div>
-
-</div>
-
-<!-- ===================================================== -->
-<!-- ACADEMIC -->
-<!-- ===================================================== -->
 
 <div id="academic" class="section hidden">
 
-<!-- Part 2 -->
+    <h2>📚 Academic Details</h2>
+
+    <div class="grid">
+
+        <div class="form-group">
+            <label>Class 10 Percentage</label>
+            <input id="Class10_%" placeholder="Enter Class 10 Percentage">
+        </div>
+
+        <div class="form-group">
+            <label>Class 12 Percentage</label>
+            <input id="Class12_%" placeholder="Enter Class 12 Percentage">
+        </div>
+
+        <div class="form-group">
+            <label>PCM Percentage</label>
+            <input id="PCM_%" placeholder="Enter PCM Percentage">
+        </div>
+
+    </div>
 
 </div>
 
-<!-- ===================================================== -->
-<!-- ENTRANCE -->
-<!-- ===================================================== -->
+
+
+
+<!-- ============================= -->
+<!-- ENTRANCE DETAILS -->
+<!-- ============================= -->
 
 <div id="entrance" class="section hidden">
 
-<!-- Part 2 -->
+    <h2>🎯 Entrance Exam Details</h2>
+
+    <div class="grid">
+
+        <div class="form-group">
+            <label>Entrance Exam</label>
+            <select id="Entrance_Exam">
+                <option>CUET</option>
+                <option>JEE Main</option>
+                
+                
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>JEE Percentile</label>
+            <input id="JEE_Percentile" placeholder="Enter JEE Percentile">
+        </div>
+
+        <div class="form-group">
+            <label>JEE Rank</label>
+            <input id="JEE_Rank" placeholder="Enter JEE Rank">
+        </div>
+
+        <div class="form-group">
+            <label>CUET Score</label>
+            <input id="CUET_Score" placeholder="Enter CUET Score">
+        </div>
+
+    </div>
 
 </div>
 
-<!-- ===================================================== -->
-<!-- COLLEGE -->
-<!-- ===================================================== -->
+
+<!-- ============================= -->
+<!-- COLLEGE DETAILS -->
+<!-- ============================= -->
 
 <div id="college" class="section hidden">
 
-<!-- Part 2 -->
+    <h2>🏫 College Preference Details</h2>
+
+    <div class="grid">
+
+        <div class="form-group">
+            <label>Preferred Branch</label>
+            <select id="Preferred_Branch">
+                <option>AIE</option>
+                <option>Civil</option>
+                <option>Mechanical</option>
+                <option>CSE</option>
+                <option>ECE</option>
+                
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Preferred College</label>
+            <select id="Preferred_College">
+                <option>NIT Trichy</option>
+                <option>Chitkara</option>
+                <option>Thapar</option>
+                <option>IIT Delhi</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>College Type</label>
+            <select id="College_Type">
+                <option>Govt</option>
+                <option>Private</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>NIRF Rank</label>
+            <input id="NIRF_Rank" placeholder="Enter NIRF Rank">
+        </div>
+
+        <div class="form-group">
+            <label>College Tier</label>
+            <select id="College_Tier">
+                <option>Tier 1</option>
+                <option>Tier 2</option>
+                <option>Tier 3</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Branch Cutoff Rank</label>
+            <input id="Branch_Cutoff_Rank" placeholder="Enter Branch Cutoff Rank">
+        </div>
+
+        <div class="form-group">
+            <label>Available Seats</label>
+            <input id="Available_Seats" placeholder="Enter Available Seats">
+        </div>
+
+        <div class="form-group">
+            <label>Reservation Quota</label>
+            <select id="Reservation_Quota">
+                <option>SC</option>
+                <option>OBC</option>
+                <option>EWS</option>
+                <option>ST</option>
+                <option>General</option>
+            </select>
+        </div>
+
+    </div>
 
 </div>
 
-<!-- ===================================================== -->
-<!-- VERIFICATION -->
-<!-- ===================================================== -->
+
+
+
+
+<!-- ============================= -->
+<!-- VERIFICATION DETAILS -->
+<!-- ============================= -->
 
 <div id="verification" class="section hidden">
 
-<!-- Part 2 -->
+    <h2>✅ Verification Details</h2>
+
+    <div class="grid">
+
+        <div class="form-group">
+            <label>Documents Verified</label>
+            <select id="Documents_Verified">
+                <option>No</option>
+                <option>Yes</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Interview Score</label>
+            <input id="Interview_Score" placeholder="Enter Interview Score">
+        </div>
+
+        <div class="form-group">
+            <label>Communication Score</label>
+            <input id="Communication_Score" placeholder="Enter Communication Score">
+        </div>
+
+        <div class="form-group">
+            <label>Aptitude Score</label>
+            <input id="Aptitude_Score" placeholder="Enter Aptitude Score">
+        </div>
+
+    </div>
 
 </div>
 
-<!-- ===================================================== -->
-<!-- SCHOLARSHIP -->
-<!-- ===================================================== -->
+
+
+
+<!-- ============================= -->
+<!-- SCHOLARSHIP DETAILS -->
+<!-- ============================= -->
 
 <div id="extra" class="section hidden">
 
-<!-- Part 2 -->
+<h2>
+💰 Scholarship Details
+</h2>
+
+
+<div class="grid">
+
+
+<div class="form-group">
+
+<label>
+Scholarship Applied
+</label>
+
+
+<select id="Scholarship_Applied">
+
+<option>Yes</option>
+<option>No</option>
+
+</select>
+
 
 </div>
 
-<!-- ===================================================== -->
+
+
+
+<div class="form-group">
+
+<label>
+Scholarship Eligibility
+</label>
+
+
+<select id="Scholarship_Eligibility">
+
+
+<option>Eligible</option>
+
+<option>Not Eligible</option>
+
+
+</select>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+<!-- ============================= -->
 <!-- OTHERS -->
-<!-- ===================================================== -->
+<!-- ============================= -->
 
 <div id="others" class="section hidden">
 
-<!-- Part 2 -->
-
-</div>
-<!-- ===================================================== -->
-<!-- ACADEMIC DETAILS -->
-<!-- ===================================================== -->
-
-<div id="academic" class="section hidden">
-
-<div class="section-title">
-
-<hr>
 
 <h2>
-📚 Academic Details
+📌 Other Details
 </h2>
-
-<hr>
-
-</div>
-
-
-<div class="grid">
-
-
-<div class="form-group">
-
-<label>
-Class 10 Percentage
-</label>
-
-<input 
-id="Class10_Percentage"
-placeholder="Enter Class 10 Percentage">
-
-</div>
-
-
-
-<div class="form-group">
-
-<label>
-Class 12 Percentage
-</label>
-
-<input 
-id="Class12_Percentage"
-placeholder="Enter Class 12 Percentage">
-
-</div>
-
-
-
-<div class="form-group">
-
-<label>
-PCM Percentage
-</label>
-
-<input 
-id="PCM_Percentage"
-placeholder="Enter PCM Percentage">
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Previous Academic Score
-</label>
-
-<input
-id="Previous_Academic_Score"
-placeholder="Enter Score">
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Backlogs
-</label>
-
-<select id="Backlogs">
-
-<option>No</option>
-<option>Yes</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Attendance Percentage
-</label>
-
-<input
-id="Attendance_Percentage"
-placeholder="Enter Attendance">
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-
-
-<!-- ===================================================== -->
-<!-- ENTRANCE DETAILS -->
-<!-- ===================================================== -->
-
-
-<div id="entrance" class="section hidden">
-
-
-<div class="section-title">
-
-<hr>
-
-<h2>
-🎯 Entrance Exam Details
-</h2>
-
-<hr>
-
-</div>
 
 
 
@@ -373,75 +460,11 @@ placeholder="Enter Attendance">
 <div class="form-group">
 
 <label>
-Entrance Exam
+Hostel Required
 </label>
 
-<select id="Entrance_Exam">
 
-<option>JEE Main</option>
-
-<option>CUET</option>
-
-<option>None</option>
-
-</select>
-
-</div>
-
-
-
-
-<div class="form-group">
-
-<label>
-JEE Percentile
-</label>
-
-<input
-id="JEE_Percentile"
-placeholder="Enter JEE Percentile">
-
-</div>
-
-
-
-
-<div class="form-group">
-
-<label>
-JEE Rank
-</label>
-
-<input
-id="JEE_Rank"
-placeholder="Enter JEE Rank">
-
-</div>
-
-
-
-
-<div class="form-group">
-
-<label>
-CUET Score
-</label>
-
-<input
-id="CUET_Score"
-placeholder="Enter CUET Score">
-
-</div>
-
-
-
-<div class="form-group">
-
-<label>
-Entrance Qualified
-</label>
-
-<select id="Entrance_Qualified">
+<select id="Hostel_Required">
 
 <option>Yes</option>
 
@@ -449,85 +472,6 @@ Entrance Qualified
 
 </select>
 
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<!-- ===================================================== -->
-<!-- COLLEGE PREFERENCE -->
-<!-- ===================================================== -->
-
-
-<div id="college" class="section hidden">
-
-
-<div class="section-title">
-
-<hr>
-
-<h2>
-🏫 College Matching Details
-</h2>
-
-<hr>
-
-</div>
-
-
-
-<div class="grid">
-
-
-<div class="form-group">
-
-<label>
-Preferred Branch
-</label>
-
-<select id="Preferred_Branch">
-
-<option>CSE</option>
-
-<option>AIML</option>
-
-<option>ECE</option>
-
-<option>Mechanical</option>
-
-<option>Civil</option>
-
-</select>
-
-</div>
-
-
-
-<div class="form-group">
-
-<label>
-Preferred College
-</label>
-
-<select id="Preferred_College">
-
-<option>PIET</option>
-
-<option>NIT</option>
-
-<option>IIT</option>
-
-<option>Private College</option>
-
-</select>
 
 </div>
 
@@ -537,18 +481,16 @@ Preferred College
 <div class="form-group">
 
 <label>
-College Type
+Admission Probability
 </label>
 
-<select id="College_Type">
 
-<option>Private</option>
+<input id="Admission_Probability"
+placeholder="Enter Admission Probability">
 
-<option>Government</option>
-
-</select>
 
 </div>
+
 
 
 
@@ -556,123 +498,37 @@ College Type
 <div class="form-group">
 
 <label>
-NIRF Rank
+Tuition Fee
 </label>
 
-<input
-id="NIRF_Rank"
-placeholder="Enter NIRF Rank">
+
+<input id="Tuition_Fee"
+placeholder="Enter Tuition Fee">
+
 
 </div>
 
-
-
-
-<div class="form-group">
-
-<label>
-College Tier
-</label>
-
-<select id="College_Tier">
-
-<option>Tier 1</option>
-
-<option>Tier 2</option>
-
-<option>Tier 3</option>
-
-</select>
-
-</div>
-
-
-
-
-<div class="form-group">
-
-<label>
-Available Seats
-</label>
-
-<input
-id="Available_Seats"
-placeholder="Enter Available Seats">
-
-</div>
-
-
-
-<div class="form-group">
-
-<label>
-Branch Cutoff Rank
-</label>
-
-<input
-id="Branch_Cutoff_Rank"
-placeholder="Enter Cutoff Rank">
-
-</div>
-
-
-
-<div class="form-group">
-
-<label>
-Reservation Quota
-</label>
-
-<select id="Reservation_Quota">
-
-<option>General</option>
-
-<option>OBC</option>
-
-<option>SC</option>
-
-<option>ST</option>
-
-<option>EWS</option>
-
-</select>
-
-</div>
 
 
 </div>
 
 
 </div>
-<!-- ===================================================== -->
-<!-- PREDICT BUTTON -->
-<!-- ===================================================== -->
-
-<div class="predict-container">
-
-<button
-class="predict-btn"
-onclick="predictAdmission()">
-
-🚀 Predict Admission
-
+<button class="predict-btn" onclick="predictAdmission()">
+    🚀 Predict Admission
 </button>
 
-</div>
 
-<!-- ===================================================== -->
-<!-- RESULT -->
-<!-- ===================================================== -->
 
 <div class="result-box">
 
-<div id="result"></div>
+    <div id="result"></div>
 
 </div>
 
-</div>
 
 <script src="/static/script.js"></script>
+
 
 </body>
 
