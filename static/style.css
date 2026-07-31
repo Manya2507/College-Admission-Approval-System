@@ -959,3 +959,10 @@ width:100%;
 
 
 }
+.result-title{
+    margin-bottom:5px;
+}
+
+.result-message{
+    margin-top:0;
+}
