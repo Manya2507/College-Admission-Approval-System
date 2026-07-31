@@ -294,36 +294,20 @@ def predict():
 
 
         if str(prediction).lower() in [
+            "approved",
+            "yes",
+            "1"
+        ]:
+            result = {
+                "status": "🎉 ADMISSION APPROVED",
+                "message": "Congratulations! The student is eligible for admission."
+            }
 
-    "approved",
-
-    "yes",
-
-    "1"
-
-]:
-
-    result = {
-
-        "status": "🎉 ADMISSION APPROVED",
-
-        "message": "Congratulations! The student is eligible for admission."
-
-    }
-
-else:
-
-    result = {
-
-        "status": "❌ ADMISSION NOT APPROVED",
-
-        "message": "Sorry! The student is not eligible for admission."
-
-    }
-
-
-
-
+        else:
+            result = {
+                "status": "❌ ADMISSION NOT APPROVED",
+                "message": "Sorry! The student is not eligible for admission."
+            }
 
         return jsonify(result)
 
@@ -332,18 +316,11 @@ else:
 
 
 
-
     except Exception as e:
-
-
-
         return jsonify({
-
-    "status": "❌ Prediction Error",
-
-    "message": str(e)
-
-})
+            "status": "❌ Prediction Error",
+            "message": str(e)
+        })
 
 
 
