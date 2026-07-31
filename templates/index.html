@@ -109,13 +109,14 @@ Student Prediction Form Loading Test
 
 <select id="Category">
 
-<option>General</option>
+<option>ST</option>
 
 <option>OBC</option>
-
 <option>SC</option>
 
-<option>ST</option>
+<option>EWS</option>
+
+<option>General</option>
 
 </select>
 
@@ -174,8 +175,10 @@ placeholder="PCM Percentage">
 </h2>
 
 
-<input id="Entrance_Exam"
-placeholder="Entrance Exam">
+<select id="Entrance_Exam">
+    <option>CUET</option>
+    <option>JEE MAIN</option>
+</select>
 
 
 <input id="JEE_Percentile"
@@ -209,24 +212,37 @@ placeholder="CUET Score">
 </h2>
 
 
-<input id="Preferred_Branch"
-placeholder="Preferred Branch">
+<select id="Preferred_Branch">
+    <option>AI</option>
+    <option>CIVIL</option>
+    <option>Mechanical</option>
+    <option>CSE</option>
+    <option>ECE</option>
+</select>
+
+<select id="Preferred_College">
+    <option>NIT Trichy</option>
+    <option>Chitkara</option>
+    <option>Thapar</option>
+    <option>IIT Delhi</option>
+</select>
 
 
-<input id="Preferred_College"
-placeholder="Preferred College">
-
-
-<input id="College_Type"
-placeholder="College Type">
+<select id="College_Type">
+    <option>Govt</option>
+    <option>Private</option>
+</select>
 
 
 <input id="NIRF_Rank"
 placeholder="NIRF Rank">
 
 
-<input id="College_Tier"
-placeholder="College Tier">
+<select id="College_Tier">
+    <option>Tier 1</option>
+    <option>Tier 2</option>
+    <option>Tier 3</option>
+</select>
 
 
 <input id="Branch_Cutoff_Rank"
@@ -237,9 +253,13 @@ placeholder="Branch Cutoff Rank">
 placeholder="Available Seats">
 
 
-<input id="Reservation_Quota"
-placeholder="Reservation Quota">
-
+<select id="Reservation_Quota">
+    <option>SC</option>
+    <option>OBC</option>
+    <option>EWS</option>
+    <option>ST</option>
+    <option>General</option>
+</select>
 
 </div>
 
@@ -260,9 +280,10 @@ placeholder="Reservation Quota">
 </h2>
 
 
-<input id="Documents_Verified"
-placeholder="Documents Verified">
-
+<select id="Documents_Verified">
+    <option>No</option>
+    <option>Yes</option>
+</select>
 
 <input id="Interview_Score"
 placeholder="Interview Score">
@@ -295,16 +316,21 @@ placeholder="Aptitude Score">
 </h2>
 
 
-<input id="Scholarship_Applied"
-placeholder="Scholarship Applied">
+<select id="Scholarship_Applied">
+    <option>Yes</option>
+    <option>No</option>
+</select>
 
 
-<input id="Scholarship_Eligibility"
-placeholder="Scholarship Eligibility">
+<select id="Scholarship_Eligibility">
+    <option>Eligible</option>
+    <option>Not Eligible</option>
+</select>
 
-
-<input id="Hostel_Required"
-placeholder="Hostel Required">
+<select id="Hostel_Required">
+    <option>Yes</option>
+    <option>No</option>
+</select>
 
 
 <input id="Admission_Probability"
