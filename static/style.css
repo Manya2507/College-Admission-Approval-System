@@ -663,8 +663,20 @@ background-size:
 .grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:10px;
+    column-gap:20px;
+    row-gap:15px;
+    margin-top:15px;
+}
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    color:#ffffff;
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:6px;
 }
 
 
@@ -678,7 +690,7 @@ select{
 
     padding:12px 15px;
 
-    margin:8px 0;          /* Add this */
+    margin: 0;          /* Add this */
 
     border-radius:12px;
 
