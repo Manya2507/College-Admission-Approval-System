@@ -334,7 +334,7 @@ function predictAdmission(){
 window.onload=function(){
 
 
-    showSection("academic");
+    showSection("basic");
 
 
 };
