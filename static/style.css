@@ -1283,3 +1283,57 @@ translateY(0);
 
 
 }
+/* =========================================
+      COLLEGE DIVIDER
+========================================= */
+
+.college-divider{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:10px;
+
+    color:white;
+
+    font-size:22px;
+
+}
+
+.college-divider span{
+
+    width:160px;
+
+    height:2px;
+
+    background:rgba(255,255,255,.75);
+
+}
+
+
+
+/* =========================================
+      LOCATION
+========================================= */
+
+.college-location{
+
+    margin-top:12px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#F8FCFF;
+
+    letter-spacing:1px;
+
+    text-shadow:
+        0 0 10px rgba(0,255,255,.4);
+
+}
