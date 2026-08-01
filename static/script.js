@@ -283,14 +283,42 @@ function predictAdmission(){
 
 
 
-    .then(data => {
+   .then(data => {
+
+    let title = "";
+    let message = "";
+    let icon = "";
+
+    // Approved
+    if (data.status.toLowerCase().includes("approved")) {
+
+        icon = "✅";
+        title = "ADMISSION APPROVED";
+        message = "Congratulations! The student is eligible for admission.";
+
+    }
+
+    // Waitlisted
+    else if (data.status.toLowerCase().includes("wait")) {
+
+        icon = "⏳";
+        title = "ADMISSION WAITLISTED";
+        message = "The student has been waitlisted for admission.";
+
+    }
+
+    // Rejected
+    else {
+
+        icon = "❌";
+        title = "ADMISSION NOT APPROVED";
+        message = "Sorry! The student is not eligible for admission.";
+
+    }
 
     resultBox.innerHTML = `
-
-        <h2 class="result-title">${data.status}</h2>
-
-        <p class="result-message">${data.message}</p>
-
+        <h2 class="result-title">${icon} ${title}</h2>
+        <p class="result-message">${message}</p>
     `;
 
 })
