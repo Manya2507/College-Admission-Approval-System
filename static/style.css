@@ -1143,111 +1143,77 @@ margin-bottom:30px;
 
 .college-logo{
 
+    width:120px;
 
-width:130px;
+    height:120px;
 
+    background:white;
 
-height:130px;
+    padding:8px;
 
+    border-radius:50%;
 
-object-fit:contain;
-
-
-background:white;
-
-
-padding:10px;
-
-
-border-radius:50%;
-
-
-
-box-shadow:
-
-0px 0px 30px white;
-
-
+    box-shadow:
+    0 0 15px white,
+    0 0 25px cyan;
 
 }
-
 
 
 
 .college-name{
 
+    font-size:58px;
 
-font-size:58px;
+    font-weight:900;
 
+    letter-spacing:3px;
 
-font-weight:900;
+    color:#FFFFFF;
 
+    text-transform:uppercase;
 
-letter-spacing:3px;
-
-
-
-color:#b8f4ff;
-
-
-
-text-shadow:
-
-
-3px 3px 15px black;
-
+    text-shadow:
+    0 0 8px #39E5FF,
+    0 0 18px #39E5FF,
+    0 0 30px rgba(57,229,255,.7),
+    3px 3px 12px black;
 
 }
-
 
 
 
 .college-subtitle{
 
+    font-size:22px;
 
-font-size:24px;
+    font-weight:600;
 
+    color:white;
 
-font-weight:600;
+    margin-top:10px;
 
-
-color:white;
-
-
-letter-spacing:2px;
-
-
-margin-top:10px;
-
+    text-shadow:
+    0 0 8px rgba(57,229,255,.4);
 
 }
-
 
 
 .project-title{
 
+    margin-top:35px;
 
-font-size:50px;
+    font-size:54px;
 
+    font-weight:900;
 
-font-weight:900;
+    color:#15F5FF;
 
-
-margin-top:20px;
-
-
-
-color:#00ffff;
-
-
-
-text-shadow:
-
-3px 3px 15px black;
-
+    text-shadow:
+    0 0 10px cyan,
+    3px 3px 10px black;
 
 }
-
 
 .project-subtitle{
 
@@ -1265,24 +1231,23 @@ margin-top:10px;
 
 .developer-name{
 
+    margin-top:18px;
 
-font-size:22px;
+    font-size:21px;
 
-margin-top:15px;
+    color:white;
 
-
-color:white;
-
-
-}
-.section{
-
-animation:
-
-slide .5s ease;
+    font-weight:500;
 
 }
 
+.developer-name span{
+
+    color:#15F5FF;
+
+    font-weight:700;
+
+}
 
 
 @keyframes slide{
