@@ -1185,19 +1185,38 @@ margin-bottom:30px;
 
 .college-subtitle{
 
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:12px;
+
     font-size:22px;
 
     font-weight:600;
 
-    color:white;
+    color:#F6F9FC;
 
-    margin-top:10px;
-
-    text-shadow:
-    0 0 8px rgba(57,229,255,.4);
+    letter-spacing:2px;
 
 }
 
+.college-subtitle::before,
+.college-subtitle::after{
+
+    content:"";
+
+    width:140px;
+
+    height:2px;
+
+    background:rgba(255,255,255,.8);
+
+}
 
 .project-title{
 
@@ -1231,24 +1250,25 @@ margin-top:10px;
 
 .developer-name{
 
-    margin-top:18px;
+    margin-top:28px;
 
-    font-size:21px;
+    font-size:23px;
+
+    font-weight:500;
 
     color:white;
 
-    font-weight:500;
+    letter-spacing:1px;
 
 }
 
 .developer-name span{
 
-    color:#15F5FF;
+    color:#58F6FF;
 
-    font-weight:700;
+    font-weight:800;
 
 }
-
 
 @keyframes slide{
 
