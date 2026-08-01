@@ -102,134 +102,61 @@ zoomEffect 30s infinite alternate;
 
 @keyframes backgroundChange{
 
-
 0%{
-
-
 background-image:
-
 linear-gradient(
-
-rgba(0,0,40,0.35),
-
-rgba(0,0,40,0.35)
-
+rgba(0,0,35,0.48),
+rgba(0,0,35,0.48)
 ),
-
 url("/static/images/images (1).jpg");
-
-
 }
-
-
-
 
 20%{
-
-
 background-image:
-
 linear-gradient(
-
-rgba(0,0,40,0.35),
-
-rgba(0,0,40,0.35)
-
+rgba(0,0,35,0.48),
+rgba(0,0,35,0.48)
 ),
-
 url("/static/images/images (2).jpg");
-
-
 }
-
-
-
 
 40%{
-
-
 background-image:
-
 linear-gradient(
-
-rgba(0,0,40,0.35),
-
-rgba(0,0,40,0.35)
-
+rgba(0,0,35,0.48),
+rgba(0,0,35,0.48)
 ),
-
 url("/static/images/images(3).jpg");
-
-
 }
-
-
-
 
 60%{
-
-
 background-image:
-
 linear-gradient(
-
-rgba(0,0,40,0.35),
-
-rgba(0,0,40,0.35)
-
+rgba(0,0,35,0.48),
+rgba(0,0,35,0.48)
 ),
-
 url("/static/images/images(4).jpg");
-
-
 }
-
-
-
 
 80%{
-
-
 background-image:
-
 linear-gradient(
-
-rgba(0,0,40,0.20),
-
-rgba(0,0,40,0.20)
-
+rgba(0,0,35,0.45),
+rgba(0,0,35,0.45)
 ),
-
 url("/static/images/images(5).jpg");
-
-
 }
-
-
-
 
 100%{
-
-
 background-image:
-
 linear-gradient(
-
-rgba(0,0,40,0.20),
-
-rgba(0,0,40,0.20)
-
+rgba(0,0,35,0.48),
+rgba(0,0,35,0.48)
 ),
-
 url("/static/images/images (1).jpg");
-
-
 }
 
-
 }
-
-
 
 
 
@@ -1143,19 +1070,18 @@ margin-bottom:30px;
 
 .college-logo{
 
-    width:120px;
+    width:115px;
 
-    height:120px;
+    height:auto;
 
-    background:white;
+    background:transparent;
 
-    padding:8px;
+    padding:0;
 
-    border-radius:50%;
+    border-radius:0;
 
     box-shadow:
-    0 0 15px white,
-    0 0 25px cyan;
+    0 0 12px rgba(0,255,255,.8);
 
 }
 
@@ -1163,24 +1089,25 @@ margin-bottom:30px;
 
 .college-name{
 
-    font-size:58px;
+    font-size:62px;
 
     font-weight:900;
 
-    letter-spacing:3px;
-
-    color:#FFFFFF;
+    color:#ffffff;
 
     text-transform:uppercase;
 
+    letter-spacing:2px;
+
+    line-height:1.1;
+
     text-shadow:
-    0 0 8px #39E5FF,
-    0 0 18px #39E5FF,
-    0 0 30px rgba(57,229,255,.7),
-    3px 3px 12px black;
+        0 0 5px #8ef7ff,
+        0 0 10px #39E5FF,
+        0 0 20px #39E5FF,
+        0 0 35px rgba(57,229,255,.8);
 
 }
-
 
 
 .college-subtitle{
@@ -1222,54 +1149,49 @@ margin-bottom:30px;
 
     margin-top:35px;
 
-    font-size:54px;
+    font-size:56px;
 
     font-weight:900;
 
-    color:#15F5FF;
+    color:#18F0FF;
 
     text-shadow:
-    0 0 10px cyan,
-    3px 3px 10px black;
+        0 0 12px rgba(0,255,255,.6),
+        3px 3px 10px black;
 
 }
-
 .project-subtitle{
 
+    margin-top:10px;
 
-font-size:28px;
+    font-size:28px;
 
-color:white;
+    color:white;
 
-margin-top:10px;
+    font-weight:700;
 
+    text-shadow:2px 2px 8px black;
 
 }
-
 
 
 .developer-name{
 
-    margin-top:28px;
+    margin-top:14px;
 
-    font-size:23px;
-
-    font-weight:500;
+    font-size:22px;
 
     color:white;
-
-    letter-spacing:1px;
 
 }
 
 .developer-name span{
 
-    color:#58F6FF;
+    color:#18F0FF;
 
-    font-weight:800;
+    font-weight:700;
 
 }
-
 @keyframes slide{
 
 
@@ -1315,9 +1237,9 @@ translateY(0);
 
     align-items:center;
 
-    gap:12px;
+    gap:15px;
 
-    margin-top:10px;
+    margin-top:8px;
 
     color:white;
 
@@ -1327,7 +1249,7 @@ translateY(0);
 
 .college-divider span{
 
-    width:160px;
+    width:180px;
 
     height:2px;
 
@@ -1335,25 +1257,14 @@ translateY(0);
 
 }
 
-
-
-/* =========================================
-      LOCATION
-========================================= */
-
 .college-location{
 
-    margin-top:12px;
+    margin-top:10px;
 
-    font-size:20px;
+    color:white;
+
+    font-size:21px;
 
     font-weight:700;
-
-    color:#F8FCFF;
-
-    letter-spacing:1px;
-
-    text-shadow:
-        0 0 10px rgba(0,255,255,.4);
 
 }
