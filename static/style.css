@@ -1070,21 +1070,21 @@ margin-bottom:30px;
 
 .college-logo{
 
-    width:115px;
+    width:120px;
 
-    height:auto;
+    height:120px;
 
-    background:transparent;
+    background:white;
 
-    padding:0;
+    padding:8px;
 
-    border-radius:0;
+    border-radius:50%;
 
     box-shadow:
-    0 0 12px rgba(0,255,255,.8);
+    0 0 15px white,
+    0 0 25px cyan;
 
 }
-
 
 
 .college-name{
