@@ -248,8 +248,8 @@ def predict():
             input_data
 
         )[0]
-       print("Prediction =", prediction)
-       print("Type =", type(prediction))
+        print("Prediction =", prediction)
+        print("Type =", type(prediction))
 
 
 
