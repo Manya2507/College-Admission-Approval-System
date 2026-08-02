@@ -289,48 +289,42 @@ def predict():
 
 
 
- prediction = str(prediction)
+         prediction = str(prediction)
 
 
-if prediction == "0":
+        if prediction == "0":
 
-    result = {
-        "status": "❌ ADMISSION REJECTED",
-        "message": "Sorry! The student is not eligible for admission."
-    }
-
-
-elif prediction == "1":
-
-    result = {
-        "status": "🎉 ADMISSION APPROVED",
-        "message": "Congratulations! The student is eligible for admission."
-    }
+            result = {
+                "status": "❌ ADMISSION REJECTED",
+                "message": "Sorry! The student is not eligible for admission."
+            }
 
 
-elif prediction == "2":
+        elif prediction == "1":
 
-    result = {
-        "status": "⏳ ADMISSION WAITLISTED",
-        "message": "The student is waitlisted for admission."
-    }
+            result = {
+                "status": "🎉 ADMISSION APPROVED",
+                "message": "Congratulations! The student is eligible for admission."
+            }
 
 
-else:
+        elif prediction == "2":
 
-    result = {
-        "status": "⚠️ UNKNOWN",
-        "message": "Model output: " + prediction
-    }
+            result = {
+                "status": "⏳ ADMISSION WAITLISTED",
+                "message": "The student is waitlisted for admission."
+            }
 
-else:
 
-    result = {
-        "status": "⚠️ UNKNOWN RESULT",
-        "message": f"Model returned: {prediction}"
-    }
-return jsonify(result)
+        else:
 
+            result = {
+                "status": "⚠️ UNKNOWN RESULT",
+                "message": f"Model returned: {prediction}"
+            }
+
+
+        return jsonify(result)
 
 
 
