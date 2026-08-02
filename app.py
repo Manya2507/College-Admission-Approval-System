@@ -32,57 +32,55 @@ app = Flask(__name__)
 # ==========================================================
 
 category_map = {
-    "General": 0,
-    "OBC": 1,
-    "SC": 2,
-    "ST": 3
+    "ST" : 0,
+    "OBC" : 1,
+    "SC" : 2,
+    "EWS" : 3,
+    "General" : 4
 }
 
 exam_map = {
-    "JEE": 0,
-    "CUET": 1,
-    "NEET": 2,
-    "Other": 3
+    "CUET" : 0,
+    "JEE Main" : 1
 }
 
 branch_map = {
-    "CSE": 0,
-    "IT": 1,
-    "ECE": 2,
-    "EEE": 3,
-    "Mechanical": 4,
-    "Civil": 5
+    "AI" : 0,
+    "Civil" : 1,
+    "Mechanical" : 2,
+    "CSE" : 3,
+    "ECE" : 4
 }
 
 college_map = {
-    "PIET": 0,
-    "NIT": 1,
-    "IIT": 2,
-    "Other": 3
+    "NIT Trichy" : 0,
+    "Chitkara" : 1,
+    "Thapar": 2,
+    "IIT Delhi" : 3
 }
 
 college_type_map = {
-    "Government": 0,
-    "Private": 1
+    "Govt" : 0,
+    "Private" : 1
 }
 
 tier_map = {
-    "1": 1,
-    "2": 2,
-    "3": 3
+    "Tier 1" : 0,
+    "Tier 3" : 1,
+    "Tier 2" : 2
 }
 
 quota_map = {
-    "General": 0,
-    "EWS": 1,
-    "OBC": 2,
-    "SC": 3,
-    "ST": 4
+    "SC" : 0,
+    "OBC" : 1,
+    "EWS" : 2,
+    "ST" : 3,
+    "General" : 4
 }
 
 documents_map = {
-    "No": 0,
-    "Yes": 1
+    "No" : 0,
+    "Yes" : 1
 }
 
 scholarship_applied_map = {
@@ -96,8 +94,8 @@ scholarship_eligibility_map = {
 }
 
 hostel_map = {
-    "No": 0,
-    "Yes": 1
+    "Yes" : 0,
+    "No" : 1
 }
 
 # ==========================================================
@@ -250,8 +248,8 @@ def predict():
             input_data
 
         )[0]
-print("Prediction =", prediction)
-print("Type =", type(prediction))
+       print("Prediction =", prediction)
+       print("Type =", type(prediction))
 
 
 
