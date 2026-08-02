@@ -252,15 +252,15 @@ def predict():
         # Prediction
 
 
-        prediction = model.predict(input_data)[0]
+        prediction = model.predict(
+        input_data
+        )[0]
 
 
-print("==============================")
-print("MODEL PREDICTION:", prediction)
-print("MODEL CLASSES:", model.classes_)
-print("==============================")
-
-
+        print("==============================")
+        print("MODEL PREDICTION:", prediction)
+        print("MODEL CLASSES:", model.classes_)
+        print("==============================")
 
 
 
@@ -271,32 +271,18 @@ print("==============================")
 
         try:
 
-
             probability = max(
-
-                model.predict_proba(
-
-                    input_data
-
-                )[0]
-
+                model.predict_proba(input_data)[0]
             )
-
 
             probability = round(
-
                 probability * 100,
-
                 2
-
             )
-
 
         except:
 
-
             probability = 0
-
 
 
 
