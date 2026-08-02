@@ -289,7 +289,7 @@ def predict():
 
 
 
-        prediction = str(prediction)
+ prediction = str(prediction)
 
 
 if prediction == "0":
@@ -329,7 +329,7 @@ else:
         "status": "⚠️ UNKNOWN RESULT",
         "message": f"Model returned: {prediction}"
     }
-        return jsonify(result)
+return jsonify(result)
 
 
 
