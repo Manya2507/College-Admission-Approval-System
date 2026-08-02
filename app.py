@@ -109,8 +109,17 @@ try:
 
     model = joblib.load(MODEL_PATH)
 
+    print("Available Classes:")
+    print(model.classes_)
+
     print("✅ Admission Model Loaded Successfully")
 
+
+except Exception as e:
+
+    print("❌ Model Loading Error:", e)
+
+    model = None
 
 except Exception as e:
 
@@ -243,13 +252,15 @@ def predict():
         # Prediction
 
 
-        prediction = model.predict(
+        prediction = model.predict(input_data)[0]
 
-            input_data
 
-        )[0]
-        print("Prediction =", prediction)
-        print("Type =", type(prediction))
+print("==============================")
+print("MODEL PREDICTION:", prediction)
+print("MODEL CLASSES:", model.classes_)
+print("==============================")
+
+
 
 
 
@@ -292,22 +303,46 @@ def predict():
 
 
 
-        if str(prediction).lower() in [
-            "approved",
-            "yes",
-            "1"
-        ]:
-            result = {
-                "status": "🎉 ADMISSION APPROVED",
-                "message": "Congratulations! The student is eligible for admission."
-            }
+        prediction = str(prediction)
 
-        else:
-            result = {
-                "status": "❌ ADMISSION NOT APPROVED",
-                "message": "Sorry! The student is not eligible for admission."
-            }
 
+if prediction == "0":
+
+    result = {
+        "status": "❌ ADMISSION REJECTED",
+        "message": "Sorry! The student is not eligible for admission."
+    }
+
+
+elif prediction == "1":
+
+    result = {
+        "status": "🎉 ADMISSION APPROVED",
+        "message": "Congratulations! The student is eligible for admission."
+    }
+
+
+elif prediction == "2":
+
+    result = {
+        "status": "⏳ ADMISSION WAITLISTED",
+        "message": "The student is waitlisted for admission."
+    }
+
+
+else:
+
+    result = {
+        "status": "⚠️ UNKNOWN",
+        "message": "Model output: " + prediction
+    }
+
+else:
+
+    result = {
+        "status": "⚠️ UNKNOWN RESULT",
+        "message": f"Model returned: {prediction}"
+    }
         return jsonify(result)
 
 
