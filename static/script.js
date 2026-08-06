@@ -81,9 +81,7 @@ function getFormData(){
 
 
 
-        "PCM_%":
-
-        document.getElementById("PCM_%").value,
+        
 
 
 
@@ -129,28 +127,18 @@ function getFormData(){
 
 
 
-        NIRF_Rank:
-
-        document.getElementById("NIRF_Rank").value,
+        
 
 
 
-        College_Tier:
-
-        document.getElementById("College_Tier").value,
+        
 
 
 
-        Branch_Cutoff_Rank:
-
-        document.getElementById("Branch_Cutoff_Rank").value,
+        
 
 
-
-        Available_Seats:
-
-        document.getElementById("Available_Seats").value,
-
+        
 
 
         Reservation_Quota:
@@ -165,10 +153,7 @@ function getFormData(){
 
 
 
-        Interview_Score:
-
-        document.getElementById("Interview_Score").value,
-
+        
 
 
         Communication_Score:
@@ -201,9 +186,7 @@ function getFormData(){
 
 
 
-        Admission_Probability:
-
-        document.getElementById("Admission_Probability").value,
+        
 
 
 
