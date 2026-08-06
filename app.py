@@ -64,13 +64,7 @@ college_type_map = {
 }
 
 
-tier_map = {
 
-    "Tier 1":0,
-    "Tier 2":1,
-    "Tier 3":2
-
-}
 
 
 quota_map = {
@@ -202,9 +196,7 @@ def predict():
         ),
 
 
-        "PCM_%":float(
-            data.get("PCM_%") or 0
-        ),
+       
 
 
         "Entrance_Exam":exam_map.get(
@@ -242,24 +234,13 @@ def predict():
         ),
 
 
-        "NIRF_Rank":float(
-            data.get("NIRF_Rank") or 0
-        ),
+        
 
 
-        "College_Tier":tier_map.get(
-            data.get("College_Tier"),0
-        ),
+        
 
 
-        "Branch_Cutoff_Rank":float(
-            data.get("Branch_Cutoff_Rank") or 0
-        ),
-
-
-        "Available_Seats":float(
-            data.get("Available_Seats") or 0
-        ),
+        
 
 
         "Reservation_Quota":quota_map.get(
@@ -272,9 +253,7 @@ def predict():
         ),
 
 
-        "Interview_Score":float(
-            data.get("Interview_Score") or 0
-        ),
+        
 
 
         "Communication_Score":float(
@@ -302,9 +281,7 @@ def predict():
         ),
 
 
-        "Admission_Probability":float(
-            data.get("Admission_Probability") or 0
-        ),
+        
 
 
         "Tuition_Fee":float(
