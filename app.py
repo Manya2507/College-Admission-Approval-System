@@ -299,10 +299,12 @@ def predict():
         prediction=model.predict(input_data)[0]
 
 
-        print("==============================")
-        print("PREDICTION:",prediction)
-        print("CLASSES:",model.classes_)
-        print("==============================")
+        prediction = model.predict(input_data)[0]
+
+        print("========================")
+        print("Prediction =", prediction)
+        print("Prediction Type =", type(prediction))
+        print("========================")
 
 
 
