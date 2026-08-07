@@ -296,10 +296,13 @@ def predict():
 
         # MODEL PREDICTION
 
-        prediction=model.predict(input_data)[0]
+        
 
 
         prediction = model.predict(input_data)[0]
+        print("Prediction:", prediction)
+        print("Input Data:")
+        print(input_data)
 
         print("========================")
         print("Prediction =", prediction)
