@@ -299,9 +299,11 @@ def predict():
         
 
 
+        
         prediction = model.predict(input_data)[0]
+
         print("Prediction:", prediction)
-        print("Input Data:")
+        print("Probabilities:", model.predict_proba(input_data))
         print(input_data)
 
         print("========================")
